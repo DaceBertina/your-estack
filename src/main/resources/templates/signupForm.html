@@ -1,0 +1,154 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns: sec="http://www.thymeleaf.org/extras/spring-security">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="css/min.animate.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-icons.css" rel="stylesheet">
+<link href="css/boxicons.min.css" rel="stylesheet">
+<link href="css/glightbox.min.css" rel="stylesheet">
+<link href="css/swiper-bundle.min.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="css/style.css" rel="stylesheet">
+
+<head>
+  <title>Sign Up Form</title>
+  <style>
+    body {
+      background: url(images/hero_carousel_1.jpg) no-repeat center 81px;
+    }
+    .form-container {
+      display: block;
+      border-radius: 5%;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin: 110px auto 15px;
+      width: 650px;
+      text-align: center;
+      line-height: 1em;
+    }
+
+    .mx-auto {
+      width: 650px;
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+      text-align: right;
+    }
+    .invalid-feedback {
+      font-size: 14px;
+      font-weight: 600;
+      text-align: left;
+      color: #ff0000;
+      line-height: 2em;
+    }
+
+    .btn {
+        max-height: 35px;
+        text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container d-flex justify-content-between">
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+      </ul>
+      <!--  <i class="bi bi-list mobile-nav-toggle"></i> -->
+      </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
+
+<!-- <div class="carousel-item active" style="background-image: url(images/hero_carousel_1.jpg)"> -->
+
+
+<form th:action="@{/registerClient}" method="POST" th:object="${userDTO}" id="registration">
+
+    <div class="mx-auto">
+        <div class="form-container bg-info">
+    <div class="m-3 mt-3 mb-3 ml-2 mr-2 px-2 pt-2 pb-2 p-3">
+      <h4 style="color: white; text-align: center;">Please fill in the registration form: </h4>
+      <div class="form-group row">
+        <label for="email" class="col-form-label col-3" >Email: </label>
+        <div class="col-8">
+          <input type="email" class="form-control" style="height: 28px" name="email" th:value="*{email}" id="email" th:errorClass="is-invalid" required/><br/>
+          <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"> </div>
+        </div>
+      </div>
+      <div class="form-group row">
+       <label for="password" class="col-form-label col-3">Password: </label>
+        <div class="col-8">
+        <input type="password" class="form-control" style="height: 28px" name="password" th:value="*{password}" id="password" th:errorClass="is-invalid" required
+         minlength="8"/><br/>
+          <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"> </div>
+        </div>
+      </div>
+<!--      <div class="form-group row">-->
+<!--        <label for="matching_password" class="col-form-label col-3">Confirm password: </label>-->
+<!--        <div class="col-8">-->
+<!--        <input type="password" class="form-control" style="height: 28px" name="matching_password"  th:value="*{matching_password}" id="matching_password" th:errorClass="is-invalid" required-->
+<!--         minlength="8"/><br/>-->
+<!--          <div th:if="${#fields.hasErrors('matching_password')}" th:errors="*{matching_password}" class="invalid-feedback"> </div>-->
+<!--        </div>-->
+<!--      </div>-->
+        <div class="form-group row">
+            <label for="username" class="col-form-label col-3">Username: </label>
+            <div class="col-8">
+                <input type="text" class="form-control" style="height: 28px" name="username" th:value="*{username}" id="username" th:errorClass="is-invalid" required
+                       minlength="2" maxlength="40"/><br/>
+            </div>
+        </div>
+      <div class="form-group row">
+        <label for="firstName" class="col-form-label col-3">First name: </label>
+        <div class="col-8">
+        <input type="text" class="form-control" style="height: 28px" name="firstName" th:value="*{firstName}" id="firstName" th:errorClass="is-invalid" required
+         minlength="2" maxlength="40"/><br/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lastName" class="col-form-label col-3">Last name: </label>
+        <div class="col-8">
+        <input type="text" class="form-control" style="height: 28px" name="lastName" th:value="*{lastName}" id="lastName" th:errorClass="is-invalid" required
+         minlength="2" maxlength="60"/><br/>
+        </div>
+      </div>
+      <div class="form-group row">
+       <label for="dateOfBirth" class="col-form-label col-3">Date of birth: </label>
+        <div class="col-8">
+        <input type="date" class="form-control" style="height: 28px" name="dateOfBirth" th:value="*{dateOfBirth}" id="dateOfBirth" th:errorClass="is-invalid" required/><br/>
+        </div>
+      </div>
+      <div class="form-group row">
+      <label for="phoneNumber" class="col-form-label col-3">Phone number: </label>
+        <div class="col-8">
+       <input type="text" class="form-control" style="height: 28px" name="phoneNumber" th:value="*{phoneNumber}" id="phoneNumber" th:errorClass="is-invalid" required /><br/>
+        </div>
+      </div>
+      <div class="form-group row">
+      <label for="occupation" class="col-form-label col-3">Occupation: </label>
+        <div class="col-8">
+       <input type="text" class="form-control" style="height: 28px" name="occupation" th:value="*{occupation}" id="occupation" th:errorClass="is-invalid" required /><br/>
+        </div>
+      </div>
+        <button type="submit" class="btn btn-primary"><p style="color: white"><b>Register</b><p></button>
+  </div>
+  </div>
+    </div>
+</form>
+
+  <!-- </div> -->
+
+</body>
+</html>
