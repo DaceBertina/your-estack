@@ -28,8 +28,6 @@
     .form-container {
       display: block;
         border-radius: 5%;
-        padding-top: 20px;
-        padding-bottom: 20px;
         padding: 35px 35px;
         margin-top: 20px;
       width: 1150px;
@@ -37,12 +35,17 @@
       line-height: 1em;
     }
 
-    .mx-auto {
-      width: 1150px;
-      padding-top: 25px;
-      padding-bottom: 25px;
-      padding: 30px; 35px;
-    }
+      .db-container {
+          background-color: #3EC1D5;
+          color: white;
+          border-radius: 25px;
+          margin-top: 30px;
+          padding: 35px 55px;
+          margin-left: 55px;
+          margin-right: 25px;
+          width: auto;
+      }
+
     label {
       display: inline-block;
       width: 150px;
@@ -64,11 +67,10 @@
                 background: #96b9ec;
                 margin-left: 40px; /* Indent left */
                 padding: 10px; /* Padding inside the right block */
-                background: #f1f2f3; /* Right block background color */
             }
        h1 {
                 font-weight: bold;
-                font-size: 60px; /* Font size */
+                font-size: 50px; /* Font size */
                 margin: 0;
                 padding: 0;
             }
@@ -93,6 +95,8 @@
       table, th, td {
           border: 1px solid black;
           padding: 1px;
+          font-weight: bold;
+          color: #0f3d81;
       }
 
       .btn {
@@ -121,8 +125,6 @@
 </head>
 <body>
 <header id="header" class="d-flex align-items-center">
-    <div class="container d-flex justify-content-between">
-
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
@@ -138,80 +140,64 @@
 </header><!-- End Header -->
 <br>
 <div>
-    <div class="mx-auto">
-        <div class="form-container bg-info">
-    <div layout:fragment="content display-block" align="center">
+    <div class='db-container'>
+        <div class="form-container bg-info" style = "margin-left: 100px">
+    <div layout:fragment="content display-block">
         <table class="table table-sm table-bordered table-center">
             <thead class="thead-light">
             <tr>
-                <th><h3 style = "color:orange" align="center">You have been successfully registred! Your profile information:</h3></th>
+                <th><h3 style = "color:orange; line-height: 20px; margin-bottom: 0;">You have been successfully registred! Your profile information:</h3></th>
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr style = "text-align: left">
                 <td th:text="'Email: ' + ${user.getEmail()}"></td>
             </tr>
-            <tr>
+            <tr style = "text-align: left">
                 <td th:text="'Name: ' + ${user.getFirstName()}"></td>
             </tr>
-            <tr>
+            <tr style = "text-align: left" >
                 <td th:text="'Surname: ' + ${user.getLastName()}"></td>
             </tr>
-<!--            <tr>-->
-<!--                <td th:text="'Gender: ' + ${user.getGender()}"></td>-->
-<!--            </tr>-->
-            <tr>
+            <tr style = "text-align: left" >
+                <td th:text="'Gender: ' + ${user.getGender()}"></td>
+            </tr>
+            <tr style = "text-align: left">
                 <td th:text="'Birthdate: ' + ${user.getDateOfBirth()}"></td>
             </tr>
-            <tr>
+            <tr style = "text-align: left">
                 <td th:text="'Telephone: ' + ${user.getPhoneNumber()}"></td>
             </tr>
-            <tr>
+            <tr style = "text-align: left" >
                 <td th:text="'Occupation: ' + ${user.getOccupation()}"></td>
             </tr>
             </tbody>
         </table>
    <br>
         <div layout:fragment="content">
+            <div>
+                <button class="btn btn-primary"><a th:href="@{/editProfile}"><p style="color: white"><b>Edit Profile</b></p></a></button>
+            </div>
+            <br>
+            <br>
             <table class="table table-sm table-bordered table-center">
                 <thead class="thead-light">
                 <tr>
-                    <th> <h2 style = "color:orange" align="center">You have no engagement yet!</h2>
-                        <h2 style = "color:orange" align="center">If you want to subscribe for courses please login:</h2>
+                    <th> <h2 style = "color:orange; line-height: 20px; margin-bottom: 0;">You have no engagement yet!</h2>
+                        <h2 style = "color:orange; line-height: 20px; margin-bottom: 0;" >Explore our offer: </h2>
                     </th>
                 </tr>
                 </thead>
             </table>
-        <div>
-            <button class="btn btn-primary"><a th:href="@{/loginForm}"><p style="color: white"><b>Login</b></p></a></button>
-        </div>
             <br>
-            <br>
-            <div align="center">
                 <div layout:fragment="content">
-                        <table class="table table-sm table-bordered table-center">
-                            <thead class="thead-light">
-                            <tr>
-                                <th>Course ID</th>
-                                <th>Course Name</th>
-                                <th>Course Launch Date</th>
-                                <th>Subscription Start Date</th>
-                                <th>Price</th>
-                            </tr>
-                         </thead>
-                        <tbody>
-                                <td></td>
-                                <td></td>
-                    </tbody>
-                </table>
+                    <div>
+                        <button class="btn btn-primary"><a th:href="@{/showOffer}"><p style="color: white"><b>Get started</b></p></a></button>
+                    </div>
                     <br>
                     <br>
          </div>
-   </div>
 </div>
-    </div>
-    <div>
-        <button class="btn btn-primary"><a th:href="@{/editProfile}"><p style="color: white"><b>Edit Profile</b></p></a></button>
     </div>
         </div>
     </div>

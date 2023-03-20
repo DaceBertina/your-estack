@@ -14,7 +14,9 @@
           crossorigin="anonymous">
     <style>
        body {
-      background: url(images/profile.jpg) no-repeat center 81px;
+      background: url(images/profile.jpg) no-repeat;
+           height: 100%;
+           width: 100%;
     }
     .form-container {
       display: block;
@@ -149,34 +151,34 @@
             </tr>
             </thead>
             <tbody>
-<!--            <tr>-->
-<!--                <td th:text="'Email: ' + ${userDTO.getEmail()}"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td th:text="'Name: ' + ${userDTO.getFirstName()}"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td th:text="'Surname: ' + ${userDTO.getLastName()}"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td th:text="'Gender: ' + ${userDTO.getGender()}"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td th:text="'Birthdate: ' + ${userDTO.getDateOfBirth()}"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td th:text="'Address: ' + ${userDTO.getPhoneNumber()}"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td th:text="'Telephone: ' + ${userDTO.getOccupation()}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <td th:text="'Email: ' + ${user.getEmail()}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Name: ' + ${user.getFirstName()}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Surname: ' + ${user.getLastName()}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Gender: ' + ${user.getGender()}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Birthdate: ' + ${user.getDateOfBirth()}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Address: ' + ${user.getPhoneNumber()}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Telephone: ' + ${user.getOccupation()}"></td>
+            </tr>
             </tbody>
         </table>
    <p></p>
         <div>
             <h2 style = "color:orange">Your courses:</h2>
         </div>
-<!--        <form th:action="@{/showOrder}" method="post" th:object="${order}">-->
+<!--        <form th:action="@{/showCourses}" method="post" th:object="${user}">-->
 <!--            <div align="center">-->
 <!--                <div layout:fragment="content">-->
 <!--                    <table class="table table-bordered">-->
@@ -187,6 +189,7 @@
 <!--                                <th>Course Launch Date</th>-->
 <!--                                <th>Subscription Start Date</th>-->
 <!--                                <th>Price</th>-->
+<!--                                <th>Get started</th>&ndash;&gt;-->
 <!--                            </tr>-->
 <!--                         </thead>-->
 <!--                        <tbody>-->

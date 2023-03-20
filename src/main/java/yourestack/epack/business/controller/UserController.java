@@ -4,7 +4,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,10 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yourestack.epack.business.domain.UserDTO;
+import yourestack.epack.business.domain.UserDetailsImpl;
 import yourestack.epack.business.service.impl.UserServiceImpl;
+import yourestack.epack.config.AuthenticationFacade;
+import yourestack.epack.config.IAuthenticationFacade;
 import yourestack.epack.util.WebUtil;
 
 @Log4j2
@@ -29,6 +34,8 @@ import yourestack.epack.util.WebUtil;
 public class UserController {
 
     private final UserServiceImpl userService;
+
+//    private final AuthenticationFacade authenticationFacade;
 
     @GetMapping
     public String list(final Model model) {
@@ -141,18 +148,40 @@ public class UserController {
         return "loginForm";
     }
 
-    @PostMapping("/perform_login")
-    public String processLogin() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUser = authentication.getName();
-        log.info("Login for {} successful.", currentUser);
+    @Autowired
+    private IAuthenticationFacade authenticationFacade;
+
+    @Autowired
+    private UserServiceImpl userServiceImpl;
+
+    @GetMapping("/perform_login")
+    public String processLogin(Model model) {
+        log.info("Login successful.");
+        Authentication authentication = authenticationFacade.getAuthentication();
+        String email = authentication.getName();
+        UserDTO user = userServiceImpl.findByEmail(email);
+        log.info("Email: {}", email);
+        model.addAttribute("user", user);
+
         return "redirect:/profile1";
+    }
+
+    @GetMapping("/showProfile")
+    public String showProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
+        model.addAttribute("user", user);
+        return "user";
+    }
+
+    @GetMapping("/profile1")
+    public String viewProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
+        model.addAttribute("user", user);
+        return "/profile1";
     }
 
     @GetMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
-        return "loginError";
+        return "loginForm";
     }
 
 }

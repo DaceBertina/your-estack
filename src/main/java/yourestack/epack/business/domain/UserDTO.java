@@ -21,6 +21,9 @@ public class UserDTO {
     @Size(max = 45)
     private String lastName;
 
+    @Size(max = 2)
+    private String gender;
+
     @NotBlank
     @Size(max = 20)
     private String username;

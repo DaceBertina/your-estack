@@ -42,8 +42,12 @@ public class UserEntity {
     @Column(nullable = false, length = 45)
     private String lastName;
 
+    @Column
+    private String gender;
+
     @NotBlank
     @Size(max = 20)
+    @Column(nullable = false)
     private String username;
 
     @NotBlank

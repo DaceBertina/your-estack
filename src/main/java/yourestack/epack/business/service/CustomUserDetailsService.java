@@ -15,6 +15,7 @@ import yourestack.epack.business.model.RoleEntity;
 import yourestack.epack.business.model.UserEntity;
 import yourestack.epack.business.model.repos.UserRepository;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -35,17 +36,17 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("No user found with email: " + email);
         }
-//        UserDTO userDTO = userMapper.userEntityToUserDto(user);
+        UserDTO userDTO = userMapper.userEntityToUserDto(user);
         boolean enabled = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-//        return UserDetailsImpl.build(userDTO);
+        return new UserDetailsImpl(userDTO);
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(), user.getPassword(), enabled, accountNonExpired,
-                credentialsNonExpired, accountNonLocked, getAuthorities(user.getRoleEntityList()));
+//        return new org.springframework.security.core.userdetails.User(
+//                user.getEmail(), user.getPassword(), enabled, accountNonExpired,
+//                credentialsNonExpired, accountNonLocked, getAuthorities(user.getRoleEntityList()));
     }
 
     private static List<GrantedAuthority> getAuthorities (Set<RoleEntity> roleEntityList) {
