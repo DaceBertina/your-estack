@@ -128,7 +128,7 @@
         <div class="form-group row">
             <label for="gender" class="col-form-label col-3">Gender: </label>
             <div class="col-8">
-                <input type="text" class="form-control" style="height: 28px" name="gender" th:value="*{gender}" id="gender" th:errorClass="is-invalid" required
+                <input type="text" class="form-control" style="height: 28px" name="gender" th:field="*{gender}" id="gender" th:errorClass="is-invalid" required
                        minlength="1" maxlength="3"/><br/>
             </div>
         </div>

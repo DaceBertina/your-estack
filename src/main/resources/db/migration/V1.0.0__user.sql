@@ -47,3 +47,24 @@ CREATE TABLE roles (
                         description varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                         PRIMARY KEY (role_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+CREATE TABLE epacks (
+                       epack_id bigint(20) NOT NULL AUTO_INCREMENT,
+                       epack_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                       manager varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                       description varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                       role_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                       category varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                       date_created date,
+                       last_updated date,
+                       PRIMARY KEY (epack_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE categories (
+                       category_id bigint(20) NOT NULL AUTO_INCREMENT,
+                       category_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                       date_created date,
+                       last_updated date,
+                       PRIMARY KEY (category_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
