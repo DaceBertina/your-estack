@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -77,11 +78,12 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .formLogin()
                 .loginPage("/loginForm")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/profile1", true)
-                .failureUrl("/login?error=true")
                 .usernameParameter("email")
                 .passwordParameter("password")
-//                .failureHandler(authenticationFailureHandler())
+                .defaultSuccessUrl("/profile1", true)
+                //.failureUrl("/login?error=true")
+                //.failureHandler(authenticationFailureHandler())
+                .permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/perform_logout")

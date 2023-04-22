@@ -6,7 +6,7 @@ CREATE TABLE users (
                         user_id bigint(20) NOT NULL AUTO_INCREMENT,
                         first_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                         last_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-                        gender varchar(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+                        gender varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
                         username varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                         email varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                         password varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,

@@ -3,9 +3,11 @@ package yourestack.epack.business.domain;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import yourestack.epack.business.model.OrderEntity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -18,10 +20,10 @@ public class UserDTO {
     private String firstName;
 
     @NotBlank
-    @Size(max = 45)
+    @Size(max = 45, message = "Last name should be at least 2 char long.")
     private String lastName;
 
-    @Size(max = 2)
+    @Size(max = 10)
     private String gender;
 
     @NotBlank
@@ -53,6 +55,12 @@ public class UserDTO {
 
     public Set<RoleDTO> getRoleList() {
         return roleList;
+    }
+
+    public List<OrderDTO> orderList;
+
+    public List<OrderDTO> getOrders() {
+        return orderList;
     }
 
     //    public Collection<? extends GrantedAuthority> getAuthorities() {

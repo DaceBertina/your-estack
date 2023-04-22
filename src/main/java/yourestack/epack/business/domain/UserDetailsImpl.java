@@ -104,6 +104,8 @@ public class UserDetailsImpl implements UserDetails {
         return userDTO.getOccupation();
     }
 
+    public List<OrderDTO> getOrders() { return userDTO.getOrders();}
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

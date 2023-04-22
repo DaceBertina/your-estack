@@ -154,17 +154,17 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @GetMapping("/perform_login")
-    public String processLogin(Model model) {
-        log.info("Login successful.");
-        Authentication authentication = authenticationFacade.getAuthentication();
-        String email = authentication.getName();
-        UserDTO user = userServiceImpl.findByEmail(email);
-        log.info("Email: {}", email);
-        model.addAttribute("user", user);
-
-        return "redirect:/profile1";
-    }
+//    @GetMapping("/perform_login")
+//    public String processLogin(Model model) {
+//        log.info("Login successful.");
+//        Authentication authentication = authenticationFacade.getAuthentication();
+//        String email = authentication.getName();
+//        UserDTO user = userServiceImpl.findByEmail(email);
+//        log.info("Email: {}", email);
+//        model.addAttribute("user", user);
+//
+//        return "redirect:/profile1";
+//    }
 
     @GetMapping("/showProfile")
     public String showProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
@@ -178,9 +178,9 @@ public class UserController {
         return "/profile1";
     }
 
-    @GetMapping("/login-error")
+    @GetMapping("/login?error=true")
     public String loginError(Model model) {
-        model.addAttribute("loginError", true);
+        model.addAttribute("error", "error");
         return "loginForm";
     }
 

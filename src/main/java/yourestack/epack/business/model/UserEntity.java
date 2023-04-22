@@ -94,6 +94,12 @@ public class UserEntity {
 
     private Set<RoleEntity> roleEntityList;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    public List<OrderEntity> orderEntityList;
+
+    public List<OrderEntity> getOrders() {
+        return orderEntityList;
+    }
 
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
