@@ -53,6 +53,7 @@ CREATE TABLE epacks (
                        epack_id bigint(20) NOT NULL AUTO_INCREMENT,
                        category_id bigint(8) NOT NULL,
                        epack_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                       duration_h int NOT NULL,
                        manager_name varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                        description varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                        price decimal NOT NULL,

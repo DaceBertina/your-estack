@@ -93,7 +93,7 @@ public class UserEntity {
 
     private Set<RoleEntity> roleEntityList;
 
-    @OneToMany(mappedBy = "userEntity", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderEntity> orderEntityList;
 
     private List<OrderEntity> getOrders() {

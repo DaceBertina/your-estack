@@ -1,31 +1,23 @@
 package yourestack.epack.business.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yourestack.epack.business.domain.UserDTO;
 import yourestack.epack.business.domain.UserDetailsImpl;
 import yourestack.epack.business.service.impl.UserServiceImpl;
-import yourestack.epack.config.AuthenticationFacade;
-import yourestack.epack.config.IAuthenticationFacade;
 import yourestack.epack.util.WebUtil;
 
 @Log4j2
@@ -34,8 +26,6 @@ import yourestack.epack.util.WebUtil;
 public class UserController {
 
     private final UserServiceImpl userService;
-
-//    private final AuthenticationFacade authenticationFacade;
 
     @GetMapping
     public String list(final Model model) {
@@ -56,6 +46,17 @@ public class UserController {
             return "/signupForm";
         }
 
+        if (userService.userExists(user.getEmail())) {
+            bindingResult.addError(new FieldError("client", "username", "There already exists account with that email." ));
+        }
+
+
+//        if (client.getPassword() != null && client.getMatchingPassword() != null) {
+//            if (!client.getPassword().equals(client.getMatchingPassword())) {
+//                result.addError(new FieldError("client", "password", "Passwords don't match." ));
+//            }
+//        }
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -64,17 +65,6 @@ public class UserController {
         redirectAttributes.addFlashAttribute(WebUtil.MSG_SUCCESS, WebUtil.getMessage("user.register.success"));
         return "profile";
     }
-
-//    @PostMapping("/user/registration")
-//    public ModelAndView registerUserAccount(
-//            @ModelAttribute("userDTO") @Valid UserDTO userDto,
-//            HttpServletRequest request,
-//            Errors errors) {
-//
-//            UserDTO registered = userService.registerNewUser(userDto);
-//
-//        return new ModelAndView("profile", "userDTO", userDto);
-//    }
 
     @GetMapping("/edit/{clientId}")
     public String edit(@PathVariable final Long clientId, final Model model) {
@@ -113,58 +103,10 @@ public class UserController {
         return "signupForm";
     }
 
-    @PostMapping("/registration")
-    public String saveUser(@Valid UserDTO client, BindingResult result, RedirectAttributes ra) {
-        if (userService.userExists(client.getEmail())) {
-            result.addError(new FieldError("client", "username", "There already exists account with that email." ));
-        }
-
-//        if (client.getPassword() != null && client.getMatchingPassword() != null) {
-//            if (!client.getPassword().equals(client.getMatchingPassword())) {
-//                result.addError(new FieldError("client", "password", "Passwords don't match." ));
-//            }
-//        }
-
-        if (result.hasErrors()) {
-            return "signupForm";
-        }
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodedPassword = encoder.encode(client.getPassword());
-        client.setPassword(encodedPassword);
-        ra.addFlashAttribute("message", "You have been registered successfully.");
-        userService.registerNewUser(client);
-
-        return "profile";
-    }
-
-//    @GetMapping("loginForm")
-//    public String showLoginForm(@ModelAttribute("user") UserDTO user, Model model) {
-//        model.addAttribute("user",new UserDTO());
-//        return "loginForm";
-//    }
-
     @GetMapping("loginForm")
     public String showLoginForm() {
         return "loginForm";
     }
-
-    @Autowired
-    private IAuthenticationFacade authenticationFacade;
-
-    @Autowired
-    private UserServiceImpl userServiceImpl;
-
-//    @GetMapping("/perform_login")
-//    public String processLogin(Model model) {
-//        log.info("Login successful.");
-//        Authentication authentication = authenticationFacade.getAuthentication();
-//        String email = authentication.getName();
-//        UserDTO user = userServiceImpl.findByEmail(email);
-//        log.info("Email: {}", email);
-//        model.addAttribute("user", user);
-//
-//        return "redirect:/profile1";
-//    }
 
     @GetMapping("/showProfile")
     public String showProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {

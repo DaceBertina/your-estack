@@ -30,6 +30,9 @@ public class EpackDTO {
     @NotBlank
     private Long categoryId;
 
+    @NotBlank
+    private Integer duration;
+
     private OffsetDateTime dateCreated;
 
     private OffsetDateTime lastUpdated;

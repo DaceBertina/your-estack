@@ -40,6 +40,9 @@ public class EpackEntity {
     @JoinColumn(name = "category_id", nullable = false)
     private CategoryEntity categoryEntity;
 
+    @Column(name = "duration_h", nullable = false)
+    private Integer duration;
+
     @CreatedDate
     @Column(name = "date_created", nullable = false, updatable = false)
     private OffsetDateTime dateCreated;
