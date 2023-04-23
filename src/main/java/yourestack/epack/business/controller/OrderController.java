@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import yourestack.epack.business.domain.OrderDTO;
 import yourestack.epack.business.domain.UserDetailsImpl;
 import yourestack.epack.business.service.impl.OrderServiceImpl;
-import yourestack.epack.business.service.impl.UserServiceImpl;
 
 import java.util.List;
-import java.util.Optional;
 
 @Log4j2
 @Controller
@@ -28,7 +26,7 @@ public class OrderController {
     @GetMapping("/order")
     public String showOrderForm(@NotNull Model model) {
 
-        model.addAttribute("order",new OrderDTO());
+        model.addAttribute("orderDTO",new OrderDTO());
         return "order";
     }
 
@@ -53,7 +51,7 @@ public class OrderController {
     }
 
     @GetMapping("/allOrders")
-    public String getCars(@NotNull Model model) {
+    public String getAllOrders(@NotNull Model model) {
         List<OrderDTO> allOrders = orderService.findAll();
         model.addAttribute("allOrders", allOrders);
         return "allOrders";
@@ -61,7 +59,7 @@ public class OrderController {
 
     @RequestMapping("/orders/{id}")
     @ResponseBody
-    public Optional<OrderDTO> findById(Integer id) {
+    public OrderDTO findById(Long id) {
         return orderService.findById(id);
     }
 }

@@ -2,15 +2,18 @@ package yourestack.epack.business.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import yourestack.epack.business.domain.OrderDTO;
 import yourestack.epack.business.mappers.OrderMapStruct;
 import yourestack.epack.business.model.OrderEntity;
 import yourestack.epack.business.model.repos.OrderRepository;
 import yourestack.epack.business.model.repos.UserRepository;
 import yourestack.epack.business.service.OrderService;
+import yourestack.epack.util.NotFoundException;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Log4j2
 @Service
@@ -32,18 +35,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDTO findByUserEmail(String email) {
-        OrderEntity orderEntity = null;
-        if (userExists(email)) {
-            orderEntity = orderRepository.findByUserEmail(email);
-        } else {
-            throw new HttpClientErrorException(HttpStatus.CONFLICT, "User with email " + email + " does not exist.");
-        }
-
-        return orderMapper.orderEntityToOrderDto(orderEntity);
+    public List<OrderDTO> findAll() {
+        final List<OrderEntity> orders = orderRepository.findAll(Sort.by("epackId"));
+        return orders.stream()
+                .map((order) -> orderMapper.orderEntityToOrderDto(order))
+                .collect(Collectors.toList());
     }
 
-    public boolean userExists(String username) {
-        return userRepository.findByEmail(username).isPresent();
+    @Override
+    public OrderDTO findById(final Long orderId) {
+        return orderRepository.findById(orderId)
+                .map(order -> orderMapper.orderEntityToOrderDto(order))
+                .orElseThrow(NotFoundException::new);
     }
+
 }

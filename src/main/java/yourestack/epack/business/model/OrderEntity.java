@@ -21,20 +21,17 @@ public class OrderEntity {
     @Column(name = "order_id", nullable = false, unique = true)
     Long orderId;
 
-    @Column(name = "user_email")
-    String userEmail;
-
-    @Column(name = "epack_id")
-    Integer epackId;
+//    @Column(name = "user_email")
+//    private String userEmail;
 
     @Column(name = "epack_price")
     Double epackPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_email", foreignKey = @ForeignKey(name = "FK_user_email"), insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "email", insertable=false, updatable=false)
     private UserEntity userEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn(name = "epack_id", foreignKey = @ForeignKey(name = "FK_epack_id"), insertable = false, updatable = false)
     private EpackEntity epackEntity;
 

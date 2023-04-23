@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -78,7 +78,8 @@
                         <div class="container">
                             <h2 class="animate__animated animate__fadeInDown">The Best IT Courses</h2>
                             <p class="animate__animated animate__fadeInUp">Keep track of your experience and future</p>
-                            <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp"><b>About us</b></a>
+                            <a th:href="@{/allEpacks}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get
+                                Started</a>
                         </div>
                     </div>
                 </div>
@@ -89,7 +90,7 @@
                             <h2 class="animate__animated animate__fadeInDown">At vero eos et accusamus</h2>
                             <p class="animate__animated animate__fadeInUp">Helping Business Security & Peace of Mind for
                                 Your Family</p>
-                            <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get
+                            <a th:href="@{/allEpacks}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get
                                 Started</a>
                         </div>
                     </div>

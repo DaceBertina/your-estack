@@ -5,8 +5,10 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import yourestack.epack.business.model.OrderEntity;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 
 @Getter
@@ -31,5 +33,13 @@ public class EpackDTO {
     private OffsetDateTime dateCreated;
 
     private OffsetDateTime lastUpdated;
+
+    private Boolean isActive;
+
+    private Double price;
+
+    private String urllink;
+
+    public List<OrderDTO> ordersList;
 
 }

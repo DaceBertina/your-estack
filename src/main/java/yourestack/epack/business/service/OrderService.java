@@ -2,11 +2,13 @@ package yourestack.epack.business.service;
 
 import yourestack.epack.business.domain.OrderDTO;
 
+import java.util.List;
+
 public interface OrderService {
 
     OrderDTO registerNewOrder(OrderDTO order);
 
-    OrderDTO findByUserEmail(String email);
+    List<OrderDTO> findAll();
 
-
+    OrderDTO findById(final Long orderId);
 }

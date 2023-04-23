@@ -1,0 +1,116 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns: sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{task/layout}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="css/min.animate.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-icons.css" rel="stylesheet">
+<link href="css/boxicons.min.css" rel="stylesheet">
+<link href="css/glightbox.min.css" rel="stylesheet">
+<link href="css/swiper-bundle.min.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="css/style.css" rel="stylesheet">
+
+<head>
+
+        <title>Sign Up Form</title>
+        <style>
+    body {
+      background: url(images/hero_carousel_1.jpg) no-repeat center 81px;
+    }
+
+    .form-container {
+      display: block;
+      border-radius: 5%;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin: 110px auto 15px;
+      width: 650px;
+      text-align: center;
+      line-height: 1em;
+    }
+
+    .mx-auto {
+      width: 650px;
+    }
+
+    .invalid-feedback {
+      font-size: 14px;
+      font-weight: 600;
+      text-align: left;
+      color: #ff0000;
+      line-height: 2em;
+    }
+
+    .btn {
+        max-height: 35px;
+        text-align: center;
+    }
+      table, th, td {
+          border: 1px solid black;
+          padding: 1px;
+      }
+
+    </style>
+</head>
+<body>
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+            </ul>
+            <!--  <i class="bi bi-list mobile-nav-toggle"></i> -->
+        </nav><!-- .navbar -->
+
+    </div>
+</header><!-- End Header -->
+<h2 style = "color:orange" align="center"><u><strong>Courses available:</strong></u></h2>
+<div align="center">
+        <div layout:fragment="content">
+          <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>CATEGORY</th>
+                <th>NAME</th>
+                <th>DESCRIPTION</th>
+                <th>MANAGER</th>
+                <th>CREATED</th>
+                <th>UPDATED</th>
+                <th>PRICE</th>
+                <th>URL</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="epack : ${allEpacks}">
+                    <td th:text="${epack.epackId}"></td>
+                    <td th:text="${epack.categoryId}"></td>
+                    <td th:text="${epack.epackName}"></td>
+                    <td th:text="${epack.description}"></td>
+                    <td th:text="${epack.manager}"></td>
+                    <td th:text="${epack.dateCreated}"></td>
+                    <td th:text="${epack.lastUpdated}"></td>
+                    <td th:text="${epack.price}"></td>
+                    <td th:text="${epack.urllink}"></td>
+                    <td>
+                        <a th:href="@{/order}" th:text="${'Order Form'}"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+            <p>
+                <button class ="button"><a href="index.html" th:href="@{/}"><strong>Return to home</strong></a></button>
+            </p>
+       </div>
+</div>
+</body>
+</html>

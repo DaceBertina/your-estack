@@ -3,7 +3,6 @@ package yourestack.epack.business.domain;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import yourestack.epack.business.model.OrderEntity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -63,42 +62,4 @@ public class UserDTO {
         return orderList;
     }
 
-    //    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-//    }
-
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(roleSet.size());
-//
-//         for (RoleDTO role : roleSet)
-//            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
-//
-//        return authorities;
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        return this.email;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return true;
-//    }
 }

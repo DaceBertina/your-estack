@@ -9,6 +9,10 @@ public class OrderDTO {
 
     Long orderId;
     String userEmail;
-    Double coursePrice;
-
+    Long epackId;
+    Double epackPrice;
+    EpackDTO epack;
+    public EpackDTO getEpack(Long epackId) {
+        return epack;
+    }
 }

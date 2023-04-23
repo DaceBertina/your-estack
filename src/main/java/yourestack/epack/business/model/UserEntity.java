@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import yourestack.epack.business.domain.RoleEnum;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -70,10 +69,10 @@ public class UserEntity {
     @Column(nullable = false, length = 45)
     private String occupation;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "userEntity")
     private List<AddressEntity> userAddress;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "userEntity")
     private List<WorkplaceEntity> userWorkplaces;
 
     @CreatedDate
@@ -94,59 +93,15 @@ public class UserEntity {
 
     private Set<RoleEntity> roleEntityList;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    public List<OrderEntity> orderEntityList;
+    @OneToMany(mappedBy = "userEntity", fetch = FetchType.EAGER)
+    private List<OrderEntity> orderEntityList;
 
-    public List<OrderEntity> getOrders() {
+    private List<OrderEntity> getOrders() {
         return orderEntityList;
     }
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return List.of(new SimpleGrantedAuthority(role.name()));
-//    }
+    public UserEntity(String email) {
+        this.email = email;
+    }
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(roleEntitySet.size());
-//
-//        for (RoleEntity role : roleEntitySet)
-//            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
-//
-//        return authorities;
-//    }
-//
-//    @Override
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        return email;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return true;
-//    }
-//
-//    public Object getHash() {
-//        return null;
-//    }
 }

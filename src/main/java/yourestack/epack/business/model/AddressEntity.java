@@ -44,8 +44,8 @@ public class AddressEntity {
     private String postalCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+    @JoinColumn(name = "user_id", nullable = false, updatable = false)
+    private UserEntity userEntity;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

@@ -69,7 +69,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/registerClient", "/login*", "/authenticate", "api/v1/client/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/profile", "/profile1").authenticated())
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/signupForm", "/loginForm", "/v3/api-docs/**", "/swagger-ui/**", "/css/**", "/images/**").permitAll()
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/signupForm", "/loginForm", "/v3/api-docs/**", "/swagger-ui/**", "/css/**", "/images/**", "/allEpacks").permitAll()
                         .requestMatchers("/manager/add"  ).hasRole("admin"))
                 .authorizeHttpRequests()
                 .anyRequest()

@@ -10,6 +10,4 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     @Override
     List<OrderEntity> findAll();
 
-    OrderEntity findByUserEmail(String email);
-
 }

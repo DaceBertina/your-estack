@@ -1,0 +1,121 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns: sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{task/layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet"
+          type = text/css
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <style>
+       h1 {
+               font-weight: bold;
+               font-size: 60px; /* Font size */
+               margin: 0;
+               padding: 0;
+            }
+      h4 {
+           font-size: 14px; /* Font size */
+           color: #f1f2f3;
+           margin: 0;
+           padding: 0;
+      }
+      h5 {
+          font-size: 20px; /* Font size */
+          color: #f1f2f3;
+          margin: 0;
+          padding: 0;
+      }
+      h6 {
+            font-size: 14px; /* Font size */
+            color: #f1f2f3;
+            margin: 0;
+            padding: 0;
+       }
+       .container {
+                width: auto;
+                margin-left: 110px;
+                background: #f1f2f3;
+            }
+      table, th, td {
+          border: 1px solid black;
+          padding: 1px;
+      }
+       .button {
+                height: 50px;
+                width: 250px;
+                line-height: 0;
+                background-color: #7fffd4;
+                border-radius: 10px;
+                display: inline-block;
+                padding: 10px;
+                align-items: center;
+                font-size: 16px;
+            }
+       .footer {
+                position:absolute;
+                bottom:0;
+                width:100%;
+                height:45px;
+                background: #f03c33; /* Footer background color */
+                padding: 5px; /* Fields inside a block */
+                clear: left; /* Cancel the float action of .sidebar*/
+                text-align: right; /* Align footer text to the right */
+                color: #f1f2f3;
+            }
+    </style>
+</head>
+<body>
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+            </ul>
+            <!--  <i class="bi bi-list mobile-nav-toggle"></i> -->
+        </nav><!-- .navbar -->
+
+    </div>
+</header><!-- End Header -->
+<div class = container>
+    <div class="content display-block">
+        <table class="table table-sm table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th><h2 style = "color:orange" align="center"><b>You have made a great choice!</b></h2></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="'ID number: ' + ${orderDTO.getOrderId()}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Course ID number: ' + ${orderDTO.getEpackId()}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Course ID number: ' + ${orderDTO.getEpack().getEpackName()}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Price: ' + ${orderDTO.getEpackPrice()} + '€'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <br>
+    <form style="color: yellow" th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out" />
+    </form>
+</div>
+<br>
+<p>
+    <button class ="button"><a th:href="@{/profile1}"><b>Back to Profile page</b></a></button>
+</p>
+</body>
+</html>

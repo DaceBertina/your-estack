@@ -51,13 +51,15 @@ CREATE TABLE roles (
 
 CREATE TABLE epacks (
                        epack_id bigint(20) NOT NULL AUTO_INCREMENT,
+                       category_id bigint(8) NOT NULL,
                        epack_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-                       manager varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                       manager_name varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                        description varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-                       role_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-                       category varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                       price decimal NOT NULL,
                        date_created date,
                        last_updated date,
+                       is_active tinyint(1),
+                       urllink varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                        PRIMARY KEY (epack_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
