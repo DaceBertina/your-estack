@@ -45,4 +45,7 @@ public class EpackDTO {
 
     public List<OrderDTO> ordersList;
 
+    public EpackDTO(Long epackId) {
+        this.epackId = epackId;
+    }
 }

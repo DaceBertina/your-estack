@@ -17,6 +17,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.pattern.PathPatternParser;
@@ -67,9 +68,9 @@ public class SecurityConfig implements WebMvcConfigurer {
         http.cors();
         http
                 .csrf().disable()
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/registerClient", "/login*", "/authenticate", "api/v1/client/auth/**").permitAll()
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/registerClient", "/login*", "/order", "/orderConfirmation.html").permitAll()
                         .requestMatchers(HttpMethod.GET, "/profile", "/profile1").authenticated())
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/signupForm", "/loginForm", "/v3/api-docs/**", "/swagger-ui/**", "/css/**", "/images/**", "/allEpacks").permitAll()
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/signupForm", "/loginForm", "/aboutus", "/order", "/orderConfirmation.html", "/v3/api-docs/**", "/swagger-ui/**", "/css/**", "/images/**", "/allEpacks").permitAll()
                         .requestMatchers("/manager/add"  ).hasRole("admin"))
                 .authorizeHttpRequests()
                 .anyRequest()
@@ -80,13 +81,13 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .loginProcessingUrl("/perform_login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/profile1", true)
-                //.failureUrl("/login?error=true")
-                //.failureHandler(authenticationFailureHandler())
                 .permitAll()
+                .defaultSuccessUrl("/profile1", true)
                 .and()
                 .logout()
-                .logoutUrl("/perform_logout")
+                .permitAll()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessHandler(new SimpleUrlLogoutSuccessHandler());
         return http.build();

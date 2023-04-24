@@ -1,0 +1,108 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns: sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{task/layout}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+        type = text/css
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+  <link href="css/min.animate.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/boxicons.min.css" rel="stylesheet">
+  <link href="css/glightbox.min.css" rel="stylesheet">
+  <link href="css/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="css/style.css" rel="stylesheet">
+  <title>Order Form</title>
+  <style>
+      body {
+      background: url(images/hero_carousel_1.jpg) no-repeat center 81px;
+    }
+
+    .form-container {
+      display: block;
+      border-radius: 5%;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin-top: 100px;
+      margin: 110px auto 15px;
+      width: 650px;
+      text-align: center;
+      line-height: 1em;
+    }
+
+    .mx-auto {
+      width: 650px;
+    }
+
+    .invalid-feedback {
+      font-size: 14px;
+      font-weight: 600;
+      text-align: left;
+      color: #ff0000;
+      line-height: 2em;
+    }
+
+    .btn {
+        max-height: 35px;
+        text-align: center;
+    }
+        </style>
+</head>
+<body>
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container d-flex justify-content-between">
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+      </ul>
+      <!--  <i class="bi bi-list mobile-nav-toggle"></i> -->
+    </nav><!-- .navbar -->
+    <span sec:authorize="isAuthenticated()">
+                | Logged user: <span sec:authentication="principal.email"></span> |
+                <a th:href="@{/logout}">Sign Out</a>
+   </span>
+  </div>
+</header><!-- End Header -->
+<p></p>
+<div class="content display-block">
+  <h2 style = "color: #800080" align="center" class="font-weight-bold">Your order:</h2>
+  <form th:action="@{/order}" method="post" th:object="${order}">
+    <div class="mx-auto" style="width: 600px;">
+      <div class="m-3 mt-2 mb-2 ml-2 mr-2 px-2 pt-2 pb-2 p-3 bg-info">
+<!--        <div class="form-group row">-->
+<!--          <label class="col-form-label col-3"><strong>Your email: </strong></label>-->
+<!--          <div class="col-8">-->
+<!--            <input type="text" class="form-control" th:field="*{userEmail}" id="userEmail" required/>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="form-group row">
+          <label class="col-form-label col-3"><strong>Epack ID number:</strong></label>
+          <div class="col-8">
+            <input type="number" min="1" class="form-control" th:field="*{epackId}" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-3" style="font-weight-bold color: blue"><strong>Epack price:</strong></label>
+          <div class="col-8">
+            <input type="number" min="1" class="form-control" th:field="*{epackPrice}" required />
+          </div>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary"><a href ="orderConfirmation.html"><strong style="color: white">Order</strong></a></button>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>

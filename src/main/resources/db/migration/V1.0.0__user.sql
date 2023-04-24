@@ -14,6 +14,7 @@ CREATE TABLE users (
                         phone_number varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                         occupation varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                         date_created date,
+                        last_updated date,
                         PRIMARY KEY (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -70,4 +71,11 @@ CREATE TABLE categories (
                        date_created date,
                        last_updated date,
                        PRIMARY KEY (category_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE orders (
+                       order_id bigint(20) NOT NULL AUTO_INCREMENT,
+                       epack_price decimal NOT NULL,
+                       date_created date,
+                       PRIMARY KEY (order_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

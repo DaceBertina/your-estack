@@ -1,0 +1,269 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Raleway", sans-serif;
+}
+
+body {
+    background: #ffff0034;
+    padding-top: 10px;
+    padding-bottom: 45px;
+}
+
+.main-container {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    position: relative;
+ }
+
+.container-fluid {
+    width: 1350px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+} 
+
+.banner {
+    width: 100%;
+    position: relative;
+    background: #ffd9008f; 
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.container-banner {
+    border-radius: 25px;
+    padding: 25px 55px;
+    margin-left: 20px;
+    background-image: url(sun.png);
+    max-width: 500px;
+    height: 120px;
+}
+
+.icon-red {
+    color: #ce290c;
+}
+  
+.icon-small {
+    font-size: 16px;
+    position: absolute;
+}
+
+ul.ban{
+    display:inline-block;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    padding-top: 5px;
+}
+
+.navbar-container {
+    background:#ffff0034; ;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    float: right;
+}
+
+a {
+    text-decoration: underline;
+    color: #ce290c;
+}
+
+.active {
+    font-size: 20px;
+    color: #ce290c;
+    padding: 20px 15px;
+}
+
+img {
+    width:  400px;
+    min-height: 300px;
+    object-fit: cover; 
+}
+
+.carousel-container {
+    overflow: hidden;
+    margin-left: 320px;
+    margin-right: 100px;
+    max-height: 500px;
+}
+
+.carousel-item {
+    overflow: hidden;
+    height: 500px;
+    width: 900px;
+} 
+
+.table {
+    border-style: double;
+    border-color: rgb(250, 192, 31);
+}
+
+tr {
+    border: 3px solid rgb(250, 192, 31);
+}
+
+ol {
+    font-size: 17px;
+    color: #ba590b;
+    list-style-type: decimal;
+}
+  
+th {
+    text-align: center;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 20px;
+    color: #f73707e1;
+    line-height: 0;
+    padding-bottom: 20px;
+}
+
+h2 {
+    margin-left: 30px;
+    font-size: 17px; 
+    color: #7c5212;
+}
+
+h3 {
+    font-size: 20px;
+    color: #f73707e1;
+    line-height: 0%;
+    padding: 0;
+}
+
+h4 {
+    font-size: 20px;
+    color: #9e6a08;
+    line-height: 0%;
+    padding-top: 8px;
+}
+
+h5 {
+    font-size: 20px;
+    color: #ba590b;
+    padding-top: 8px;
+    line-height: 0%;
+    margin-right: 35px;
+}
+
+h6 {
+    font-size: 15px;
+    color: #ce290c;
+    line-height: 0%;
+    padding: 12px 25px;
+    margin: 0;
+}
+
+h7 {
+    font-size: 15px;
+    color: #ce290c;
+    line-height: 0%;
+    margin: 0;
+}
+
+h8 {
+    font-size: 15px;
+    color: #ce290c;
+    line-height: 0%;
+    padding: 20px 25px;
+    margin: 0;
+}
+
+p {
+    font-size: 17px; 
+    color: #673909;
+    margin-bottom: 0;
+    line-height: 20px;
+}
+
+.btn {
+    background-color: #f75b07d1;
+    border-color: rgb(223, 110, 18);
+    font-weight: bold;
+    color: white;
+}
+
+.pages {
+    display: flex;
+    justify-content: center;
+}
+  
+.pagination li {
+    display: block;
+}
+
+.banner-footer {
+    background-image: url(sun1.png); 
+    background-size: contain;
+    background-repeat: repeat;
+    height: 55px; 
+    position: relative;
+}
+
+ul.foot {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    padding-top: 5px;
+}
+
+.info-footer {
+    background: #ffff0034; 
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 10px; 
+}
+
+.fa {
+    padding: 10px;
+    font-size: 20px;
+    width: 35px;
+    text-align: center;
+    text-decoration: none;
+    margin: 8px 5px; 
+    border-radius: 50%;
+}
+  
+.fa:hover {
+      opacity: 0.7;
+}
+  
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+  
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+.fa-linkedin {
+    background: #007bb5;
+    color: white;
+}
+
+.footer-logo {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 45px;   
+    background: #ffff0034; 
+    color: #f75b07;
+    text-align: center; 
+    padding: 8px; 
+}

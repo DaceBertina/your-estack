@@ -1,6 +1,7 @@
 package yourestack.epack.business.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import yourestack.epack.business.domain.OrderDTO;
 import yourestack.epack.business.domain.UserDTO;
 import yourestack.epack.business.domain.UserDetailsImpl;
 import yourestack.epack.business.service.impl.UserServiceImpl;
@@ -26,6 +28,12 @@ import yourestack.epack.util.WebUtil;
 public class UserController {
 
     private final UserServiceImpl userService;
+
+    @GetMapping("/aboutus")
+    public String showGenInfo() {
+
+        return "aboutus";
+    }
 
     @GetMapping
     public String list(final Model model) {

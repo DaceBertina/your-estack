@@ -8,17 +8,19 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@Transactional
 @Table(name = "epacks")
 public class EpackEntity {
 
@@ -61,6 +63,7 @@ public class EpackEntity {
     private String urllink;
 
     @OneToMany(mappedBy="epackEntity")
+    @Transient
     private List<OrderEntity> orderEntityList;
 
     public EpackEntity(Long epackId) {

@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,12 +25,13 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
 @Table(name = "users")
 //        , uniqueConstraints = {
 //        @UniqueConstraint(columnNames = "username"),
 //        @UniqueConstraint(columnNames = "email")
 //})
-public class UserEntity {
+public class UserEntity implements Serializable {
 
     @Id
     @Column(nullable = false, updatable = false)
@@ -70,9 +73,11 @@ public class UserEntity {
     private String occupation;
 
     @OneToMany(mappedBy = "userEntity")
+    @Transient
     private List<AddressEntity> userAddress;
 
     @OneToMany(mappedBy = "userEntity")
+    @Transient
     private List<WorkplaceEntity> userWorkplaces;
 
     @CreatedDate
@@ -93,7 +98,8 @@ public class UserEntity {
 
     private Set<RoleEntity> roleEntityList;
 
-    @OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userEntity")
+    @Transient
     private List<OrderEntity> orderEntityList;
 
     private List<OrderEntity> getOrders() {

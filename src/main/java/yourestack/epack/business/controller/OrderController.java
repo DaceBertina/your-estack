@@ -6,13 +6,12 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import yourestack.epack.business.domain.OrderDTO;
+import yourestack.epack.business.domain.UserDTO;
 import yourestack.epack.business.domain.UserDetailsImpl;
 import yourestack.epack.business.service.impl.OrderServiceImpl;
+import yourestack.epack.business.service.impl.UserServiceImpl;
 
 import java.util.List;
 
@@ -23,16 +22,18 @@ public class OrderController {
 
     private final OrderServiceImpl orderService;
 
-    @GetMapping("/order")
-    public String showOrderForm(@NotNull Model model) {
+    private final UserServiceImpl userService;
 
-        model.addAttribute("orderDTO",new OrderDTO());
-        return "order";
+    @GetMapping("/orderForm")
+    public String showOrderForm(@ModelAttribute("order") OrderDTO order) {
+
+        return "orderForm";
     }
 
-    @PostMapping("/fillOrder")
-    public String processOrder(OrderDTO order) {
-        orderService.registerNewOrder(order);
+    @PostMapping("/order")
+    public String fillOrder(@AuthenticationPrincipal UserDetailsImpl loggedUser, @ModelAttribute("order") OrderDTO order) {
+        UserDTO user = userService.findByEmail(loggedUser.getEmail());
+        orderService.registerNewOrder(order, user);
 
         return "orderConfirmation";
     }

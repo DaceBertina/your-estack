@@ -20,7 +20,7 @@
 
 <head>
 
-        <title>Sign Up Form</title>
+        <title>Courses Available</title>
         <style>
     body {
       background: url(images/hero_carousel_1.jpg) no-repeat center 81px;
@@ -75,7 +75,7 @@
 </header><!-- End Header -->
 <h2 style = "color:orange" align="center"><u><strong>Courses available:</strong></u></h2>
 <div align="center">
-        <div layout:fragment="content">
+        <div layout:fragment="form-conteiner">
           <table class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -102,7 +102,7 @@
                     <td th:text="${epack.price}"></td>
                     <td th:text="${epack.urllink}"></td>
                     <td>
-                        <a th:href="@{/order}" th:text="${'Order Form'}"></a>
+                        <a th:href="@{/orderForm}" th:text="${'Order Form'}"></a>
                     </td>
                 </tr>
             </tbody>
