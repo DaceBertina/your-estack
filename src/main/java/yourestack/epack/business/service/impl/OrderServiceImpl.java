@@ -4,10 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import yourestack.epack.business.domain.EpackDTO;
 import yourestack.epack.business.domain.OrderDTO;
 import yourestack.epack.business.domain.UserDTO;
+import yourestack.epack.business.mappers.EpackMapStruct;
 import yourestack.epack.business.mappers.OrderMapStruct;
 import yourestack.epack.business.mappers.UserMapStruct;
+import yourestack.epack.business.model.EpackEntity;
 import yourestack.epack.business.model.OrderEntity;
 import yourestack.epack.business.model.UserEntity;
 import yourestack.epack.business.model.repos.OrderRepository;
@@ -16,6 +19,7 @@ import yourestack.epack.business.service.OrderService;
 import yourestack.epack.util.NotFoundException;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,16 +33,18 @@ public class OrderServiceImpl implements OrderService {
 
     private final UserMapStruct userMapper;
 
+    private final EpackMapStruct epackMapper;
+
     private final UserRepository userRepository;
 
     @Override
-    public void registerNewOrder(OrderDTO order, UserDTO user) {
-        OrderEntity orderEntity = orderMapper.orderDtoToOrderEntity(order);
-        UserEntity userEntity = userMapper.userDtoToUserEntity(user);
-        orderEntity.setUserEntity(userEntity);
-        orderEntity.setDateCreated(LocalDateTime.now());
-        orderRepository.save(orderEntity);
+    public void registerNewOrder(OrderDTO order, UserDTO user, EpackDTO epack) {
+        order.setEpackId(epack.getEpackId());
+        order.setUserId(user.getUserId());
+
+        OrderEntity orderEntity = orderRepository.save(orderMapper.orderDtoToOrderEntity(order));
         log.info("New order registered: {}", orderEntity);
+        log.info("Epack ID and User ID: {} {}", epack.getEpackId(), user.getUserId());
     }
 
     @Override

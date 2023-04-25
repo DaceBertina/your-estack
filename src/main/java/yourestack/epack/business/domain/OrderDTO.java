@@ -7,11 +7,10 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-
 public class OrderDTO {
 
     Long orderId;
-    String userEmail;
+    Long userId;
     Long epackId;
     Double epackPrice;
     EpackDTO epackDTO;
@@ -19,7 +18,7 @@ public class OrderDTO {
 
     LocalDateTime dateCreated;
 
-    public String getEmail(UserDTO user) {
+    public String getUserEmail(UserDTO user) {
         return user.getEmail();
     }
 

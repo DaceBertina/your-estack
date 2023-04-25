@@ -4,7 +4,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
-import yourestack.epack.business.domain.EpackDTO;
 import yourestack.epack.business.domain.OrderDTO;
 import yourestack.epack.business.model.EpackEntity;
 import yourestack.epack.business.model.OrderEntity;
@@ -15,35 +14,36 @@ public interface OrderMapStruct {
 
     OrderMapStruct INSTANCE = Mappers.getMapper(OrderMapStruct.class);
 
-    @Mapping(source = "epackDTO", target = "epackEntity.epackId", qualifiedByName = "epackIdEntityMapper")
-    @Mapping(source = "userEmail", target = "userEntity", qualifiedByName = "userEntityByEmailMapper")
+    @Mapping(source = "epackId", target = "epackEntity", qualifiedByName = "epackEntityByIdMapper")
+    @Mapping(source = "userId", target = "userEntity", qualifiedByName = "userEntityByIdMapper")
     OrderEntity orderDtoToOrderEntity(OrderDTO orderDto);
 
-    @Mapping(source = "epackEntity.epackId", target = "epackDTO", qualifiedByName = "epackEntityByIdMapper")
-    @Mapping(source = "userEntity", target = "userEmail", qualifiedByName = "userEmailEntityMapper")
+    @Mapping(source = "epackEntity", target = "epackId", qualifiedByName = "epackIdEntityMapper")
+    @Mapping(source = "userEntity", target = "userId", qualifiedByName = "userIdEntityMapper")
     OrderDTO orderEntityToOrderDto(OrderEntity orderEntity);
 
     @Named("epackIdEntityMapper")
-    static Long epackIdEntityMapper(EpackDTO epackDTO) {
-        if (epackDTO == null) return null;
-        return epackDTO.getEpackId();
+    static Long epackIdEntityMapper(EpackEntity epackEntity) {
+        if (epackEntity == null) return null;
+        return epackEntity.getEpackId();
     }
 
     @Named("epackEntityByIdMapper")
-    static EpackDTO epackEntityByIdMapper(Long epackId) {
+    static EpackEntity epackEntityByIdMapper(Long epackId) {
         if (epackId == null) return null;
-        return new EpackDTO(epackId);
+        return new EpackEntity(epackId);
     }
 
-    @Named("userEmailEntityMapper")
-    static String userEmailEntityMapper(UserEntity userEntity) {
+    @Named("userIdEntityMapper")
+    static Long userIdEntityMapper(UserEntity userEntity) {
         if (userEntity == null) return null;
-        return userEntity.getEmail();
+        return userEntity.getUserId();
     }
 
-    @Named("userEntityByEmailMapper")
-    static UserEntity userEntityByEmailMapper(String email) {
-        if (email == null) return null;
-        return new UserEntity(email);
+    @Named("userEntityByIdMapper")
+    static UserEntity userEntityByIdMapper(Long userId) {
+        if (userId == null) return null;
+        return new UserEntity(userId);
     }
+
 }

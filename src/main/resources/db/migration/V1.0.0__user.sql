@@ -43,7 +43,7 @@ CREATE TABLE workplaces (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE roles (
-                        role_id bigint(20) NOT NULL AUTO_INCREMENT,
+                        role_id bigint(8) NOT NULL AUTO_INCREMENT,
                         role_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                         description varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                         PRIMARY KEY (role_id)
@@ -51,7 +51,7 @@ CREATE TABLE roles (
 
 
 CREATE TABLE epacks (
-                       epack_id bigint(20) NOT NULL AUTO_INCREMENT,
+                       epack_id bigint(8) NOT NULL AUTO_INCREMENT,
                        category_id bigint(8) NOT NULL,
                        epack_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                        duration_h int NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE epacks (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE categories (
-                       category_id bigint(20) NOT NULL AUTO_INCREMENT,
+                       category_id bigint(8) NOT NULL AUTO_INCREMENT,
                        category_name varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                        date_created date,
                        last_updated date,
@@ -75,7 +75,11 @@ CREATE TABLE categories (
 
 CREATE TABLE orders (
                        order_id bigint(20) NOT NULL AUTO_INCREMENT,
+                       user_id bigint(20),
+                       epack_id bigint(8),
                        epack_price decimal NOT NULL,
                        date_created date,
-                       PRIMARY KEY (order_id)
+                       PRIMARY KEY (order_id),
+                       FOREIGN KEY (user_id) REFERENCES users(user_id),
+                       FOREIGN KEY (epack_id) REFERENCES epacks(epack_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

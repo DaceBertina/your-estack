@@ -7,12 +7,15 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import yourestack.epack.business.domain.EpackDTO;
 import yourestack.epack.business.domain.OrderDTO;
 import yourestack.epack.business.domain.UserDTO;
 import yourestack.epack.business.domain.UserDetailsImpl;
+import yourestack.epack.business.service.impl.EpackServiceImpl;
 import yourestack.epack.business.service.impl.OrderServiceImpl;
 import yourestack.epack.business.service.impl.UserServiceImpl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Log4j2
@@ -24,6 +27,9 @@ public class OrderController {
 
     private final UserServiceImpl userService;
 
+    private final EpackServiceImpl epackService;
+
+
     @GetMapping("/orderForm")
     public String showOrderForm(@ModelAttribute("order") OrderDTO order) {
 
@@ -33,7 +39,11 @@ public class OrderController {
     @PostMapping("/order")
     public String fillOrder(@AuthenticationPrincipal UserDetailsImpl loggedUser, @ModelAttribute("order") OrderDTO order) {
         UserDTO user = userService.findByEmail(loggedUser.getEmail());
-        orderService.registerNewOrder(order, user);
+        EpackDTO epack = epackService.findEpackById(order.getEpackId());
+        order.setUser(user);
+        order.setEpackDTO(epack);
+        order.setDateCreated(LocalDateTime.now());
+        orderService.registerNewOrder(order, user, epack);
 
         return "orderConfirmation";
     }
@@ -43,7 +53,7 @@ public class OrderController {
         List<OrderDTO> orders = user.getOrders();
         List<OrderDTO> allOrders = orderService.findAll();
         for (OrderDTO order : allOrders) {
-            if (order.getUserEmail().equals(user.getEmail())) {
+            if (order.getUserId().equals(user.getId())) {
                 orders.add(order);
             }
         }

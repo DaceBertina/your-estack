@@ -82,7 +82,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .permitAll()
-                .defaultSuccessUrl("/profile1", true)
+                .defaultSuccessUrl("/", true)
                 .and()
                 .logout()
                 .permitAll()
