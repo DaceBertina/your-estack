@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
@@ -63,6 +64,10 @@ public class SecurityConfig implements WebMvcConfigurer {
         return new CustomAuthenticationFailureHandler();
     }
 
+//    public void configure(WebSecurity security){
+//        security.ignoring().antMatchers("/css/**","/images/**","/js/**");
+//    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors();
@@ -82,7 +87,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .permitAll()
-                .defaultSuccessUrl("/", true)
+                .successHandler(new CustomAuthenticationSuccessHandler())
                 .and()
                 .logout()
                 .permitAll()
