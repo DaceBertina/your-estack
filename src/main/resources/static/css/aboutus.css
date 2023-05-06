@@ -59,18 +59,18 @@ img {
     border-radius: 10px;
 }
 
-.carousel-container {
-    overflow: hidden;
-    margin-left: 320px;
-    margin-right: 100px;
-    max-height: 500px;
-}
+/*.carousel-container {*/
+/*    overflow: hidden;*/
+/*    margin-left: 320px;*/
+/*    margin-right: 100px;*/
+/*    max-height: 500px;*/
+/*}*/
 
-.carousel-item {
-    overflow: hidden;
-    height: 500px;
-    width: 900px;
-} 
+/*.carousel-item {*/
+/*    overflow: hidden;*/
+/*    height: 500px;*/
+/*    width: 900px;*/
+/*} */
 
 h1 {
     font-size: 20px;
@@ -188,7 +188,6 @@ ul.foot {
     padding: 8px; 
 }
 
-
 .card-top {
     color: rgba(185, 241, 243, 0.78);
     border-radius: 10px;
@@ -196,4 +195,23 @@ ul.foot {
     margin: 0 auto;
     max-width: 230px;
     float: right;
+}
+
+.panels img {
+    max-height: 380px;
+    margin-top: 10px;
+}
+
+.carousel-inner {
+    box-shadow: 0 3px 10px rgba(138, 5, 5, 0.945);
+    height: 0;
+    padding-bottom: 100%;
+}
+
+.carousel-item {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }

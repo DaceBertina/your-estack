@@ -31,42 +31,42 @@ public class EpackController {
         return "allEpacks";
     }
 
-    @GetMapping("/java")
+    @GetMapping("/getJava")
     public String getJava(@NotNull Model model) {
         EpackDTO java = epackService.findEpackById(1L);
         model.addAttribute("java", java);
         return "java";
     }
 
-    @GetMapping("/python")
+    @GetMapping("/getSpring")
+    public String getSpring(@NotNull Model model) {
+        EpackDTO spring = epackService.findEpackById(2L);
+        model.addAttribute("spring", spring);
+        return "spring";
+    }
+
+    @GetMapping("/getMicro")
+    public String getMicro(@NotNull Model model) {
+        EpackDTO micro = epackService.findEpackById(3L);
+        model.addAttribute("micro", micro);
+        return "micro";
+    }
+
+    @GetMapping("/getPython")
     public String getPython(@NotNull Model model) {
-        EpackDTO python = epackService.findEpackById(2L);
+        EpackDTO python = epackService.findEpackById(4L);
         model.addAttribute("python", python);
         return "python";
     }
 
-    @GetMapping("/javascript")
-    public String getJavaScript(@NotNull Model model) {
-        EpackDTO javascript = epackService.findEpackById(3L);
-        model.addAttribute("javascript", javascript);
-        return "javascript";
-    }
-
-    @GetMapping("/c++")
-    public String getCPlus(@NotNull Model model) {
-        EpackDTO c = epackService.findEpackById(4L);
-        model.addAttribute("c++", c);
-        return "c";
-    }
-
-    @GetMapping("/sap")
+    @GetMapping("/getSap")
     public String getSap(@NotNull Model model) {
         EpackDTO sap = epackService.findEpackById(5L);
         model.addAttribute("sap", sap);
         return "sap";
     }
 
-    @GetMapping("/devops")
+    @GetMapping("/getDevOps")
     public String getDevOps(@NotNull Model model) {
         EpackDTO devops = epackService.findEpackById(6L);
         model.addAttribute("devops", devops);

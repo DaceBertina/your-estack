@@ -31,7 +31,7 @@ public class OrderController {
 
 
     @GetMapping("/orderForm")
-    public String showOrderForm(@ModelAttribute("order") OrderDTO order) {
+    public String showOrderForm(@ModelAttribute("epack") EpackDTO epack) {
 
         return "orderForm";
     }
@@ -48,7 +48,7 @@ public class OrderController {
         return "orderConfirmation";
     }
 
-    @GetMapping("/showOrder")
+    @GetMapping("/showOrders")
     public String showOrder(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
         List<OrderDTO> orders = user.getOrders();
         List<OrderDTO> allOrders = orderService.findAll();

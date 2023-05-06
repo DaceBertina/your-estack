@@ -185,25 +185,34 @@
 <!--        <form th:action="@{/showCourses}" method="post" th:object="${user}">-->
                     <table class="table table-sm table-bordered table-center">
                         <thead>
-                            <tr>
-                                <th>Course ID</th>
-                                <th>Course Name</th>
-                                <th>Course Launch Date</th>
-                                <th>Subscription Start Date</th>
-                                <th>Price</th>
-                                <th>Get started</th>
-                            </tr>
-                         </thead>
-<!--                        <tbody>-->
-<!--                                <td></td>-->
-<!--                                <td></td>-->
-<!--                                 <tr th:each="course : ${user.getEpacks()}">-->
-<!--                                 <td th:text="${course.getEpackId()}"></td>-->
-<!--                                 <td th:text="${course.getEpackName()}"></td>-->
-<!--                                 <td th:text="${course.getEpackLaunchDate()}"></td>-->
-<!--                                 <td th:text="${course.getPrice()}"></td>-->
-<!--                            </tr>-->
-<!--                    </tbody>-->
+                        <tr>
+                            <th>ID</th>
+                            <th>CATEGORY</th>
+                            <th>NAME</th>
+                            <th>DESCRIPTION</th>
+                            <th>MANAGER</th>
+                            <th>CREATED</th>
+                            <th>UPDATED</th>
+                            <th>PRICE</th>
+                            <th>URL</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="epack : ${allEpacks}">
+                            <td th:text="${epack.epackId}"></td>
+                            <td th:text="${epack.categoryId}"></td>
+                            <td th:text="${epack.epackName}"></td>
+                            <td th:text="${epack.description}"></td>
+                            <td th:text="${epack.manager}"></td>
+                            <td th:text="${epack.dateCreated}"></td>
+                            <td th:text="${epack.lastUpdated}"></td>
+                            <td th:text="${epack.price}"></td>
+                            <td th:text="${epack.urllink}"></td>
+                            <td>
+                                <a th:href="@{/orderForm}" th:text="${'Order Form'}"></a>
+                            </td>
+                        </tr>
+                        </tbody>
                 </table>
                     <br>
                     <br>
