@@ -59,19 +59,6 @@ img {
     border-radius: 10px;
 }
 
-/*.carousel-container {*/
-/*    overflow: hidden;*/
-/*    margin-left: 320px;*/
-/*    margin-right: 100px;*/
-/*    max-height: 500px;*/
-/*}*/
-
-/*.carousel-item {*/
-/*    overflow: hidden;*/
-/*    height: 500px;*/
-/*    width: 900px;*/
-/*} */
-
 h1 {
     font-size: 20px;
     color: #423974;
@@ -210,6 +197,7 @@ ul.foot {
 
 .carousel-item {
     position: absolute !important;
+    overflow: hidden;
     top: 0;
     right: 0;
     bottom: 0;

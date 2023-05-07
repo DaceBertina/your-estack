@@ -27,42 +27,11 @@
         height: 100%;
     }
 
-    * {
-        box-sizing: border-box;
+    body {
+        /*background-image: url(images/hero_carousel_1.jpg) no-repeat center 81px;*/
+        background-color: #a2d2d6;
     }
 
-    .bg-image {
-        /* The image used */
-        background-image: url(images/hero_carousel_1.jpg);
-
-        /* Add the blur effect */
-        filter: blur(8px);
-        -webkit-filter: blur(8px);
-
-        /* Full height */
-        height: 100%;
-
-        /* Center and scale the image nicely */
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .bg-text {
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-        color: white;
-        font-weight: bold;
-        border: 3px solid #f1f1f1;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 2;
-        width: 80%;
-        padding: 20px;
-        text-align: center;
-    }
     .form-container {
       display: block;
       border-radius: 5%;
@@ -79,268 +48,250 @@
           padding: 1px;
       }
 
-    .button {
-        max-height: 35px;
-        text-align: center;
-        padding-bottom: 10px;
-        background-color: blue;
-        color: white;
-        border-radius: 15%;
-    }
-
     </style>
 </head>
 <body>
-<header id="header" class="d-flex align-items-center">
-    <div class="container d-flex justify-content-between">
+<div class="main-container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <header id="header" class="d-flex align-items-center">
+                <div class="container d-flex justify-content-between">
 
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
-            </ul>
-            <!--  <i class="bi bi-list mobile-nav-toggle"></i> -->
-        </nav><!-- .navbar -->
-
-    </div>
-</header><!-- End Header -->
-<div class="bg-image"></div>
-<!--<div class="bg-text">-->
-<h2 style = "color:orange" text-align="center"><u><strong>Courses available:</strong></u></h2>
-<!--            <div class="container-fluid">-->
-                <br>
-                <div class="panels">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                            <div id="carouselPanel1" class="carousel slide" style="width: 320px;" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active img-responsive img-thumbnail">
-                                        <img src="images/java.png" class="d-block w-100" alt="Java course picture">
-                                    </div>
-                                    <div class="carousel-item img-responsive img-thumbnail">
-                                        <img src="images/java1.png" class="d-block w-100" alt="Java course picture">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselPanel1" data-bs-slide="prev">
-                                    <i class="fas fa-angle-double-left" style="font-size:28px;color:rgba(251, 223, 11, 0.884)"></i>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselPanel1" data-bs-slide="next" data-wrap="false">
-                                    <i class="fas fa-angle-double-right" style="font-size:28px;color:rgb(251, 223, 11, 0.884)"></i>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                            <br>
-                            <p><strong> Learn modern Java  on your own pace.</strong></p>
-                            <p><strong> Get certificate.</strong></p>
-<!--                            <div class="form-container">-->
-                            <form method="GET" th:action="@{/allEpacks}" th:object="${allEpacks}">
-                                <div class="form-group row">
-                                    <label for="javaId" class="col-form-label col-3">Epack ID: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px"  name="epackId" id="javaId" th:value="${allEpacks[0].epackId}"><br>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaName" class="col-form-label col-3">Epack name: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackName" id="javaName" th:value="${allEpacks[0].epackName}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaManager" class="col-form-label col-3">Manager: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="manager" id="javaManager" th:value="${allEpacks[0].manager}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaDescription" class="col-form-label col-3">Description: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="description" id="javaDescription" th:value="${allEpacks[0].description}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaDuration" class="col-form-label col-3">Duration: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="duration" id="javaDuration" th:value="${allEpacks[0].duration}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaDateCreated" class="col-form-label col-3">Date created: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="javaDateCreated" th:value="${allEpacks[0].dateCreated}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaPrice" class="col-form-label col-3">Price: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="price" id="javaPrice" th:value="${allEpacks[0].price}"><br/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <button class ="button" th:href="@{/orderForm}"><strong>Get Epack</strong></button>
-                                </div>
-                            </form>
-<!--                            </div>-->
-                            <br>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div id="carouselPanel2" class="carousel slide" style="width: 320px;" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active img-responsive img-thumbnail">
-                                        <img src="images/spring.png" class="d-block w-100" alt="Spring course picture">
-                                    </div>
-                                    <div class="carousel-item img-responsive img-thumbnail">
-                                        <img src="images/springboot.png" class="d-block w-100" alt="Spring course picture">
-                                    </div>
-                                    <div class="carousel-item img-responsive img-thumbnail">
-                                        <img src="images/springsecurity.png" class="d-block w-100" alt="Spring course picture">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselPanel2" data-bs-slide="prev">
-                                    <i class="fas fa-angle-double-left" style="font-size:28px;color:rgba(251, 223, 11, 0.884)"></i>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselPanel2" data-bs-slide="next" data-wrap="false">
-                                    <i class="fas fa-angle-double-right" style="font-size:28px;color:rgb(251, 223, 11, 0.884)"></i>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                            <br>
-                            <p><strong> Learn modern lightweight enterprise-level scalable application framework Spring (Java) on your own pace.</strong></p>
-                            <p><strong> Get certificate.</strong></p>
-                            <!--                            <div class="form-container">-->
-                            <form method="GET" th:action="@{/allEpacks}" th:object="${allEpacks}">
-                                <div class="form-group row">
-                                    <label for="springId" class="col-form-label col-3">Epack ID: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackId" id="springId" th:value="${allEpacks[1].epackId}"><br>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="springName" class="col-form-label col-3">Epack name: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackName" id="springName" th:value="${allEpacks[1].epackName}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="springManager" class="col-form-label col-3">Manager: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="manager" id="springManager" th:value="${allEpacks[1].manager}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="springDescription" class="col-form-label col-3">Description: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="description" id="springDescription" th:value="${allEpacks[1].description}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="springDuration" class="col-form-label col-3">Duration: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="duration" id="springDuration" th:value="${allEpacks[1].duration}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="springDateCreated" class="col-form-label col-3">Date created: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="springDateCreated" th:value="${allEpacks[1].dateCreated}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="springPrice" class="col-form-label col-3">Price: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="price" id="springPrice" th:value="${allEpacks[1].price}"><br/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <button class ="button" th:href="@{/orderForm}"><strong>Get Epack</strong></button>
-                                </div>
-                            </form>
-<!--                            </div>-->
-                            <br>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div id="carouselPanel3" class="carousel slide" style="width: 320px;" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active img-responsive img-thumbnail">
-                                        <img src="images/micro1.png" class="d-block w-100" alt="Microservices picture">
-                                    </div>
-                                    <div class="carousel-item img-responsive img-thumbnail">
-                                        <img src="images/micro2.png" class="d-block w-100" alt="Microservices picture">
-                                    </div>
-                                    <div class="carousel-item img-responsive img-thumbnail">
-                                        <img src="images/micro3.png" class="d-block w-100" alt="Microservices picture">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselPanel3" data-bs-slide="prev">
-                                    <i class="fas fa-angle-double-left" style="font-size:28px;color:rgba(251, 223, 11, 0.884)"></i>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselPanel3" data-bs-slide="next" data-wrap="false">
-                                    <i class="fas fa-angle-double-right" style="font-size:28px;color:rgb(251, 223, 11, 0.884)"></i>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                            <br>
-                            <p><strong> Learn modern microservices architecture on your own pace.</strong></p>
-                            <p><strong> Get certificate.</strong></p>
-<!--                            <div class="form-container">-->
-                            <form method="GET" th:action="@{/allEpacks}" th:object="${allEpacks}">
-                                <div class="form-group row">
-                                    <label for="microId" class="col-form-label col-3">Epack ID: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackId" id="microId" th:value="${allEpacks[2].epackId}"><br>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="microName" class="col-form-label col-3">Epack name: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackName" id="microName" th:value="${allEpacks[2].epackName}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="microManager" class="col-form-label col-3">Manager: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="manager" id="microManager" th:value="${allEpacks[2].manager}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="microDescription" class="col-form-label col-3">Description: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="description" id="microDescription" th:value="${allEpacks[2].description}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="microDuration" class="col-form-label col-3">Duration: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="duration" id="microDuration" th:value="${allEpacks[2].duration}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="microDateCreated" class="col-form-label col-3">Date created: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="microDateCreated" th:value="${allEpacks[2].dateCreated}"><br/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="microPrice" class="col-form-label col-3">Price: </label>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="price" id="microPrice" th:value="${allEpacks[2].Price}"><br/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <button class ="button" th:href="@{/orderForm}"><strong>Get Epack</strong></button>
-                                </div>
-                            </form>
-<!--                            </div>-->
-                            <br>
+                    <nav id="navbar" class="navbar">
+                        <ul>
+                            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+                        </ul>
+                        <!--  <i class="bi bi-list mobile-nav-toggle"></i> -->
+                    </nav><!-- .navbar -->
+                    <div class="col-md-3 col-sm-6"></div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card-top">
+                            <h2 ><strong>YourEstack.com</strong></h2>
                         </div>
                     </div>
                 </div>
+            </header><!-- End Header -->
+        </div>
+    </div>
+<div class="container-fluid">
+    <h2 style="margin-left: 520px;"><u><strong>Courses available:</strong></u></h2>
+    <br>
+    <div class="panels">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div id="carouselPanel1" class="carousel slide" style="width: 350px;" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active img-thumbnail">
+                            <img src="images/java.png" class="d-block w-100" alt="Java course picture">
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <img src="images/java1.png" class="d-block w-100" alt="Java course picture">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <p><strong> Learn modern Java  on your own pace.</strong></p>
+                <p><strong> Get certificate.</strong></p>
+                        <div class="mx-auto" style="width: 400px; background-color: darkgray">
+                            <div class="m-3 mt-2 mb-2 ml-2 mr-2 px-2 pt-2 pb-2 p-3">
+                <form method="GET" th:action="@{/allEpacks}" th:object="${allEpacks}">
+                    <div class="form-group row">
+                        <label for="javaId" class="col-form-label col-3">Epack ID: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px"  name="epackId" id="javaId" th:value="${allEpacks[0].epackId}"><br>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="javaName" class="col-form-label col-3">Epack name: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="epackName" id="javaName" th:value="${allEpacks[0].epackName}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="javaManager" class="col-form-label col-3">Manager: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="manager" id="javaManager" th:value="${allEpacks[0].manager}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="javaDescription" class="col-form-label col-3">Description: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="description" id="javaDescription" th:value="${allEpacks[0].description}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="javaDuration" class="col-form-label col-3">Duration(h): </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="duration" id="javaDuration" th:value="${allEpacks[0].duration}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="javaDateCreated" class="col-form-label col-3">Date created: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="javaDateCreated" th:value="${allEpacks[0].dateCreated}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="javaPrice" class="col-form-label col-3">Price(EUR): </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="price" id="javaPrice" th:value="${allEpacks[0].price}"><br/>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class ="btn"><a href="orderForm.html" th:href="@{/orderForm}"><strong>Get Epack</strong></a></button>
+                    </div>
+                </form>
+                        </div>
+                    </div>
+                <br>
             </div>
-            <p>
-                <button class ="button" th:href="@{/}"><strong>Return to home</strong><</button>
-            </p>
-<!--</div>-->
+            <div class="col-md-4 col-sm-6">
+                <div id="carouselPanel2" class="carousel slide" style="width: 350px;" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active img-thumbnail">
+                            <img src="images/spring.png" class="d-block w-100" alt="Spring course picture">
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <img src="images/springboot.png" class="d-block w-100" alt="Spring course picture">
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <img src="images/springsecurity.png" class="d-block w-100" alt="Spring course picture">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <p><strong> Learn modern lightweight enterprise-level scalable application framework Spring (Java) on your own pace.</strong></p>
+                <p><strong> Get certificate.</strong></p>
+                        <div class="mx-auto" style="width: 400px; background-color: darkgray">
+                            <div class="m-3 mt-2 mb-2 ml-2 mr-2 px-2 pt-2 pb-2 p-3">
+                <form method="GET" th:action="@{/allEpacks}" th:object="${allEpacks}">
+                    <div class="form-group row">
+                        <label for="springId" class="col-form-label col-3">Epack ID: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="epackId" id="springId" th:value="${allEpacks[1].epackId}"><br>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="springName" class="col-form-label col-3">Epack name: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="epackName" id="springName" th:value="${allEpacks[1].epackName}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="springManager" class="col-form-label col-3">Manager: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="manager" id="springManager" th:value="${allEpacks[1].manager}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="springDescription" class="col-form-label col-3">Description: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="description" id="springDescription" th:value="${allEpacks[1].description}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="springDuration" class="col-form-label col-3">Duration(h): </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="duration" id="springDuration" th:value="${allEpacks[1].duration}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="springDateCreated" class="col-form-label col-3">Date created: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="springDateCreated" th:value="${allEpacks[1].dateCreated}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="springPrice" class="col-form-label col-3">Price(EUR): </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="price" id="springPrice" th:value="${allEpacks[1].price}"><br/>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class ="btn"><a href="orderForm.html" th:href="@{/orderForm}"><strong>Get Epack</strong></a></button>
+                    </div>
+                </form>
+                        </div>
+                    </div>
+                <br>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div id="carouselPanel3" class="carousel slide" style="width: 350px;" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active img-thumbnail">
+                            <img src="images/micro1.png" class="d-block w-100" alt="Microservices picture">
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <img src="images/micro2.png" class="d-block w-100" alt="Microservices picture">
+                        </div>
+                        <div class="carousel-item img-thumbnail">
+                            <img src="images/micro3.png" class="d-block w-100" alt="Microservices picture">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <p><strong> Learn modern microservices architecture on your own pace.</strong></p>
+                <p><strong> Get certificate.</strong></p>
+                <div class="mx-auto" style="width: 400px; background-color: darkgray">
+                    <div class="m-3 mt-2 mb-2 ml-2 mr-2 px-2 pt-2 pb-2 p-3">
+                <form method="GET" th:action="@{/allEpacks}" th:object="${allEpacks}">
+                    <div class="form-group row">
+                        <label for="microId" class="col-form-label col-3">Epack ID: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="epackId" id="microId" th:value="${allEpacks[2].epackId}"><br>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="microName" class="col-form-label col-3">Epack name: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="epackName" id="microName" th:value="${allEpacks[2].epackName}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="microManager" class="col-form-label col-3">Manager: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="manager" id="microManager" th:value="${allEpacks[2].manager}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="microDescription" class="col-form-label col-3">Description: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="description" id="microDescription" th:value="${allEpacks[2].description}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="microDuration" class="col-form-label col-3">Duration(h): </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="duration" id="microDuration" th:value="${allEpacks[2].duration}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="microDateCreated" class="col-form-label col-3">Date created: </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="microDateCreated" th:value="${allEpacks[2].dateCreated}"><br/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="microPrice" class="col-form-label col-3">Price(EUR): </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" style="height: 28px" name="price" id="microPrice" th:value="${allEpacks[2].Price}"><br/>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class ="btn"><a href="orderForm.html" th:href="@{/orderForm}"><strong>Get Epack</strong></a></button>
+                    </div>
+                </form>
+                        </div>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <p>
+        <button type="button" class ="btn"><a href="@{/}"><strong>Return to home</strong></a></button>
+    </p>
+</div>
+</div>
+<div class="footer-logo"><strong>&copy; IT 2021 - 2023</strong></div>
 </body>
 </html>
