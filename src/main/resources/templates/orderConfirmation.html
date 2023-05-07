@@ -19,45 +19,52 @@
     <link href="css/glightbox.min.css" rel="stylesheet">
     <link href="css/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
     <link href="css/style.css" rel="stylesheet">
     <style>
+        body {
+            background: url(images/towers.jpg) no-repeat center 81px;
+        }
        h1 {
                font-weight: bold;
-               font-size: 60px; /* Font size */
+               font-size: 60px;
                margin: 0;
                padding: 0;
             }
       h4 {
-           font-size: 14px; /* Font size */
+           font-size: 14px;
            color: #f1f2f3;
            margin: 0;
            padding: 0;
       }
       h5 {
-          font-size: 20px; /* Font size */
+          font-size: 20px;
           color: #f1f2f3;
           margin: 0;
           padding: 0;
       }
       h6 {
-            font-size: 14px; /* Font size */
+            font-size: 14px;
             color: #f1f2f3;
             margin: 0;
             padding: 0;
        }
-       .container {
-                width: auto;
-                margin-left: 110px;
-                background: #f1f2f3;
-            }
+       .db-container {
+           background-color: #3EC1D5;
+           color: white;
+           border-radius: 25px;
+           margin-top: 20px;
+           padding: 35px 55px;
+           margin-left: 100px;
+           margin-right: 55px;
+           width: 1350px;
+       }
       table, th, td {
           border: 1px solid black;
           padding: 1px;
       }
        .button {
-                height: 50px;
-                width: 250px;
+                height: 35px;
+                width: 100px;
                 line-height: 0;
                 background-color: #7fffd4;
                 border-radius: 10px;
@@ -69,48 +76,27 @@
     </style>
 </head>
 <body>
-<header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex justify-content-between">
-
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
-                <span sec:authorize="isAuthenticated()">
-                | Logged user: <span sec:authentication="name"></span> |
-                <a th:href="@{/logout}">Sign Out</a>
-                 </span>
-            </ul>
-            <!--  <i class="bi bi-list mobile-nav-toggle"></i> -->
-        </nav><!-- .navbar -->
-
-    </div>
-</header><!-- End Header -->
+<header id="header" class="d-flex align-items-center">
+    <nav id="navbar" class="navbar">
+        <ul>
+            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+            <li>
+                <form th:action="@{/logout}" method="post">
+                    <a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Sign Out</b></a>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>
 <br>
-<div>
+<br>
     <div class='db-container'>
         <div class="form-container bg-info" style = "margin-left: 60px">
-            <div layout:fragment="content display-block">
-        <table class="table table-sm table-bordered">
-            <thead class="thead-light">
-            <tr>
-                <th><h2 style = "color:orange" text-align="center"><b>You have made a great choice!</b></h2></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td th:text="'ID number: ' + ${order.getOrderId()}"></td>
-            </tr>
-            <tr>
-                <td th:text="'Course ID number: ' + ${order.getEpackId()}"></td>
-            </tr>
-<!--            <tr>-->
-<!--                <td th:text="'Course name: ' + ${epack.getEpackName(order.getEpackId())}"></td>-->
-<!--            </tr>-->
-            <tr>
-                <td th:text="'Price: ' + ${order.getEpackPrice()} + '€'"></td>
-            </tr>
-            </tbody>
-        </table>
+
+            <span sec:authentication="principal.firstName"></span>
+            <h2 style = "color:orange" text-align="center"><b>You have made a great choice!</b></h2>
+            <p>To get started go to your profile page:</p><br>
+            <button class ="button"><a th:href="@{/profile1}"><b>My Profile</b></a></button>
     </div>
 </div>
     </div>
@@ -119,8 +105,7 @@
 </div>
 <br>
 <p>
-    <button class ="button"><a th:href="@{/profile1}"><b>Back to Profile page</b></a></button>
+    <button class ="button"><a th:href="@{/}"><b>Return to home</b></a></button>
 </p>
-</div>
 </body>
 </html>

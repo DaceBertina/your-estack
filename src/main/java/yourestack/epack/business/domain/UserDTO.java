@@ -58,7 +58,7 @@ public class UserDTO {
 
     public List<OrderDTO> orderList;
 
-    public List<OrderDTO> getOrders() {
+    public List<OrderDTO> getOrderList() {
         return orderList;
     }
 

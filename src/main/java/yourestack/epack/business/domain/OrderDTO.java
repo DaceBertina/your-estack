@@ -22,4 +22,7 @@ public class OrderDTO {
         return user.getEmail();
     }
 
+    public EpackDTO getEpack() {
+        return epackDTO;
+    }
 }

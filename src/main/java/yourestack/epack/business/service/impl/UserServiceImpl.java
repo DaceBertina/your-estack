@@ -91,11 +91,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(userEntity).getUserId();
     }
 
-    public void update(final Long userId, final UserDTO userDTO) {
-        final UserEntity userEntity = userRepository.findById(userId)
+    public void update(final UserDTO userDTO) {
+        final UserEntity userEntity = userRepository.findById(userDTO.getUserId())
                 .orElseThrow(NotFoundException::new);
         userMapper.userDtoToUserEntity(userDTO);
         userRepository.save(userEntity);
+        log.info("User {} has been updated.", userDTO);
     }
 
     public void delete(final Long userId) {

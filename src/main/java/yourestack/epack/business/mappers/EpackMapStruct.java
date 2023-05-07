@@ -10,6 +10,8 @@ import yourestack.epack.business.model.CategoryEntity;
 import yourestack.epack.business.model.EpackEntity;
 import yourestack.epack.business.model.OrderEntity;
 
+import java.time.LocalDateTime;
+
 @Mapper(componentModel = "spring")
 public interface EpackMapStruct {
 
@@ -21,8 +23,13 @@ public interface EpackMapStruct {
 
     @Mapping(source="categoryEntity", target="categoryId", qualifiedByName = "categoryEntityToCategoryId")
     @Mapping(source="orderEntityList", target="ordersList", qualifiedByName = "ordersListEntityMapper")
+    @Mapping(source="dateCreated", target="dateCreated", qualifiedByName = "datesMapper")
     EpackDTO epackEntityToEpackDto(EpackEntity epackEntity);
 
+    @Named("datesMapper")
+    static String datesMapper(LocalDateTime localDateTime) {
+        return DateMapStruct.INSTANCE.localDateTimeToDateString(localDateTime);
+    }
     @Named("categoryIdToCategoryEntity")
     static CategoryEntity categoryIdToCategoryEntity(Long  categoryId) {
         if (categoryId == null) return null;

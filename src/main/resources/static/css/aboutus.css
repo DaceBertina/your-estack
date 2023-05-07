@@ -59,19 +59,6 @@ img {
     border-radius: 10px;
 }
 
-/*.carousel-container {*/
-/*    overflow: hidden;*/
-/*    margin-left: 320px;*/
-/*    margin-right: 100px;*/
-/*    max-height: 500px;*/
-/*}*/
-
-/*.carousel-item {*/
-/*    overflow: hidden;*/
-/*    height: 500px;*/
-/*    width: 900px;*/
-/*} */
-
 h1 {
     font-size: 20px;
     color: #423974;
@@ -80,8 +67,8 @@ h1 {
 }
 
 h2 {
-    font-size: 32px;
-    color: rgba(36, 1, 50, 0.78);
+    font-size: 30px;
+    color: rgba(185, 241, 243, 0.78);
     line-height: 0;
     padding-bottom: 20px;
     padding-top: 20px;
@@ -92,7 +79,7 @@ h2 {
 h6 {
     font-size: 15px;
     color: #30045a;
-    line-height: 0%;
+    line-height: 0;
     padding: 12px 25px;
     margin: 0;
 }
@@ -100,7 +87,7 @@ h6 {
 h7 {
     font-size: 15px;
     color: #431247;
-    line-height: 0%;
+    line-height: 0;
     margin: 0;
 }
 
@@ -117,15 +104,6 @@ p {
     border-color: rgb(14, 64, 128);
     font-weight: bold;
     color: white;
-}
-
-
-.banner-footer {
-    /*background-image: url(sun1.png); */
-    background-size: contain;
-    background-repeat: repeat;
-    height: 55px; 
-    position: relative;
 }
 
 ul.foot {
@@ -193,7 +171,7 @@ ul.foot {
     border-radius: 10px;
     box-shadow: 0 3px 10px rgb(136, 219, 227);
     margin: 0 auto;
-    max-width: 230px;
+    max-width: 260px;
     float: right;
 }
 

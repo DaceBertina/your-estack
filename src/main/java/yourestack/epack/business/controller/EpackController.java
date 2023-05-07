@@ -31,6 +31,12 @@ public class EpackController {
         return "allEpacks";
     }
 
+    @PostMapping("/placeOrder")
+    public String generateOrder(@NotNull Model model, EpackDTO epack) {
+        model.addAttribute("epack", epack);
+        return "orderForm";
+    }
+
     @GetMapping("/getJava")
     public String getJava(@NotNull Model model) {
         EpackDTO java = epackService.findEpackById(1L);

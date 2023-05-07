@@ -1,7 +1,6 @@
 package yourestack.epack.business.controller;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,8 +18,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yourestack.epack.business.domain.OrderDTO;
 import yourestack.epack.business.domain.UserDTO;
 import yourestack.epack.business.domain.UserDetailsImpl;
+import yourestack.epack.business.service.impl.OrderServiceImpl;
 import yourestack.epack.business.service.impl.UserServiceImpl;
 import yourestack.epack.util.WebUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Log4j2
 @Controller
@@ -29,21 +32,18 @@ public class UserController {
 
     private final UserServiceImpl userService;
 
+    private final OrderServiceImpl orderService;
+
     @GetMapping("/aboutus")
     public String showGenInfo() {
 
         return "aboutus";
     }
 
-    @GetMapping
+    @GetMapping("/allUsers")
     public String list(final Model model) {
         model.addAttribute("users", userService.findAll());
-        return "user/list";
-    }
-
-    @GetMapping("/add")
-    public String add(@ModelAttribute("user") final UserDTO clientDTO) {
-        return "user/add";
+        return "allUsers";
     }
 
     @PostMapping("/registerClient")
@@ -74,22 +74,21 @@ public class UserController {
         return "profile";
     }
 
-    @GetMapping("/edit/{clientId}")
-    public String edit(@PathVariable final Long clientId, final Model model) {
-        model.addAttribute("client", userService.get(clientId));
-        return "client/edit";
+    @GetMapping("editProfile")
+    public String editForm(WebRequest request, @ModelAttribute UserDTO user, Model model) {
+        model.addAttribute("user",new UserDTO());
+        return "editProfile";
     }
 
-    @PostMapping("/edit/{clientId}")
-    public String edit(@PathVariable final Long clientId,
-            @ModelAttribute("client") @Valid final UserDTO clientDTO,
+    @PostMapping("/editUserProfile")
+    public String editProfile(@ModelAttribute("user") @Valid final UserDTO user,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "client/edit";
+            return "editProfile";
         }
-        userService.update(clientId, clientDTO);
+        userService.update(user);
         redirectAttributes.addFlashAttribute(WebUtil.MSG_SUCCESS, WebUtil.getMessage("client.update.success"));
-        return "redirect:/clients";
+        return "profile";
     }
 
     @PostMapping("/delete/{clientId}")
@@ -119,11 +118,19 @@ public class UserController {
     @GetMapping("/showProfile")
     public String showProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
         model.addAttribute("user", user);
-        return "user";
+        return "profile1";
     }
 
     @GetMapping("/profile1")
     public String viewProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
+        List<OrderDTO> orders = new ArrayList<>();
+        List<OrderDTO> allOrders = orderService.findAll();
+        for (OrderDTO order : allOrders) {
+            if (order.getUserId().equals(user.getId())) {
+                orders.add(order);
+            }
+        }
+        model.addAttribute("orders", orders);
         model.addAttribute("user", user);
         return "/profile1";
     }
@@ -134,4 +141,16 @@ public class UserController {
         return "loginForm";
     }
 
+//    @GetMapping("/showYourEpacks")
+//    public String showOrder(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
+//        List<OrderDTO> orders = user.getOrders();
+//        List<OrderDTO> allOrders = orderService.findAll();
+//        for (OrderDTO order : allOrders) {
+//            if (order.getUserId().equals(user.getId())) {
+//                orders.add(order);
+//            }
+//        }
+//        model.addAttribute("orders", orders);
+//        return "orders";
+//    }
 }

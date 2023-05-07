@@ -6,11 +6,10 @@
     <title>Welcome page</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-    <!-- Google Fonts -->
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900"
           rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
     <link href="css/min.animate.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-icons.css" rel="stylesheet">
@@ -18,8 +17,12 @@
     <link href="css/glightbox.min.css" rel="stylesheet">
     <link href="css/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .to-right {
+            float: right;
+        }
+    </style>
 
     <!-- =======================================================
  * Template Name: eBusiness - v4.8.0
@@ -58,14 +61,17 @@
                 </li>
                 <li><a class="nav-link scrollto" th:href="@{/showProfile}">My Profile</a></li>
                 <li><a class="nav-link scrollto" th:href="@{/aboutus}">About Us</a></li>
+                <li class="to-right">
+                    <form th:action="@{/logout}" method="post">
+                        <a class="nav-link scrollto" th:href="@{/}">Sign Out</a>
+                    </form>
+                </li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-
+        </nav>
     </div>
-</header><!-- End Header -->
+</header>
 
-<!-- ======= hero Section ======= -->
 <section id="hero">
     <div class="hero-container">
         <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
@@ -84,33 +90,9 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="carousel-item" style="background-image: url(../static/images/hero_carousel_2.jpg)">
-                    <div class="carousel-container">
-                        <div class="container">
-                            <h2 class="animate__animated animate__fadeInDown">At vero eos et accusamus</h2>
-                            <p class="animate__animated animate__fadeInUp">Helping Business Security & Peace of Mind for
-                                Your Family</p>
-                            <a th:href="@{/allEpacks}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get
-                                Started</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="carousel-item" style="background-image: url(../static/images/hero_carousel_3.jpg)">
-                    <div class="carousel-container">
-                        <div class="container">
-                            <h2 class="animate__animated animate__fadeInDown">Temporibus autem quibusdam</h2>
-                            <p class="animate__animated animate__fadeInUp">Beatae vitae dicta sunt explicabo. Nemo enim
-                                ipsam voluptatem</p>
-                            <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get
-                                Started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 </body>
 </html>

@@ -5,9 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import yourestack.epack.business.model.OrderEntity;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -15,35 +14,39 @@ import java.util.List;
 @Setter
 public class EpackDTO {
 
-    private Long epackId;
+    public Long epackId;
 
     @NotNull
     @Size(max = 255)
-    private String epackName;
+    public String epackName;
 
     @NotBlank
-    private String description;
+    public String description;
 
     @NotBlank
-    private String manager;
+    public String manager;
 
     @NotBlank
-    private Long categoryId;
+    public Long categoryId;
 
     @NotBlank
-    private Integer duration;
+    public Integer duration;
 
-    private OffsetDateTime dateCreated;
+    public LocalDateTime dateCreated;
 
-    private OffsetDateTime lastUpdated;
+    public LocalDateTime lastUpdated;
 
-    private Boolean isActive;
+    public Boolean isActive;
 
-    private Double price;
+    public Double price;
 
-    private String urllink;
+    public String urllink;
 
     public List<OrderDTO> ordersList;
+
+    public String getDateCreated(LocalDateTime dateCreated) {
+        return String.valueOf(dateCreated);
+    }
 
     public EpackDTO(Long epackId) {
         this.epackId = epackId;

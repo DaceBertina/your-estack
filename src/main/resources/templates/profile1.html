@@ -51,37 +51,30 @@
       width: 150px;
       text-align: right;
     }
-    .invalid-feedback {
-      font-size: 14px;
-      font-weight: 600;
-      text-align: left;
-      color: #ff0000;
-      line-height: 2em;
-    }
        h1 {
-                font-weight: bold;
-                font-size: 60px; /* Font size */
-                margin: 0;
-                padding: 0;
-            }
+           font-weight: bold;
+           font-size: 60px;
+           margin: 0;
+           padding: 0;
+       }
       h4 {
-           font-size: 14px; /* Font size */
+           font-size: 14px;
            color: #f1f2f3;
            margin: 0;
            padding: 0;
       }
       h5 {
-          font-size: 20px; /* Font size */
+          font-size: 20px;
           color: #f1f2f3;
           margin: 0;
           padding: 0;
       }
       p {
-                font-size: 14px; /* Font size */
-                color: #f1f2f3;
-                margin: 0;
-                padding: 0;
-            }
+          font-size: 14px;
+          color: #f1f2f3;
+          margin: 0;
+          padding: 0;
+      }
        table, th, td {
            border: 1px solid black;
            padding: 1px;
@@ -89,23 +82,6 @@
            font-weight: bold;
            color: #0f3d81;
        }
-
-       .btn {
-           max-height: 35px;
-           text-align: center;
-       }
-
-       .footer {
-                position:absolute;
-                bottom:0;
-                width:100%;
-                height:45px;
-                background: #f03c33; /* Footer background color */
-                padding: 5px; /* Fields inside a block */
-                clear: left; /* Cancel the float action of .sidebar*/
-                text-align: right; /* Align footer text to the right */
-                color: #f1f2f3;
-            }
     </style>
 </head>
 <body>
@@ -119,16 +95,13 @@
                 </form>
             </li>
         </ul>
-        <!--  <i class="bi bi-list mobile-nav-toggle"></i> -->
-    </nav><!-- .navbar -->
-
-</header><!-- End Header -->
+    </nav>
+</header>
 <br>
 <div>
     <div class='db-container'>
         <div class="form-container bg-info" style = "margin-left: 60px">
             <div layout:fragment="content display-block">
-
 
     <div layout:fragment="content display-block">
         <div sec:authorize="isAuthenticated()">Text visible only to authenticated users.</div>
@@ -158,17 +131,17 @@
             <tr>
                 <td th:text="'Surname: ' + ${user.getLastName()}"></td>
             </tr>
-<!--            <tr>-->
-<!--                <td th:text="'Gender: ' + ${user.getGender()}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <td th:text="'Gender: ' + ${user.getGender()}"></td>
+            </tr>
             <tr>
                 <td th:text="'Birthdate: ' + ${user.getDateOfBirth()}"></td>
             </tr>
             <tr>
-                <td th:text="'Address: ' + ${user.getPhoneNumber()}"></td>
+                <td th:text="'Telephone: ' + ${user.getPhoneNumber()}"></td>
             </tr>
             <tr>
-                <td th:text="'Telephone: ' + ${user.getOccupation()}"></td>
+                <td th:text="'Occupation: ' + ${user.getOccupation()}"></td>
             </tr>
             </tbody>
         </table>
@@ -182,41 +155,35 @@
             </thead>
             </table>
         </div>
-<!--        <form th:action="@{/showCourses}" method="post" th:object="${user}">-->
+<!--        <form th:action="@{/showOrders}" method="POST" th:object="${orders}">-->
                     <table class="table table-sm table-bordered table-center">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>CATEGORY</th>
-                            <th>NAME</th>
-                            <th>DESCRIPTION</th>
-                            <th>MANAGER</th>
-                            <th>CREATED</th>
-                            <th>UPDATED</th>
-                            <th>PRICE</th>
-                            <th>URL</th>
+                            <th>Order No</th>
+                            <th>Epack ID</th>
+                            <th>Epack name</th>
+                            <th>Epack duration</th>
+                            <th>Epack price</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="epack : ${allEpacks}">
-                            <td th:text="${epack.epackId}"></td>
-                            <td th:text="${epack.categoryId}"></td>
-                            <td th:text="${epack.epackName}"></td>
-                            <td th:text="${epack.description}"></td>
-                            <td th:text="${epack.manager}"></td>
-                            <td th:text="${epack.dateCreated}"></td>
-                            <td th:text="${epack.lastUpdated}"></td>
-                            <td th:text="${epack.price}"></td>
-                            <td th:text="${epack.urllink}"></td>
-                            <td>
-                                <a th:href="@{/orderForm}" th:text="${'Order Form'}"></a>
-                            </td>
+                        <td></td>
+                        <td></td>
+                        <tr th:each="ord : ${orders}">
+                            <td th:text="${ord.getOrderId()}"></td>
+                            <td th:text="${ord.getEpackId()}"></td>
+                            <td th:text="${ord.getEpackName()}"></td>
+                            <td th:text="${ord.getEpackDuration()}"></td>
+                            <td th:text="${ord.getEpackPrice()}"></td>
+                            <td th:text="${ord.getEpacklink()}"></td>
                         </tr>
                         </tbody>
                 </table>
+<!--        </form>-->
                     <br>
                     <br>
                 </div>
+
    </div>
         <div>
             <button class="btn btn-primary"><a th:href="@{/editProfile}"><p style="color: white"><b>Edit Profile</b></p></a></button>

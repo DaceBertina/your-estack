@@ -42,6 +42,7 @@ public class OrderController {
         EpackDTO epack = epackService.findEpackById(order.getEpackId());
         order.setUser(user);
         order.setEpackDTO(epack);
+        order.setEpackPrice(order.getEpackPrice());
         order.setDateCreated(LocalDateTime.now());
         orderService.registerNewOrder(order, user, epack);
 
@@ -50,7 +51,7 @@ public class OrderController {
 
     @GetMapping("/showOrders")
     public String showOrder(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
-        List<OrderDTO> orders = user.getOrders();
+        List<OrderDTO> orders = user.getOrderList();
         List<OrderDTO> allOrders = orderService.findAll();
         for (OrderDTO order : allOrders) {
             if (order.getUserId().equals(user.getId())) {

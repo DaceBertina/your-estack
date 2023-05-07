@@ -200,7 +200,6 @@ ul.foot {
     box-shadow: 0 3px 10px rgba(138, 5, 5, 0.945);
     height: 0;
     padding-bottom: 100%;
-    margin-left: 20px;
 }
 
 .carousel-item {
@@ -210,4 +209,5 @@ ul.foot {
     right: 0;
     bottom: 0;
     left: 0;
+    margin-left: 20px;
 }
