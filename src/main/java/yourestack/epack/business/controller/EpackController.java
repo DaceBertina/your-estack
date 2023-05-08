@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import yourestack.epack.business.domain.EpackDTO;
+import yourestack.epack.business.domain.FeedbackDTO;
 import yourestack.epack.business.service.impl.EpackServiceImpl;
 
 import java.util.List;
@@ -27,7 +28,13 @@ public class EpackController {
     @GetMapping("/allEpacks")
     public String getAllEpacks(@NotNull Model model) {
         List<EpackDTO> allEpacks = epackService.findAll();
+        List<EpackDTO> allCourses = epackService.findAll();
+        FeedbackDTO feedback = new FeedbackDTO();
+        EpackDTO epack = new EpackDTO();
         model.addAttribute("allEpacks", allEpacks);
+        model.addAttribute("allCourses", allCourses);
+        model.addAttribute("feedback", feedback);
+        model.addAttribute("epack", epack);
         return "allEpacks";
     }
 

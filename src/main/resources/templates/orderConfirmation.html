@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns: sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.w3.org/1999/xhtml">
-<html layout:decorate="~{task/layout}">
+<html layout:decorate="~{task/layout}" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,7 @@
     <link href="css/swiper-bundle.min.css" rel="stylesheet">
 
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/allEpacks.css" rel="stylesheet">
     <style>
         body {
             background: url(images/towers.jpg) no-repeat center 81px;
@@ -73,6 +74,18 @@
                 align-items: center;
                 font-size: 16px;
             }
+
+       span {
+           color: darkviolet;
+           font-weight: bold;
+           font-size: 30px;
+       }
+
+       p {
+           color: #0f3d81;
+           font-size: 28px;
+       }
+
     </style>
 </head>
 <body>
@@ -91,15 +104,14 @@
 <br>
 <br>
     <div class='db-container'>
-        <div class="form-container bg-info" style = "margin-left: 60px">
+        <div class="form-container bg-info" style = "margin-left: 60px; text-align: center;">
 
-            <span sec:authentication="principal.firstName"></span>
+            <span sec:authentication="principal.firstName">,</span>
             <h2 style = "color:orange" text-align="center"><b>You have made a great choice!</b></h2>
-            <p>To get started go to your profile page:</p><br>
+            <p style="text-align: center">To get started go to your profile page:</p><br>
             <button class ="button"><a th:href="@{/profile1}"><b>My Profile</b></a></button>
     </div>
 </div>
-    </div>
 <div>
     <br>
 </div>

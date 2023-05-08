@@ -77,6 +77,10 @@ public class UserEntity {
     @Transient
     private List<WorkplaceEntity> userWorkplaces;
 
+    @OneToMany(mappedBy = "userEntity")
+    @Transient
+    private List<FeedbackEntity> userFeedbacks;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime dateCreated;

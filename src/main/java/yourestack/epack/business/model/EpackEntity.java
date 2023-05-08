@@ -64,6 +64,10 @@ public class EpackEntity {
     @Transient
     private List<OrderEntity> orderEntityList;
 
+    @OneToMany(mappedBy="epackEntity")
+    @Transient
+    private List<FeedbackEntity> feedbackEntityList;
+
     public EpackEntity(Long epackId) {
         this.epackId = epackId;
     }

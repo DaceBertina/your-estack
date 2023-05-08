@@ -123,6 +123,14 @@ body {
     line-height: 22px;
 }
 
+.card-top {
+    color: rgba(185, 241, 243, 0.78);
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(136, 219, 227);
+    margin: 0 auto;
+    max-width: 260px;
+    float: right;
+}
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/

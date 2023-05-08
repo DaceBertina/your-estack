@@ -42,6 +42,10 @@
         color: white;
         font-size: 20px;
     }
+
+    label {
+        font-size: 14px;
+    }
         </style>
 </head>
 <body>
@@ -62,37 +66,29 @@
 <p></p>
 
   <form th:action="@{/order}" method="post" th:object="${epack}">
-
     <div class="mx-auto" style="width: 400px;">
         <div class="form-container">
-
       <div class="m-3 mt-2 mb-2 ml-2 mr-2 px-2 pt-2 pb-2 p-3 bg-info" style="border-radius: 10%;">
-          <h2 style = "color: #800080; text-align: center;" class="font-weight-bold">Your order:</h2>
-<!--        <div class="form-group row">-->
-<!--          <label class="col-form-label col-3"><strong>Your email: </strong></label>-->
-<!--          <div class="col-8">-->
-<!--            <input type="text" class="form-control" th:field="*{userEmail}" id="userEmail" required/>-->
-<!--          </div>-->
-<!--        </div>-->
-        <div class="form-group row">
-          <label class="col-form-label col-4" style="padding-left: 30px"><strong>Epack ID number:</strong></label>
-          <div class="col-8">
+          <h2 style = "color: #800080; text-align: center;">Your order:</h2>
+        <div class="form-group row" style="padding-right: 20px">
+          <label class="col-form-label col-4" style="padding-left: 30px">Epack ID number: </label>
+          <div class="col-7">
               <label>
                   <input type="text" class="form-control" th:field="*{epackId}" th:value="${epack.epackId}" required />
               </label>
           </div>
         </div>
-          <div class="form-group row">
-              <label class="col-form-label col-4" style="padding-left: 30px"><strong>Epack name:</strong></label>
-              <div class="col-8">
+          <div class="form-group row" style="padding-right: 20px">
+              <label class="col-form-label col-4" style="padding-left: 30px">Epack name: </label>
+              <div class="col-7">
                   <label>
                       <input type="text" class="form-control" th:field="*{epackName}" th:value="${epack.epackName}" required />
                   </label>
               </div>
           </div>
-        <div class="form-group row">
-          <label class="col-form-label col-4"style="padding-left: 30px" ><strong>Epack price:</strong></label>
-          <div class="col-8">
+        <div class="form-group row"style="padding-right: 20px" >
+          <label class="col-form-label col-4"style="padding-left: 30px" >Epack price(EUR): </label>
+          <div class="col-7">
               <label>
                   <input type="text" class="form-control" th:field="*{price}" th:value="${epack.price}" required />
               </label>

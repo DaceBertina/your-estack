@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns: sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+      >
 <html layout:decorate="~{task/layout}" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -75,11 +75,20 @@
           margin: 0;
           padding: 0;
       }
-       table, th, td {
+       table, td {
            border: 1px solid black;
            padding: 1px;
            font-size: 16px;
            font-weight: bold;
+           color: #0f3d81;
+       }
+
+       table th {
+           border: 1px solid black;
+           padding: 1px;
+           font-size: 16px;
+           font-weight: bold;
+           text-align: center;
            color: #0f3d81;
        }
     </style>
@@ -88,37 +97,25 @@
 <header id="header" class="d-flex align-items-center">
     <nav id="navbar" class="navbar">
         <ul>
-            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
-            <li>
+            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}">Go back</a></li>
+
                 <form th:action="@{/logout}" method="post">
-                    <a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Sign Out</b></a>
+            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}">Sign Out</a></li>
                 </form>
-            </li>
+
         </ul>
     </nav>
 </header>
 <br>
 <div>
     <div class='db-container'>
-        <div class="form-container bg-info" style = "margin-left: 60px">
-            <div layout:fragment="content display-block">
-
-    <div layout:fragment="content display-block">
-        <div sec:authorize="isAuthenticated()">Text visible only to authenticated users.</div>
-        Authenticated username:
-        <div sec:authentication="name"></div>
-        Authenticated user's firstName:
-        <div sec:authentication="principal.firstName"></div>
-        Authenticated user's lastName:
-        <div sec:authentication="principal.lastName"></div>
-        Authenticated user's email:
-        <div sec:authentication="principal.email"></div>
-        Authenticated user roles:
-        <div sec:authentication="principal.authorities"></div>
+        <div class="form-container bg-white" style = "margin-left: 60px">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
         <table class="table table-sm table-bordered table-center">
             <thead class="thead-light">
             <tr>
-                <th><h3 style = "color:orange; line-height: 20px; margin-bottom: 0; padding: 8px 10px;">Your profile information:</h3></th>
+                <th><h3 style = "color:darkviolet; line-height: 20px; margin-bottom: 0;">Your profile information:</h3></th>
             </tr>
             </thead>
             <tbody>
@@ -145,52 +142,57 @@
             </tr>
             </tbody>
         </table>
-   <p></p>
-        <div>
-            <table class="table table-sm table-bordered table-center">
-            <thead class="thead-light">
-            <tr>
-                <th><h2 style = "color:orange; line-height: 20px; margin-bottom: 0; padding: 8px 10px;">Your courses:</h2></th>
-            </tr>
-            </thead>
-            </table>
+                <br>
+                <div>
+                    <button class="btn btn-primary"><a th:href="@{/editProfile}"><p style="color: white"><b>Edit Profile</b></p></a></button>
+                </div>
+                </div>
+            <div class="col-md-6 col-sm-6">
+                <img class="img-responsive img-thumbnail" src="images/spring2.jpg" alt="The profile picture">
+                </div>
         </div>
-<!--        <form th:action="@{/showOrders}" method="POST" th:object="${orders}">-->
+                <div class="row">
+                <div class="col-md-12 col-sm-6">
                     <table class="table table-sm table-bordered table-center">
-                        <thead>
+                        <thead class="thead-light">
                         <tr>
-                            <th>Order No</th>
-                            <th>Epack ID</th>
-                            <th>Epack name</th>
-                            <th>Epack duration</th>
-                            <th>Epack price</th>
+                            <th><h2 style = "color: darkviolet; line-height: 20px; margin-bottom: 0;">Your courses:</h2></th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <td></td>
-                        <td></td>
-                        <tr th:each="ord : ${orders}">
-                            <td th:text="${ord.getOrderId()}"></td>
-                            <td th:text="${ord.getEpackId()}"></td>
-                            <td th:text="${ord.getEpackName()}"></td>
-                            <td th:text="${ord.getEpackDuration()}"></td>
-                            <td th:text="${ord.getEpackPrice()}"></td>
-                            <td th:text="${ord.getEpacklink()}"></td>
-                        </tr>
-                        </tbody>
-                </table>
-<!--        </form>-->
-                    <br>
-                    <br>
+                    </table>
                 </div>
+                <table class="table table-sm table-bordered table-center">
+                    <thead>
+                    <tr>
+                        <th>Epack ID</th>
+                        <th>Epack name</th>
+                        <th>Epack duration(h)</th>
+                        <th>Epack manager</th>
+                        <th>Epack description</th>
+                        <th>Epack price(EUR)</th>
+                        <th>Epack link</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <td></td>
+                    <td></td>
+                    <tr th:each="ep : ${epacks}">
+                        <td th:text="${ep.getEpackId()}"></td>
+                        <td th:text="${ep.getEpackName()}"></td>
+                        <td th:text="${ep.getDuration()}"></td>
+                        <td th:text="${ep.getManager()}"></td>
+                        <td th:text="${ep.getDescription()}"></td>
+                        <td th:text="${ep.getPrice()}"></td>
+                        <td><a href th:text="${ep.getUrllink()}"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+            </div>
 
-   </div>
-        <div>
-            <button class="btn btn-primary"><a th:href="@{/editProfile}"><p style="color: white"><b>Edit Profile</b></p></a></button>
         </div>
             </div>
-            </div>
-        </div>
-
+</div>
 </body>
 </html>

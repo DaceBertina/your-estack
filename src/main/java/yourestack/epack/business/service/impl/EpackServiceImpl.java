@@ -7,10 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import yourestack.epack.business.domain.EpackDTO;
-import yourestack.epack.business.domain.OrderDTO;
 import yourestack.epack.business.mappers.EpackMapStruct;
 import yourestack.epack.business.model.EpackEntity;
-import yourestack.epack.business.model.OrderEntity;
 import yourestack.epack.business.model.repos.EpackRepository;
 import yourestack.epack.business.service.EpackService;
 
@@ -51,7 +49,7 @@ public class EpackServiceImpl implements EpackService {
     public List<EpackDTO> findAll() {
         final List<EpackEntity> epacks = epackRepository.findAll(Sort.by("epackId"));
         return epacks.stream()
-                .map((order) -> epackMapper.epackEntityToEpackDto(order))
+                .map(epackMapper::epackEntityToEpackDto)
                 .collect(Collectors.toList());
     }
 }

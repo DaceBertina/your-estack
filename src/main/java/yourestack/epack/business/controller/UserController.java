@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import yourestack.epack.business.domain.EpackDTO;
 import yourestack.epack.business.domain.OrderDTO;
 import yourestack.epack.business.domain.UserDTO;
 import yourestack.epack.business.domain.UserDetailsImpl;
+import yourestack.epack.business.service.impl.EpackServiceImpl;
 import yourestack.epack.business.service.impl.OrderServiceImpl;
 import yourestack.epack.business.service.impl.UserServiceImpl;
 import yourestack.epack.util.WebUtil;
@@ -33,6 +35,8 @@ public class UserController {
     private final UserServiceImpl userService;
 
     private final OrderServiceImpl orderService;
+
+    private final EpackServiceImpl epackService;
 
     @GetMapping("/aboutus")
     public String showGenInfo() {
@@ -124,14 +128,17 @@ public class UserController {
     @GetMapping("/profile1")
     public String viewProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
         List<OrderDTO> orders = new ArrayList<>();
+        List<EpackDTO> epacks = new ArrayList<>();
         List<OrderDTO> allOrders = orderService.findAll();
         for (OrderDTO order : allOrders) {
             if (order.getUserId().equals(user.getId())) {
                 orders.add(order);
+                epacks.add(epackService.findEpackById(order.getEpackId()));
             }
         }
-        model.addAttribute("orders", orders);
         model.addAttribute("user", user);
+        model.addAttribute("orders", orders);
+        model.addAttribute("epacks", epacks);
         return "/profile1";
     }
 

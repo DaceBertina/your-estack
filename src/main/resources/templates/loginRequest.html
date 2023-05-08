@@ -1,0 +1,91 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
+
+<link href="css/min.animate.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-icons.css" rel="stylesheet">
+<link href="css/boxicons.min.css" rel="stylesheet">
+<link href="css/glightbox.min.css" rel="stylesheet">
+<link href="css/swiper-bundle.min.css" rel="stylesheet">
+
+<link href="css/style.css" rel="stylesheet">
+
+<head>
+    <title>Login Request</title>
+    <style>
+        body {
+            background: url(images/hero_carousel_3.jpg) no-repeat center 81px;
+        }
+        .form-container {
+            display: block;
+            border-radius: 15px;
+            margin: 110px auto 15px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 650px;
+            text-align: center;
+            line-height: 1em;
+        }
+        .mx-auto {
+            width: 650px;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            text-align: right;
+        }
+
+        .btn {
+            max-height: 35px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+     <div class="mx-auto">
+       <div class="form-container bg-info">
+           <div class="m-3 mt-3 mb-3 ml-2 mr-2 px-2 pt-2 pb-2 p-3 bg-info">
+            <h4 style="color: white; text-align: center;">To make a comment please login:</h4>
+                <div th:if="${param.error}" th:text="'Unable to login. Check your username or password.'" class="alert alert-danger"></div>
+               <div th:if="${param.logout}" class="alert alert-success">
+                   You have been logged out.
+               </div>
+               <form method="POST" th:action="@{/perform_login}">
+            <div class="form-group row">
+             <label for="email" class="col-form-label col-3">Email: </label>
+                <div class="col-8">
+                     <input type="text" class="form-control" style="height: 28px" name="email" id="email"/><br>
+                </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-form-label col-3">Password: </label>
+                    <div class="col-8">
+                    <input type="password" class="form-control" style="height: 28px" name="password" id="password" /><br/>
+                    </div>
+                </div>
+               <div>
+                <button type="submit" class="btn btn-primary"><p style="color: white"><b>Login</b><p></button>
+                </div>
+               </form>
+        </div>
+        </div>
+     </div>
+</body>
+</html>
