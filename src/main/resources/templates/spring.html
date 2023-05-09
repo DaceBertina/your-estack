@@ -4,10 +4,9 @@
 <html layout:decorate="~{task/layout}">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google Fonts -->
+
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
 
-<!-- Vendor CSS Files -->
 <link href="css/min.animate.css" rel="stylesheet">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-icons.css" rel="stylesheet">
@@ -15,7 +14,6 @@
 <link href="css/glightbox.min.css" rel="stylesheet">
 <link href="css/swiper-bundle.min.css" rel="stylesheet">
 
-<!-- Template Main CSS File -->
 <link href="css/style.css" rel="stylesheet">
 
 <head>
@@ -37,22 +35,6 @@
       line-height: 1em;
     }
 
-    .mx-auto {
-      width: 650px;
-    }
-
-    .invalid-feedback {
-      font-size: 14px;
-      font-weight: 600;
-      text-align: left;
-      color: #ff0000;
-      line-height: 2em;
-    }
-
-    .btn {
-        max-height: 35px;
-        text-align: center;
-    }
       table, th, td {
           border: 1px solid black;
           padding: 1px;
@@ -68,11 +50,9 @@
             <ul>
                 <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
             </ul>
-            <!--  <i class="bi bi-list mobile-nav-toggle"></i> -->
-        </nav><!-- .navbar -->
-
+        </nav>
     </div>
-</header><!-- End Header -->
+</header>
 <h2 style = "color:orange" text-align="center"><u><strong>Courses available:</strong></u></h2>
 <div align="center">
         <div layout:fragment="form-conteiner">
@@ -140,51 +120,51 @@
                             </div>
                             <br>
                             <p><strong> Learn modern lightweight enterprise-level scalable application framework Spring (Java) on your own pace. Get certificate.</strong></p>
-                            <form method="GET" th:action="@{/getSpring}" th:object="spring">
+                            <form method="GET" th:action="@{/getSpring}" th:object="${springEpack}">
                                 <div class="form-group row">
                                     <label for="springId" class="col-form-label col-3">Epack ID: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackId" id="springId" th:text="${spring.epackId}">/><br>
+                                        <input type="text" class="form-control" style="height: 28px" name="epackId" id="springId" th:text="${springEpack.epackId}">/><br>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="springName" class="col-form-label col-3">Epack name: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackName" id="springName" th:text="${spring.epackName}">/><br/>
+                                        <input type="text" class="form-control" style="height: 28px" name="epackName" id="springName" th:text="${springEpack.epackName}">/><br/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="springManager" class="col-form-label col-3">Manager: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="manager" id="springManager" th:text="${spring.manager}">/><br/>
+                                        <input type="text" class="form-control" style="height: 28px" name="manager" id="springManager" th:text="${springEpack.manager}">/><br/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="springDescription" class="col-form-label col-3">Description: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="description" id="springDescription" th:text="${spring.description}">/><br/>
+                                        <input type="text" class="form-control" style="height: 28px" name="description" id="springDescription" th:text="${springEpack.description}">/><br/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="springDuration" class="col-form-label col-3">Duration: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="duration" id="springDuration" th:text="${spring.duration}">/><br/>
+                                        <input type="text" class="form-control" style="height: 28px" name="duration" id="springDuration" th:text="${springEpack.duration}">/><br/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="springDateCreated" class="col-form-label col-3">Date created: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="springDateCreated" th:text="${spring.dateCreated}">/><br/>
+                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="springDateCreated" th:text="${springEpack.dateCreated}">/><br/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="springPrice" class="col-form-label col-3">Price: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="price" id="springPrice" th:text="${spring.price}">/><br/>
+                                        <input type="text" class="form-control" style="height: 28px" name="price" id="springPrice" th:text="${springEpack.price}">/><br/>
                                     </div>
                                 </div>
                                 <div>
-                                    <button class ="button"><a href="orderForm.html" th:href="@{/order}"><strong>Get Epack</strong></a></button>
+
                                 </div>
                             </form>
                             <br>

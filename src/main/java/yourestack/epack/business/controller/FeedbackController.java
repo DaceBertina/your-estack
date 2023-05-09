@@ -35,12 +35,10 @@ public class FeedbackController {
         }
 
         UserDTO user = userService.findByEmail(loggedUser.getEmail());
-        List<EpackDTO> allCourses = epackService.findAll();
         List<EpackDTO> allEpacks = epackService.findAll();
         model.addAttribute("feedback", feedback);
         model.addAttribute("epack", epack);
         model.addAttribute("allEpacks", allEpacks);
-        model.addAttribute("allCourses", allCourses);
         feedbackService.saveFeedback(feedback, user);
         return "allEpacks";
     }

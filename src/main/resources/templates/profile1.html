@@ -46,11 +46,11 @@
            width: 1350px;
        }
 
-    label {
-      display: inline-block;
-      width: 150px;
-      text-align: right;
-    }
+    /*label {*/
+    /*  display: inline-block;*/
+    /*  width: 150px;*/
+    /*  text-align: right;*/
+    /*}*/
        h1 {
            font-weight: bold;
            font-size: 60px;
@@ -58,10 +58,10 @@
            padding: 0;
        }
       h4 {
-           font-size: 14px;
+           font-size: 18px;
            color: #f1f2f3;
-           margin: 0;
-           padding: 0;
+           /*margin: 0;*/
+           /*padding: 0;*/
       }
       h5 {
           font-size: 20px;
@@ -79,14 +79,13 @@
            border: 1px solid black;
            padding: 1px;
            font-size: 16px;
-           font-weight: bold;
            color: #0f3d81;
        }
 
        table th {
            border: 1px solid black;
            padding: 1px;
-           font-size: 16px;
+           font-size: 14px;
            font-weight: bold;
            text-align: center;
            color: #0f3d81;
@@ -115,7 +114,7 @@
         <table class="table table-sm table-bordered table-center">
             <thead class="thead-light">
             <tr>
-                <th><h3 style = "color:darkviolet; line-height: 20px; margin-bottom: 0;">Your profile information:</h3></th>
+                <th><h4 style = "color:darkviolet; font-weight: bold; line-height: 10px; margin-bottom: 0;">Your profile information:</h4></th>
             </tr>
             </thead>
             <tbody>
@@ -156,7 +155,7 @@
                     <table class="table table-sm table-bordered table-center">
                         <thead class="thead-light">
                         <tr>
-                            <th><h2 style = "color: darkviolet; line-height: 20px; margin-bottom: 0;">Your courses:</h2></th>
+                            <th><h4 style = "color: darkviolet; font-weight: bold; line-height: 15px; margin-bottom: 0;">Your courses:</h4></th>
                         </tr>
                         </thead>
                     </table>
@@ -183,7 +182,9 @@
                         <td th:text="${ep.getManager()}"></td>
                         <td th:text="${ep.getDescription()}"></td>
                         <td th:text="${ep.getPrice()}"></td>
-                        <td><a href th:text="${ep.getUrllink()}"></a></td>
+                        <td><a th:href="@{/getJava}" th:if="${ep.getUrllink().equals('java.html')}"><span th:text="${ep.getUrllink()}"></span></a>
+                            <a th:href="@{/getSpring}" th:if="${ep.getUrllink().equals('spring.html')}"><span th:text="${ep.getUrllink()}"></span></a>
+                            <a th:href="@{/getMicro}" th:if="${ep.getUrllink().equals('micro.html')}"><span th:text="${ep.getUrllink()}"></span></a></td>
                     </tr>
                     </tbody>
                 </table>

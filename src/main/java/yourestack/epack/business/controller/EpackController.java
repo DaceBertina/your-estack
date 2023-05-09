@@ -28,11 +28,9 @@ public class EpackController {
     @GetMapping("/allEpacks")
     public String getAllEpacks(@NotNull Model model) {
         List<EpackDTO> allEpacks = epackService.findAll();
-        List<EpackDTO> allCourses = epackService.findAll();
         FeedbackDTO feedback = new FeedbackDTO();
         EpackDTO epack = new EpackDTO();
         model.addAttribute("allEpacks", allEpacks);
-        model.addAttribute("allCourses", allCourses);
         model.addAttribute("feedback", feedback);
         model.addAttribute("epack", epack);
         return "allEpacks";
@@ -46,15 +44,15 @@ public class EpackController {
 
     @GetMapping("/getJava")
     public String getJava(@NotNull Model model) {
-        EpackDTO java = epackService.findEpackById(1L);
-        model.addAttribute("java", java);
+        EpackDTO javaEpack = epackService.findEpackById(1L);
+        model.addAttribute("javaEpack", javaEpack);
         return "java";
     }
 
     @GetMapping("/getSpring")
     public String getSpring(@NotNull Model model) {
-        EpackDTO spring = epackService.findEpackById(2L);
-        model.addAttribute("spring", spring);
+        EpackDTO springEpack = epackService.findEpackById(2L);
+        model.addAttribute("springEpack", springEpack);
         return "spring";
     }
 
@@ -62,7 +60,7 @@ public class EpackController {
     public String getMicro(@NotNull Model model) {
         EpackDTO micro = epackService.findEpackById(3L);
         model.addAttribute("micro", micro);
-        return "micro";
+        return "microservices";
     }
 
     @GetMapping("/getPython")

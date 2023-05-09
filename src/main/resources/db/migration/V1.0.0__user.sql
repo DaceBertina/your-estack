@@ -83,3 +83,14 @@ CREATE TABLE orders (
                        FOREIGN KEY (user_id) REFERENCES users(user_id),
                        FOREIGN KEY (epack_id) REFERENCES epacks(epack_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE feedbacks (
+                        id bigint(20) NOT NULL AUTO_INCREMENT,
+                        user_id bigint(20),
+                        epack_id bigint(8),
+                        feed_text text,
+                        date_created date,
+                        PRIMARY KEY (id),
+                        FOREIGN KEY (user_id) REFERENCES users(user_id),
+                        FOREIGN KEY (epack_id) REFERENCES epacks(epack_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
