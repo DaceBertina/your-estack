@@ -11,6 +11,8 @@ public interface FeedbackService {
 
     public List<FeedbackDTO> findAll();
 
+    public List<FeedbackDTO> findAllJavaFeedbacks();
+
     void saveFeedback(FeedbackDTO feedback, UserDTO user);
 
 }

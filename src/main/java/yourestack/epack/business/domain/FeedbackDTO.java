@@ -15,4 +15,9 @@ public class FeedbackDTO {
     Long epackId;
     String feedText;
     LocalDateTime dateCreated;
+
+    public String getDateCreated(LocalDateTime dateCreated) {
+        String date = String.valueOf(dateCreated);
+        return date.substring(0, 10);
+    }
 }

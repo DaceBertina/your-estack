@@ -129,9 +129,9 @@
                             </form>
                             <div class="mx-auto" style="width: 400px;">
                                 <div class="mt-3 mb-3 ml-1 mr-2 px-0 pt-0 pb-0 p-0">
-                                    <form method="POST" th:action="@{/feedback}" th:object="${feedback}">
-                                        <h6 style="margin: 0; padding: 0; padding-bottom: 5px">Leave your comment: </h6>
-                                        <div class="form-group row" style="padding-right: 20px">
+                                    <form method="POST" th:action="@{/feedbackJava}" th:object="${feedback}">
+                                        <h6 style="margin: 0; padding: 0 0 5px;">Leave your comment: </h6>
+                                        <div class="form-group row" style="padding: 0">
                                             <label for="epackId1" class="col-form-label col-4 visually-hidden" style="margin: 0; padding: 0;">Epack ID: </label>
                                             <div class="col-7">
                                                 <input type="text" class="form-control visually-hidden" name="epackId1" id="epackId1"  th:field="*{epackId}" th:value="${feedback.setEpackId(1L)}">
@@ -144,9 +144,35 @@
                                             <textarea type="text" class="form-control" rows="1" cols="18" name="feedbackId1" id="feedbackId1" th:field="*{feedText}"></textarea>
                                            <br>
                                         <div>
-                                                <button type="submit" class ="btn">Save comment</button>
-                                            </div>
+                                                <button type="submit" class ="btn java-comments"><a th:href="@{/allJavaFeedbacks}"></a>Save comment</button>
+                                        </div>
                                     </form>
+                                    <br>
+                                    <div class="mx-auto" style="width: 400px;">
+                                        <div class="mt-3 mb-3 ml-1 mr-2 px-0 pt-0 pb-0 p-0">
+                                    <form method="GET" th:action="@{/allJavaFeedbacks}" th:each="java : ${allJavaFeedbacks}">
+                                        <div class="form-group row">
+                                            <label for="javaUsername" class="col-form-label col-4 visually-hidden">Username: </label>
+                                            <div class="col-8">
+                                                <input type="text" class="form-control" style="height: 28px"  name="javaUsername" id="javaUsername" th:value="${java.userId}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="javaDate" class="col-form-label col-4 visually-hidden">Date: </label>
+                                            <div class="col-8">
+                                                <input type="text" class="form-control" style="height: 28px" name="javaDate" id="javaDate" th:value="${java.getDateCreated(java.dateCreated)}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="javaFeedText" class="col-form-label col-4 visually-hidden">Feedback: </label>
+                                            <div class="col-8">
+                                                <input type="text" class="form-control" style="height: 28px" name="javaFeedText" id="javaFeedText" th:value="${java.feedText}">
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </form>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +199,7 @@
                                 <div class="form-group row">
                                     <label for="springId" class="col-form-label col-4">Epack ID: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackId" id="springId" th:value="${allEpacks[1].epackId}">
+                                        <input type="text" class="form-control" style="height: 28px" name="springId" id="springId" th:value="${allEpacks[1].epackId}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -213,8 +239,8 @@
                             </form>
                             <div class="mx-auto" style="width: 400px;">
                                 <div class="mt-3 mb-3 ml-1 mr-2 px-0 pt-0 pb-0 p-0">
-                                    <form method="POST" th:action="@{/feedback}" th:object="${feedback}">
-                                        <h6 style="margin: 0; padding: 0; padding-bottom: 5px">Leave your comment: </h6>
+                                    <form method="POST" th:action="@{/feedbackSpring}" th:object="${feedback}">
+                                        <h6 style="margin: 0; padding: 0 0 5px;">Leave your comment: </h6>
                                         <div class="form-group row" style="padding-right: 20px">
                                             <label for="epackId2" class="col-form-label col-4 visually-hidden" style="margin-bottom: 0">Epack ID: </label>
                                             <div class="col-7">
@@ -257,7 +283,7 @@
                                 <div class="form-group row">
                                     <label for="microId" class="col-form-label col-4">Epack ID: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackId" id="microId" th:value="${allEpacks[2].epackId}">
+                                        <input type="text" class="form-control" style="height: 28px" name="microId" id="microId" th:value="${allEpacks[2].epackId}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -297,8 +323,8 @@
                             </form>
                             <div class="mx-auto" style="width: 400px;">
                                 <div class="mt-3 mb-3 ml-1 mr-2 px-0 pt-0 pb-0 p-0">
-                                    <form method="POST" th:action="@{/feedback}" th:object="${feedback}">
-                                        <h6 style="margin: 0; padding: 0; padding-bottom: 5px">Leave your comment: </h6>
+                                    <form method="POST" th:action="@{/feedbackMicro}" th:object="${feedback}">
+                                        <h6 style="margin: 0; padding: 0 0 5px;">Leave your comment: </h6>
                                         <div class="form-group row" style="padding-right: 20px">
                                             <label for="epackId3" class="col-form-label col-4 visually-hidden" style="margin-bottom: 0">Epack ID: </label>
                                             <div class="col-7">

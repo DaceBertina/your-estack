@@ -6,7 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import yourestack.epack.business.domain.*;
 import yourestack.epack.business.service.impl.EpackServiceImpl;
@@ -25,20 +25,46 @@ public class FeedbackController {
 
     private final EpackServiceImpl epackService;
 
-    @PostMapping("/feedback")
-    public String saveFeedback(@AuthenticationPrincipal UserDetailsImpl loggedUser,
-                               @NotNull Model model, EpackDTO epack, FeedbackDTO feedback) {
+    @PostMapping("/feedbackJava")
+    public String saveFeedbackJava(@AuthenticationPrincipal UserDetailsImpl loggedUser,
+                               @NotNull Model model, FeedbackDTO feedback) {
+        UserDTO user = userService.findByEmail(loggedUser.getEmail());
+        List<EpackDTO> allEpacks = epackService.findAll();
+        model.addAttribute("allEpacks", allEpacks);
+        model.addAttribute("feedback", feedback);
+        feedbackService.saveFeedback(feedback, user);
+        return "allEpacks";
+    }
 
-        if (loggedUser.getId() == null) {
-            log.error("User is not authenticated.");
-            return "/loginRequest";
-        }
+    @GetMapping("/allJavaFeedbacks")
+    public String saveFeedbackJava(@NotNull Model model) {
+        List<FeedbackDTO> allJavaFeedbacks = feedbackService.findAllJavaFeedbacks();
+        List<EpackDTO> allEpacks = epackService.findAll();
+        model.addAttribute("allEpacks", allEpacks);
+        model.addAttribute("allJavaFeedbacks", allJavaFeedbacks);
+        return "allEpacks";
+    }
+
+    @PostMapping("/feedbackSpring")
+    public String saveFeedbackSpring(@AuthenticationPrincipal UserDetailsImpl loggedUser,
+                               @NotNull Model model, FeedbackDTO feedback) {
 
         UserDTO user = userService.findByEmail(loggedUser.getEmail());
         List<EpackDTO> allEpacks = epackService.findAll();
-        model.addAttribute("feedback", feedback);
-        model.addAttribute("epack", epack);
         model.addAttribute("allEpacks", allEpacks);
+        model.addAttribute("feedback", feedback);
+        feedbackService.saveFeedback(feedback, user);
+        return "allEpacks";
+    }
+
+    @PostMapping("/feedbackMicro")
+    public String saveFeedbackMicro(@AuthenticationPrincipal UserDetailsImpl loggedUser,
+                                     @NotNull Model model, FeedbackDTO feedback) {
+
+        UserDTO user = userService.findByEmail(loggedUser.getEmail());
+        List<EpackDTO> allEpacks = epackService.findAll();
+        model.addAttribute("allEpacks", allEpacks);
+        model.addAttribute("feedback", feedback);
         feedbackService.saveFeedback(feedback, user);
         return "allEpacks";
     }

@@ -49,6 +49,15 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
+    public List<FeedbackDTO> findAllJavaFeedbacks() {
+        final List<FeedbackEntity> feedbacks = feedbackRepository.findAll();
+        return feedbacks.stream()
+                .filter(feedback -> feedback.getEpackEntity().getEpackId().equals(1L))
+                .map(feedbackMapper::feedbackEntityToFeedbackDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void saveFeedback(FeedbackDTO feedback, UserDTO user) {
         feedback.setUserId(user.getUserId());
         feedback.setEpackId(feedback.getEpackId());

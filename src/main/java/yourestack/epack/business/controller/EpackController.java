@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import yourestack.epack.business.domain.EpackDTO;
 import yourestack.epack.business.domain.FeedbackDTO;
 import yourestack.epack.business.service.impl.EpackServiceImpl;
+import yourestack.epack.business.service.impl.FeedbackServiceImpl;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class EpackController {
 
     private final EpackServiceImpl epackService;
 
+    private final FeedbackServiceImpl feedbackService;
+
     @RequestMapping("/epacks/{id}")
     @ResponseBody
     public EpackDTO findById(Long id) {
@@ -28,11 +31,11 @@ public class EpackController {
     @GetMapping("/allEpacks")
     public String getAllEpacks(@NotNull Model model) {
         List<EpackDTO> allEpacks = epackService.findAll();
+        List<FeedbackDTO> allJavaFeedbacks = feedbackService.findAllJavaFeedbacks();
         FeedbackDTO feedback = new FeedbackDTO();
-        EpackDTO epack = new EpackDTO();
         model.addAttribute("allEpacks", allEpacks);
         model.addAttribute("feedback", feedback);
-        model.addAttribute("epack", epack);
+        model.addAttribute("allJavaFeedbacks", allJavaFeedbacks);
         return "allEpacks";
     }
 
