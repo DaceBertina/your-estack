@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
 
     @Override
-    public UserDTO registerNewUser(UserDTO user) {
+    public void registerNewUser(UserDTO user) {
 
         if (userExists(user.getEmail())) {
            log.error("Exception {} is thrown. User with email entered already exists.", HttpStatus.CONFLICT);
@@ -56,8 +56,6 @@ public class UserServiceImpl implements UserService {
 
         UserEntity userEntity = userRepository.save(userMapper.userDtoToUserEntity(user));
         log.info("New user registered: {}", userEntity);
-
-        return userMapper.userEntityToUserDto(userEntity);
 
     }
 
@@ -91,12 +89,23 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(userEntity).getUserId();
     }
 
-    public void update(final UserDTO userDTO) {
-        final UserEntity userEntity = userRepository.findById(userDTO.getUserId())
+    @Override
+    public void update(Long userId, final UserDTO userDTO) {
+        UserEntity userEntity = userRepository.findById(userId)
                 .orElseThrow(NotFoundException::new);
-        userMapper.userDtoToUserEntity(userDTO);
-        userRepository.save(userEntity);
-        log.info("User {} has been updated.", userDTO);
+        log.info("User {} to be updated.", userEntity.getUserId());
+        userEntity.setEmail(userDTO.getEmail());
+        userEntity.setPassword(userEntity.getPassword());
+        userEntity.setUsername(userDTO.getUsername());
+        userEntity.setFirstName(userDTO.getFirstName());
+        userEntity.setLastName(userDTO.getLastName());
+        userEntity.setGender(userDTO.getGender());
+        userEntity.setDateOfBirth(userDTO.getDateOfBirth());
+        userEntity.setPhoneNumber(userDTO.getPhoneNumber());
+        userEntity.setOccupation(userDTO.getOccupation());
+        userEntity.setDateCreated(userDTO.getDateCreated());
+        UserEntity updatedUser = userRepository.save(userEntity);
+        log.info("User {} has been updated.", updatedUser);
     }
 
     public void delete(final Long userId) {

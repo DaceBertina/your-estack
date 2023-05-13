@@ -5,7 +5,9 @@ import yourestack.epack.business.domain.UserDTO;
 
 public interface UserService {
 
-    UserDTO registerNewUser(UserDTO user);
+    void registerNewUser(UserDTO user);
 
     UserDTO findByEmail(String email);
+
+    void update(Long userId, UserDTO user);
 }

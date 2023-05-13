@@ -1,6 +1,7 @@
 package yourestack.epack.business.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -79,20 +80,18 @@ public class UserController {
     }
 
     @GetMapping("editProfile")
-    public String editForm(WebRequest request, @ModelAttribute UserDTO user, Model model) {
-        model.addAttribute("user",new UserDTO());
+    public String editForm(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model) {
+        UserDTO user = userService.findByEmail(loggedUser.getEmail());
+        model.addAttribute("user", user);
         return "editProfile";
     }
 
     @PostMapping("/editUserProfile")
-    public String editProfile(@ModelAttribute("user") @Valid final UserDTO user,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return "editProfile";
-        }
-        userService.update(user);
-        redirectAttributes.addFlashAttribute(WebUtil.MSG_SUCCESS, WebUtil.getMessage("client.update.success"));
-        return "profile";
+    public String editProfile(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model, UserDTO user) {
+        Long userId = loggedUser.getId();
+        model.addAttribute("user", user);
+        userService.update(userId, user);
+        return "profile1";
     }
 
     @PostMapping("/delete/{clientId}")
@@ -109,7 +108,7 @@ public class UserController {
     }
 
     @GetMapping("signupForm")
-    public String showSignUp(WebRequest request, @ModelAttribute UserDTO user, Model model) {
+    public String showSignUp(@ModelAttribute UserDTO user, Model model) {
         model.addAttribute("user",new UserDTO());
         return "signupForm";
     }
@@ -148,16 +147,4 @@ public class UserController {
         return "loginForm";
     }
 
-//    @GetMapping("/showYourEpacks")
-//    public String showOrder(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
-//        List<OrderDTO> orders = user.getOrders();
-//        List<OrderDTO> allOrders = orderService.findAll();
-//        for (OrderDTO order : allOrders) {
-//            if (order.getUserId().equals(user.getId())) {
-//                orders.add(order);
-//            }
-//        }
-//        model.addAttribute("orders", orders);
-//        return "orders";
-//    }
 }
