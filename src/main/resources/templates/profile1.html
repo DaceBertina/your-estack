@@ -90,11 +90,9 @@
     <nav id="navbar" class="navbar">
         <ul>
             <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}">Go back</a></li>
-
-                <form th:action="@{/logout}" method="post">
-            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}">Sign Out</a></li>
+                <form th:action="@{/perform_logout}" method="post">
+            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/perform_logout}">Sign Out</a></li>
                 </form>
-
         </ul>
     </nav>
 </header>

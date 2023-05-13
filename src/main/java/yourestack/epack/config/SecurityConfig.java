@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -64,16 +63,16 @@ public class SecurityConfig implements WebMvcConfigurer {
         return new CustomAuthenticationFailureHandler();
     }
 
-//    public void configure(WebSecurity security){
-//        security.ignoring().antMatchers("/css/**","/images/**","/js/**");
-//    }
+    public void configure(WebSecurity security){
+        security.ignoring().requestMatchers("/css/**","/images/**");
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors();
         http
                 .csrf().disable()
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/registerClient", "/login*", "/order", "/orderConfirmation.html").permitAll()
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/registerClient", "/login*", "/order").permitAll()
                         .requestMatchers(HttpMethod.GET, "/profile", "/profile1").authenticated())
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/signupForm", "/loginForm", "/aboutus", "/order", "/orderConfirmation.html", "/v3/api-docs/**", "/swagger-ui/**", "/css/**", "/images/**", "/allEpacks").permitAll()
                         .requestMatchers("/manager/add"  ).hasRole("admin"))
@@ -90,9 +89,9 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .successHandler(new CustomAuthenticationSuccessHandler())
                 .and()
                 .logout()
-                .permitAll()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/perform_logout"))
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessHandler(new SimpleUrlLogoutSuccessHandler());
         return http.build();

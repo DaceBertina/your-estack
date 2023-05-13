@@ -59,7 +59,7 @@
     </nav>
     <span sec:authorize="isAuthenticated()">
                 | Logged user: <span sec:authentication="principal.email"></span> |
-                <a th:href="@{/logout}">Sign Out</a>
+                <a th:href="@{/perform_logout}">Sign Out</a>
    </span>
   </div>
 </header>
