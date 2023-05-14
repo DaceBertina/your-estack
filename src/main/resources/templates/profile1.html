@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns: sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.w3.org/1999/xhtml"
       >
 <html layout:decorate="~{task/layout}" lang="en">
 <head>
@@ -91,7 +91,7 @@
         <ul>
             <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}">Go back</a></li>
                 <form th:action="@{/perform_logout}" method="post">
-            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/perform_logout}">Sign Out</a></li>
+            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/perform_logout}">Log Out</a></li>
                 </form>
         </ul>
     </nav>
@@ -133,8 +133,16 @@
             </tbody>
         </table>
                 <br>
+                <div class="col-md-2 col-sm-4">
                 <div>
-                    <button class="btn btn-primary"><a th:href="@{/editProfile}"><p style="color: white"><b>Edit Profile</b></p></a></button>
+                    <button class="btn btn-primary"><a th:href="@{/editProfile}"><p style="color: white"><b>Edit profile</b></p></a></button>
+                </div>
+                    </div>
+                <br>
+                <div class="col-md-2 col-sm-4">
+                    <div>
+                        <button class="btn btn-primary"><a th:href="@{/changePassword}"><p style="color: white"><b>Change password</b></p></a></button>
+                    </div>
                 </div>
                 </div>
             <div class="col-md-6 col-sm-6">

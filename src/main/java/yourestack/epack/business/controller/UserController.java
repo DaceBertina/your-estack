@@ -38,38 +38,41 @@ public class UserController {
 
     private final EpackServiceImpl epackService;
 
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
     @GetMapping("/aboutus")
     public String showGenInfo() {
 
         return "aboutus";
     }
 
-    @GetMapping("/allUsers")
-    public String list(final Model model) {
-        model.addAttribute("users", userService.findAll());
-        return "allUsers";
-    }
+//    @GetMapping("/allUsers")
+//    public String list(final Model model) {
+//        model.addAttribute("users", userService.findAll());
+//        return "allUsers";
+//    }
 
     @PostMapping("/registerClient")
-    public String registerNewClient(@ModelAttribute("user") @Valid final UserDTO user,
+    public String registerNewClient(@ModelAttribute("user") @Valid final UserDTO user, @NotNull Model model,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+
+        model.addAttribute("user", user);
         if (bindingResult.hasErrors()) {
             log.error("New client cannot be registered: error in {}", bindingResult);
             return "/signupForm";
         }
 
         if (userService.userExists(user.getEmail())) {
-            bindingResult.addError(new FieldError("client", "username", "There already exists account with that email." ));
+            bindingResult.addError(new FieldError("user", "username", "There already exists account with that email." ));
         }
 
+        if (user.getPassword() != null && user.getPasswordConfirmation() != null) {
+            if (!user.getPassword().equals(user.getPasswordConfirmation())) {
+                log.error("Passwords don't match");
+                return "signupForm";
+            }
+        }
 
-//        if (client.getPassword() != null && client.getMatchingPassword() != null) {
-//            if (!client.getPassword().equals(client.getMatchingPassword())) {
-//                result.addError(new FieldError("client", "password", "Passwords don't match." ));
-//            }
-//        }
-
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
@@ -78,7 +81,7 @@ public class UserController {
         return "profile";
     }
 
-    @GetMapping("editProfile")
+    @GetMapping("/editProfile")
     public String editForm(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model) {
         UserDTO user = userService.findByEmail(loggedUser.getEmail());
         model.addAttribute("user", user);
@@ -91,6 +94,50 @@ public class UserController {
         model.addAttribute("user", user);
         userService.update(userId, user);
         return "profile1";
+    }
+
+    @GetMapping("/changePassword")
+    public String passwordForm(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model) {
+        UserDTO user = userService.findByEmail(loggedUser.getEmail());
+        model.addAttribute("user", user);
+        model.addAttribute("loggedUser", loggedUser);
+        return "changePassword";
+    }
+    @PostMapping("/changePassword")
+    public String changePassword(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model, UserDTO user,
+                                 boolean currentPasswordMatches) {
+        model.addAttribute("user", user);
+        model.addAttribute("loggedUser", loggedUser);
+        model.addAttribute("currentPasswordMatches", currentPasswordMatches);
+        log.info("Password: {}", loggedUser.getPassword());
+        log.info("Old password: {}", user.getOldPassword());
+
+        if (user.getOldPassword() != null && loggedUser.getPassword() != null) {
+            if (!encoder.matches(user.getOldPassword(), loggedUser.getPassword())) {
+                log.error("Wrong current password.");
+                currentPasswordMatches = false;
+                model.addAttribute("currentPasswordMatches", currentPasswordMatches);
+                return "changePassword";
+            } else {
+                currentPasswordMatches = true;
+                model.addAttribute("currentPasswordMatches", currentPasswordMatches);
+            }
+        }
+
+        if (user.getNewPassword() != null && user.getPasswordConfirmation() != null) {
+            if (!user.getNewPassword().equals(user.getPasswordConfirmation())) {
+                log.error("Passwords don't match");
+                return "changePassword";
+            }
+        }
+
+        Long userId = loggedUser.getId();
+
+        String encodedPassword = encoder.encode(user.getNewPassword());
+        user.setPassword(encodedPassword);
+
+        userService.changePassword(userId, user);
+        return "changePassword";
     }
 
     @PostMapping("/delete/{clientId}")

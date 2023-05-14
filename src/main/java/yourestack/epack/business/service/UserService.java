@@ -10,4 +10,6 @@ public interface UserService {
     UserDTO findByEmail(String email);
 
     void update(Long userId, UserDTO user);
+
+    void changePassword(Long userId, UserDTO user);
 }

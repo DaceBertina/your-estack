@@ -3,6 +3,7 @@ package yourestack.epack.business.domain;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,6 +37,13 @@ public class UserDTO {
     @NotBlank
     private String password;
 
+    @NotBlank
+    private String passwordConfirmation;
+
+    private String oldPassword;
+
+    private String newPassword;
+
     private LocalDate dateOfBirth;
 
     @NotBlank
@@ -60,6 +68,22 @@ public class UserDTO {
 
     public List<OrderDTO> getOrderList() {
         return orderList;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
+    }
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
     }
 
 }

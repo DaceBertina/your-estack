@@ -69,7 +69,7 @@
   </div>
 </header>
 
-<form th:action="@{/registerClient}" method="POST" th:object="${userDTO}" id="registration">
+<form th:action="@{/registerClient}" method="POST" th:object="${user}" id="registration">
 
     <div class="mx-auto">
         <div class="form-container bg-info">
@@ -91,14 +91,16 @@
           <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"> </div>
         </div>
       </div>
-<!--      <div class="form-group row">-->
-<!--        <label for="matching_password" class="col-form-label col-3">Confirm password: </label>-->
-<!--        <div class="col-8">-->
-<!--        <input type="password" class="form-control" style="height: 28px" name="matching_password"  th:value="*{matching_password}" id="matching_password" th:errorClass="is-invalid" required-->
-<!--         minlength="8"/><br/>-->
-<!--          <div th:if="${#fields.hasErrors('matching_password')}" th:errors="*{matching_password}" class="invalid-feedback"> </div>-->
-<!--        </div>-->
-<!--      </div>-->
+      <div class="form-group row">
+        <label for="passwordConfirmation" class="col-form-label col-3">Confirm password: </label>
+        <div class="col-8">
+        <input type="password" class="form-control" style="height: 28px" name="passwordConfirmation"  th:value="*{passwordConfirmation}" id="passwordConfirmation" th:errorClass="is-invalid" required
+         minlength="8"/><br/>
+            <div th:if="${user.getPassword() != null && user.getPasswordConfirmation() != null}">
+            <div th:if="${!user.getPassword().equals(user.getPasswordConfirmation())}" th:text="'Passwords do not match.'" class="alert alert-danger"></div>
+            </div>
+        </div>
+      </div>
         <div class="form-group row">
             <label for="username" class="col-form-label col-3">Username: </label>
             <div class="col-8">

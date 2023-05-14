@@ -108,6 +108,24 @@ public class UserServiceImpl implements UserService {
         log.info("User {} has been updated.", updatedUser);
     }
 
+    @Override
+    public void changePassword(Long userId, final UserDTO userDTO) {
+        UserEntity userEntity = userRepository.findById(userId)
+                .orElseThrow(NotFoundException::new);
+        log.info("User {} to be updated.", userEntity.getUserId());
+        userEntity.setEmail(userEntity.getEmail());
+        userEntity.setPassword(userDTO.getPassword());
+        userEntity.setUsername(userEntity.getUsername());
+        userEntity.setFirstName(userEntity.getFirstName());
+        userEntity.setLastName(userEntity.getLastName());
+        userEntity.setGender(userEntity.getGender());
+        userEntity.setDateOfBirth(userEntity.getDateOfBirth());
+        userEntity.setPhoneNumber(userEntity.getPhoneNumber());
+        userEntity.setOccupation(userEntity.getOccupation());
+        userEntity.setDateCreated(userEntity.getDateCreated());
+        UserEntity updatedUser = userRepository.save(userEntity);
+        log.info("Password for user {} has been changed.", updatedUser);
+    }
     public void delete(final Long userId) {
         userRepository.deleteById(userId);
     }
