@@ -87,6 +87,7 @@ CREATE TABLE orders (
 CREATE TABLE feedbacks (
                         id bigint(20) NOT NULL AUTO_INCREMENT,
                         user_id bigint(20),
+                        username varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                         epack_id bigint(8),
                         feed_text text,
                         date_created date,

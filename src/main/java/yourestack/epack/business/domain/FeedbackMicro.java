@@ -1,7 +1,6 @@
 package yourestack.epack.business.domain;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,8 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class FeedbackDTO {
+public class FeedbackMicro extends FeedbackDTO{
 
     Long id;
     Long userId;
@@ -20,6 +18,10 @@ public class FeedbackDTO {
     Long epackId;
     String feedText;
     LocalDateTime dateCreated;
+
+    public FeedbackMicro(Long id, Long userId, String username, Long epackId, String feedText, LocalDateTime dateCreated) {
+        super(id, userId, username, epackId, feedText, dateCreated);
+    }
 
     public String getDateCreated(LocalDateTime dateCreated) {
         String date = String.valueOf(dateCreated);

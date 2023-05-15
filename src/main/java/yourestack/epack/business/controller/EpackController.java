@@ -6,8 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import yourestack.epack.business.domain.EpackDTO;
-import yourestack.epack.business.domain.FeedbackDTO;
+import yourestack.epack.business.domain.*;
 import yourestack.epack.business.service.impl.EpackServiceImpl;
 import yourestack.epack.business.service.impl.FeedbackServiceImpl;
 
@@ -30,11 +29,18 @@ public class EpackController {
 
     @GetMapping("/allEpacks")
     public String getAllEpacks(@NotNull Model model) {
+
         List<EpackDTO> allEpacks = epackService.findAll();
         List<FeedbackDTO> allJavaFeedbacks = feedbackService.findAllJavaFeedbacks();
         FeedbackDTO feedback = new FeedbackDTO();
-        model.addAttribute("allEpacks", allEpacks);
         model.addAttribute("feedback", feedback);
+        FeedbackDTO feedbackJava = new FeedbackJava();
+        FeedbackDTO feedbackSpring = new FeedbackSpring();
+        FeedbackDTO feedbackMicro = new FeedbackMicro();
+        model.addAttribute("allEpacks", allEpacks);
+        model.addAttribute("feedbackJava", feedbackJava);
+        model.addAttribute("feedbackSpring", feedbackSpring);
+        model.addAttribute("feedbackMicro", feedbackMicro);
         model.addAttribute("allJavaFeedbacks", allJavaFeedbacks);
         return "allEpacks";
     }

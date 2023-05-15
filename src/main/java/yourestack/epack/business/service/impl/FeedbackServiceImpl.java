@@ -60,6 +60,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public void saveFeedback(FeedbackDTO feedback, UserDTO user) {
         feedback.setUserId(user.getUserId());
+        feedback.setUsername(user.getUsername());
         feedback.setEpackId(feedback.getEpackId());
         feedback.setFeedText(feedback.getFeedText());
         feedback.setDateCreated(LocalDateTime.now());

@@ -109,8 +109,6 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("loggedUser", loggedUser);
         model.addAttribute("currentPasswordMatches", currentPasswordMatches);
-        log.info("Password: {}", loggedUser.getPassword());
-        log.info("Old password: {}", user.getOldPassword());
 
         if (user.getOldPassword() != null && loggedUser.getPassword() != null) {
             if (!encoder.matches(user.getOldPassword(), loggedUser.getPassword())) {
@@ -160,15 +158,16 @@ public class UserController {
     }
 
     @GetMapping("loginForm")
-    public String showLoginForm() {
+    public String showLoginForm(@NotNull Model model) {
+        model.addAttribute("user", new UserDTO());
         return "loginForm";
     }
 
-    @GetMapping("/showProfile")
-    public String showProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
-        model.addAttribute("user", user);
-        return "profile1";
-    }
+//    @GetMapping("/showProfile")
+//    public String showProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
+//        model.addAttribute("user", user);
+//        return "profile1";
+//    }
 
     @GetMapping("/profile1")
     public String viewProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {

@@ -28,6 +28,9 @@ public class FeedbackEntity {
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private UserEntity userEntity;
 
+    @Column(name="username", nullable = false)
+    String username;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "epack_id", nullable = false)
     private EpackEntity epackEntity;
