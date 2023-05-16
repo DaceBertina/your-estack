@@ -13,6 +13,10 @@ public interface FeedbackService {
 
     public List<FeedbackDTO> findAllJavaFeedbacks();
 
+    public List<FeedbackDTO> findAllSpringFeedbacks();
+
+    public List<FeedbackDTO> findAllMicroFeedbacks();
+
     void saveFeedback(FeedbackDTO feedback, UserDTO user);
 
 }

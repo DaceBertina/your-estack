@@ -20,12 +20,10 @@
     <link href="css/swiper-bundle.min.css" rel="stylesheet">
 
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/allEpacks.css" rel="stylesheet">
     <style>
         body {
-            background: url(images/towers.jpg) no-repeat center 81px;
-            height: 100%;
-            width: 100%;
+            background: url(images/slider-bg.jpg) no-repeat center 81px;
+            font-size: 28px;
         }
        h1 {
                font-weight: bold;
@@ -71,18 +69,20 @@
                 line-height: 0;
                 background-color: #7fffd4;
                 border-radius: 10px;
+                border-color: darkviolet;
                 display: inline-block;
                 padding: 10px;
                 align-items: center;
                 font-size: 16px;
             }
 
-        .btn {
+        .button-home {
             height: 30px;
             width: 150px;
             line-height: 0;
             background-color: #7fffd4;
             border-radius: 10px;
+            border-color: darkviolet;
             display: inline-block;
             padding: 10px;
             align-items: center;
@@ -91,13 +91,13 @@
 
        span {
            padding-top: 20px;
-           color: darkviolet;
+           color: white;
            font-weight: bold;
            font-size: 30px;
        }
 
        p {
-           color: #0f3d81;
+           color: darkviolet;
            font-size: 28px;
        }
 
@@ -107,7 +107,7 @@
 <header id="header" class="d-flex align-items-center">
     <nav id="navbar" class="navbar">
         <ul>
-            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/allEpacks}"><b>Go back</b></a></li>
             <li>
                 <form th:action="@{/logout}" method="post">
                     <a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/perform_logout}"><b>Log Out</b></a>
@@ -119,20 +119,19 @@
 <br>
 <br>
     <div class='db-container'>
-        <div class="form-container bg-info" style = "margin-left: 60px; text-align: center;">
+        <div class="form-container bg-info" style = "margin-left: 60px; text-align: center; padding: 25px 25px; border-radius: 25px;">
 
-            <span sec:authentication="principal.firstName"></span><p>, </p>
+            <span sec:authentication="principal.firstName"></span>,
             <h2 style = "color: darkviolet" text-align="center"><b>You have made a great choice!</b></h2>
             <p style="text-align: center">To get started go to your profile page:</p><br>
             <button class ="button"><a th:href="@{/profile1}"><b>My Profile</b></a></button>
     </div>
+        <br>
+            <button class="button-home"><a th:href="@{/}"><b>Return to home</b></a></button>
 </div>
 <div>
     <br>
 </div>
 <br>
-<p>
-    <button class ="btn"><a th:href="@{/}">Return to home</a></button>
-</p>
 </body>
 </html>

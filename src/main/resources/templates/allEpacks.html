@@ -89,7 +89,7 @@
                                 <div class="form-group row">
                                     <label for="javaId" class="col-form-label col-4">Epack ID: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px"  name="epackId" id="javaId" th:value="${allEpacks[0].epackId}">
+                                        <input type="text" class="form-control" style="height: 28px"  name="epackId" id="javaId" th:value="${allEpacks[0].getEpackId()}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -195,7 +195,7 @@
                                 <div class="form-group row">
                                     <label for="springId" class="col-form-label col-4">Epack ID: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="springId" id="springId" th:value="${allEpacks[1].epackId}">
+                                        <input type="text" class="form-control" style="height: 28px" name="epackId" id="springId" th:value="${allEpacks[1].getEpackId()}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -247,13 +247,37 @@
                                         <div>
                                             <button type="submit" class ="btn">Save comment</button>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
                         </div>
                 </div>
-                <br>
+
+                <div class="mx-auto" style="width: 400px;">
+                    <div class="mt-3 mb-3 ml-1 mr-2 px-0 pt-0 pb-0 p-0">
+                        <form method="GET" th:action="@{/allSpringFeedbacks}" th:each="spring : ${allSpringFeedbacks}">
+                            <div class="form-group row">
+                                <label for="springUsername" class="col-form-label col-4 visually-hidden">Username: </label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" style="height: 20px"  name="springUsername" id="springUsername" th:value="${spring.username}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="springDate" class="col-form-label col-4 visually-hidden">Date: </label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" style="height: 20px; font-size: 12px;" name="springDate" id="springDate" th:value="${spring.getDateCreated(spring.dateCreated)}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="springFeedText" class="col-form-label col-4 visually-hidden">Feedback: </label>
+                                <div class="col-8">
+                                    <textarea rows="2" cols="18" class="form-control" name="javaFeedText" id="springFeedText" th:text="${spring.getFeedText()}"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div id="carouselPanel3" class="carousel slide" style="width: 350px;" data-bs-ride="carousel">
@@ -275,7 +299,7 @@
                                 <div class="form-group row">
                                     <label for="microId" class="col-form-label col-4">Epack ID: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="microId" id="microId" th:value="${allEpacks[2].epackId}">
+                                        <input type="text" class="form-control" style="height: 28px" name="epackId" id="microId" th:value="${allEpacks[2].getEpackId()}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -333,16 +357,41 @@
                             </div>
                         </div>
                 </div>
-                <br>
+
+                <div class="mx-auto" style="width: 400px;">
+                    <div class="mt-3 mb-3 ml-1 mr-2 px-0 pt-0 pb-0 p-0">
+                        <form method="GET" th:action="@{/allMicroFeedbacks}" th:each="micro : ${allMicroFeedbacks}">
+                            <div class="form-group row">
+                                <label for="microUsername" class="col-form-label col-4 visually-hidden">Username: </label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" style="height: 20px"  name="microUsername" id="microUsername" th:value="${micro.username}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="microDate" class="col-form-label col-4 visually-hidden">Date: </label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" style="height: 20px; font-size: 12px;" name="javaDate" id="microDate" th:value="${micro.getDateCreated(micro.dateCreated)}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="microFeedText" class="col-form-label col-4 visually-hidden">Feedback: </label>
+                                <div class="col-8">
+                                    <textarea rows="2" cols="18" class="form-control" name="microFeedText" id="microFeedText" th:text="${micro.getFeedText()}"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <p style="float: right;">
         <a href="#">More courses</a>
     </p>
-    <p>
+    <div>
         <button type="button" class ="btn"><a href="index.html"></a>Return to home</button>
-    </p>
+    </div>
 </div>
 </div>
 <div class="footer-logo"><strong>&copy; IT 2021 - 2023</strong></div>

@@ -58,6 +58,24 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
+    public List<FeedbackDTO> findAllSpringFeedbacks() {
+        final List<FeedbackEntity> feedbacks = feedbackRepository.findAll();
+        return feedbacks.stream()
+                .filter(feedback -> feedback.getEpackEntity().getEpackId().equals(2L))
+                .map(feedbackMapper::feedbackEntityToFeedbackDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FeedbackDTO> findAllMicroFeedbacks() {
+        final List<FeedbackEntity> feedbacks = feedbackRepository.findAll();
+        return feedbacks.stream()
+                .filter(feedback -> feedback.getEpackEntity().getEpackId().equals(3L))
+                .map(feedbackMapper::feedbackEntityToFeedbackDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void saveFeedback(FeedbackDTO feedback, UserDTO user) {
         feedback.setUserId(user.getUserId());
         feedback.setUsername(user.getUsername());

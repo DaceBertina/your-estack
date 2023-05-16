@@ -48,7 +48,7 @@ public class FeedbackController {
     }
 
     @GetMapping("/allJavaFeedbacks")
-    public String saveFeedbackJava(@NotNull Model model) {
+    public String allFeedbacksJava(@NotNull Model model) {
         List<FeedbackDTO> allJavaFeedbacks = feedbackService.findAllJavaFeedbacks();
         List<EpackDTO> allEpacks = epackService.findAll();
         model.addAttribute("allEpacks", allEpacks);
@@ -77,6 +77,15 @@ public class FeedbackController {
         return "allEpacks";
     }
 
+    @GetMapping("/allSpringFeedbacks")
+    public String allFeedbacksSpring(@NotNull Model model) {
+        List<FeedbackDTO> allSpringFeedbacks = feedbackService.findAllSpringFeedbacks();
+        List<EpackDTO> allEpacks = epackService.findAll();
+        model.addAttribute("allEpacks", allEpacks);
+        model.addAttribute("allSpringFeedbacks", allSpringFeedbacks);
+        return "allEpacks";
+    }
+
     @PostMapping("/feedbackMicro")
     public String saveFeedbackMicro(@AuthenticationPrincipal UserDetailsImpl loggedUser,
                                    @ModelAttribute FeedbackMicro feedbackMicro,
@@ -97,4 +106,14 @@ public class FeedbackController {
         feedbackService.saveFeedback(feedbackMicro, user);
         return "allEpacks";
     }
+
+    @GetMapping("/allMicroFeedbacks")
+    public String allFeedbacksMicro(@NotNull Model model) {
+        List<FeedbackDTO> allMicroFeedbacks = feedbackService.findAllMicroFeedbacks();
+        List<EpackDTO> allEpacks = epackService.findAll();
+        model.addAttribute("allEpacks", allEpacks);
+        model.addAttribute("allMicroFeedbacks", allMicroFeedbacks);
+        return "allEpacks";
+    }
+
 }

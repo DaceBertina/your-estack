@@ -32,8 +32,8 @@ public class EpackController {
 
         List<EpackDTO> allEpacks = epackService.findAll();
         List<FeedbackDTO> allJavaFeedbacks = feedbackService.findAllJavaFeedbacks();
-        FeedbackDTO feedback = new FeedbackDTO();
-        model.addAttribute("feedback", feedback);
+        List<FeedbackDTO> allSpringFeedbacks = feedbackService.findAllSpringFeedbacks();
+        List<FeedbackDTO> allMicroFeedbacks = feedbackService.findAllMicroFeedbacks();
         FeedbackDTO feedbackJava = new FeedbackJava();
         FeedbackDTO feedbackSpring = new FeedbackSpring();
         FeedbackDTO feedbackMicro = new FeedbackMicro();
@@ -42,11 +42,13 @@ public class EpackController {
         model.addAttribute("feedbackSpring", feedbackSpring);
         model.addAttribute("feedbackMicro", feedbackMicro);
         model.addAttribute("allJavaFeedbacks", allJavaFeedbacks);
+        model.addAttribute("allSpringFeedbacks", allSpringFeedbacks);
+        model.addAttribute("allMicroFeedbacks", allMicroFeedbacks);
         return "allEpacks";
     }
 
     @PostMapping("/placeOrder")
-    public String generateOrder(@NotNull Model model, EpackDTO epack) {
+    public String generateOrder(@NotNull Model model, @ModelAttribute EpackDTO epack) {
         model.addAttribute("epack", epack);
         return "orderForm";
     }

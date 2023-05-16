@@ -28,7 +28,6 @@
     }
 
       .form-container {
-          /*border-radius: 10%;*/
           padding-top: 5px;
           padding-bottom: 20px;
           margin: 100px auto 5px;
@@ -54,7 +53,7 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+        <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/allEpacks}"><b>Go back</b></a></li>
       </ul>
     </nav>
     <span sec:authorize="isAuthenticated()">
@@ -74,7 +73,7 @@
           <label class="col-form-label col-5" style="padding-left: 30px">Epack ID number: </label>
           <div class="col-7">
               <label>
-                  <input type="text" class="form-control" th:field="*{epackId}" th:value="${epack.epackId}" required />
+                  <input type="text" class="form-control" th:field="*{epackId}" th:value="${epack.getEpackId()}" required />
               </label>
           </div>
         </div>
