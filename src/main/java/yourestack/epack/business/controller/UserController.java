@@ -4,16 +4,14 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yourestack.epack.business.domain.EpackDTO;
 import yourestack.epack.business.domain.OrderDTO;
@@ -163,12 +161,6 @@ public class UserController {
         return "loginForm";
     }
 
-//    @GetMapping("/showProfile")
-//    public String showProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
-//        model.addAttribute("user", user);
-//        return "profile1";
-//    }
-
     @GetMapping("/profile1")
     public String viewProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
         List<OrderDTO> orders = new ArrayList<>();
@@ -186,10 +178,11 @@ public class UserController {
         return "/profile1";
     }
 
-    @GetMapping("/login?error=true")
-    public String loginError(Model model) {
-        model.addAttribute("error", "error");
-        return "loginForm";
+    @GetMapping("/perform_logout")
+    public String logout(){
+
+        return "/logoutForm";
     }
 
 }
+

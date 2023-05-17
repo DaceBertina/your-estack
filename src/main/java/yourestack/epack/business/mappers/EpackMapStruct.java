@@ -23,7 +23,7 @@ public interface EpackMapStruct {
 
     @Mapping(source="categoryEntity", target="categoryId", qualifiedByName = "categoryEntityToCategoryId")
     @Mapping(source="orderEntityList", target="ordersList", qualifiedByName = "ordersListEntityMapper")
-    @Mapping(source="dateCreated", target="dateCreated", qualifiedByName = "datesMapper")
+    @Mapping(source="dateTimeCreated", target="dateTimeCreated", qualifiedByName = "datesMapper")
     EpackDTO epackEntityToEpackDto(EpackEntity epackEntity);
 
     @Named("datesMapper")

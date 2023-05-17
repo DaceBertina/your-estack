@@ -54,7 +54,7 @@ public class EpackController {
     }
 
     @GetMapping("/getJava")
-    public String getJava(@NotNull Model model) {
+    public String getJava(@NotNull Model model, @ModelAttribute EpackDTO epack) {
         EpackDTO javaEpack = epackService.findEpackById(1L);
         model.addAttribute("javaEpack", javaEpack);
         return "java";

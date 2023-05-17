@@ -15,6 +15,7 @@ import yourestack.epack.business.model.repos.UserRepository;
 import yourestack.epack.business.service.OrderService;
 import yourestack.epack.util.NotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
         order.setEpackDTO(epack);
         order.setUserId(user.getUserId());
         order.setEpackPrice(epack.getPrice());
+        order.setDateCreated(LocalDateTime.now());
         OrderEntity orderEntity = orderRepository.save(orderMapper.orderDtoToOrderEntity(order));
         if (user.getOrderList() != null) {
             user.getOrderList().add(orderMapper.orderEntityToOrderDto(orderEntity));

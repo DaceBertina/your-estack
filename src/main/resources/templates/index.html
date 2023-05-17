@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Welcome page</title>
+    <title>Welcome Page</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -68,11 +69,13 @@
                 </li>
                 <li><a class="nav-link scrollto" th:href="@{/profile1}">My Profile</a></li>
                 <li><a class="nav-link scrollto" th:href="@{/aboutus}">About Us</a></li>
+                <div sec:authorize="isAuthenticated()">
                 <li class="to-right">
                     <form th:action="@{/logout}" method="post">
-                        <a class="nav-link scrollto" th:href="@{/perform_logout}">Log Out</a>
+                        <a href="logoutForm.html" class="nav-link scrollto" th:href="@{/perform_logout}">Log Out</a>
                     </form>
                 </li>
+                </div>
             </ul>
             <div th:if="${param.logout}" class="alert alert-success">
                 You have been logged out.

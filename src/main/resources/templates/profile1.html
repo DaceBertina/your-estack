@@ -89,9 +89,10 @@
 <header id="header" class="d-flex align-items-center">
     <nav id="navbar" class="navbar">
         <ul>
-            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}">Go back</a></li>
+            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}">Return to home</a></li>
+            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/allEpacks}">All Courses</a></li>
                 <form th:action="@{/perform_logout}" method="post">
-            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/perform_logout}">Log Out</a></li>
+            <li><a href="logoutForm.html" class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/perform_logout}">Log Out</a></li>
                 </form>
         </ul>
     </nav>

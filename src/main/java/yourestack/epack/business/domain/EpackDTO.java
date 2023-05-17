@@ -34,7 +34,9 @@ public class EpackDTO {
     @NotBlank
     public Integer duration;
 
-    public LocalDateTime dateCreated;
+    public LocalDateTime dateTimeCreated;
+
+    public String createdDate;
 
     public LocalDateTime lastUpdated;
 
@@ -46,8 +48,8 @@ public class EpackDTO {
 
     public List<OrderDTO> ordersList;
 
-    public String getDateCreated(LocalDateTime dateCreated) {
-        String date = String.valueOf(dateCreated);
+    public String getCreatedDate(LocalDateTime dateTimeCreated) {
+        String date = String.valueOf(dateTimeCreated);
         return date.substring(0, 10);
     }
 

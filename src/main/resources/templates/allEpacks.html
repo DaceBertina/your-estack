@@ -40,6 +40,17 @@
           padding: 1px;
       }
 
+      a {
+          text-decoration: underline;
+      }
+
+    .btn {
+        background-color: rgba(0, 0, 0, 0.7);
+        font-weight: bold;
+        color: rgba(185, 241, 243, 0.78);
+        margin-left: 27px;
+    }
+
     </style>
 </head>
 <body>
@@ -51,7 +62,7 @@
 
                     <nav id="navbar" class="navbar">
                         <ul>
-                            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+                            <li><a class="nav-link scrollto active" style="font-size: 18pt" onclick="history.go(-1)"><b>Go back</b></a></li>
                         </ul>
                     </nav>
                     <div class="col-md-3 col-sm-6"></div>
@@ -113,7 +124,7 @@
                                 <div class="form-group row">
                                     <label for="javaDateCreated" class="col-form-label col-4">Date created: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="javaDateCreated" th:value="${allEpacks[0].getDateCreated()}">
+                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="javaDateCreated" th:value="${allEpacks[0].getCreatedDate(allEpacks[0].getDateTimeCreated())}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -156,7 +167,7 @@
                                         <div class="form-group row">
                                             <label for="javaDate" class="col-form-label col-4 visually-hidden">Date: </label>
                                             <div class="col-8">
-                                                <input type="text" class="form-control" style="height: 20px; font-size: 12px;" name="javaDate" id="javaDate" th:value="${java.getDateCreated(java.dateCreated)}">
+                                                <input type="text" class="form-control" style="height: 20px; font-size: 12px;" name="javaDate" id="javaDate" th:value="${java.getDateCreated(java.getDateCreated())}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -219,7 +230,7 @@
                                 <div class="form-group row">
                                     <label for="springDateCreated" class="col-form-label col-4">Date created: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="springDateCreated" th:value="${allEpacks[1].getDateCreated()}">
+                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="springDateCreated" th:value="${allEpacks[1].getCreatedDate(allEpacks[1].getDateTimeCreated())}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -265,7 +276,7 @@
                             <div class="form-group row">
                                 <label for="springDate" class="col-form-label col-4 visually-hidden">Date: </label>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" style="height: 20px; font-size: 12px;" name="springDate" id="springDate" th:value="${spring.getDateCreated(spring.dateCreated)}">
+                                    <input type="text" class="form-control" style="height: 20px; font-size: 12px;" name="springDate" id="springDate" th:value="${spring.getDateCreated(spring.getDateCreated())}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -323,7 +334,7 @@
                                 <div class="form-group row">
                                     <label for="microDateCreated" class="col-form-label col-4">Date created: </label>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="microDateCreated" th:value="${allEpacks[2].getDateCreated()}">
+                                        <input type="text" class="form-control" style="height: 28px" name="dateCreated" id="microDateCreated" th:value="${allEpacks[2].getCreatedDate(allEpacks[2].getDateTimeCreated())}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -370,7 +381,7 @@
                             <div class="form-group row">
                                 <label for="microDate" class="col-form-label col-4 visually-hidden">Date: </label>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" style="height: 20px; font-size: 12px;" name="javaDate" id="microDate" th:value="${micro.getDateCreated(micro.dateCreated)}">
+                                    <input type="text" class="form-control" style="height: 20px; font-size: 12px;" name="javaDate" id="microDate" th:value="${micro.getDateCreated(micro.getDateCreated())}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -390,7 +401,7 @@
         <a href="#">More courses</a>
     </p>
     <div>
-        <button type="button" class ="btn"><a href="index.html"></a>Return to home</button>
+        <button type="button" class ="btn"><a href="index.html" th:href="@{/}"></a>Return to home</button>
     </div>
 </div>
 </div>

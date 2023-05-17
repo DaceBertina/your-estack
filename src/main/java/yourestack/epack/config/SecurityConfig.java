@@ -90,9 +90,9 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/perform_logout"))
-                .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/logoutForm")
                 .logoutSuccessHandler(new SimpleUrlLogoutSuccessHandler());
         return http.build();
 

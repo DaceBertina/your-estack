@@ -35,7 +35,12 @@ public class FeedbackController {
         model.addAttribute("allEpacks", allEpacks);
 
         List<FeedbackDTO> allJavaFeedbacks = feedbackService.findAllJavaFeedbacks();
+        List<FeedbackDTO> allSpringFeedbacks = feedbackService.findAllSpringFeedbacks();
+        List<FeedbackDTO> allMicroFeedbacks = feedbackService.findAllSpringFeedbacks();
+        allJavaFeedbacks.add(feedbackJava);
         model.addAttribute("allJavaFeedbacks", allJavaFeedbacks);
+        model.addAttribute("allSpringFeedbacks", allSpringFeedbacks);
+        model.addAttribute("allMicroFeedbacks", allMicroFeedbacks);
         FeedbackDTO feedbackSpring = new FeedbackSpring();
         FeedbackDTO feedbackMicro = new FeedbackMicro();
         model.addAttribute("feedbackJava", feedbackJava);
@@ -65,7 +70,12 @@ public class FeedbackController {
         model.addAttribute("allEpacks", allEpacks);
 
         List<FeedbackDTO> allJavaFeedbacks = feedbackService.findAllJavaFeedbacks();
+        List<FeedbackDTO> allSpringFeedbacks = feedbackService.findAllSpringFeedbacks();
+        List<FeedbackDTO> allMicroFeedbacks = feedbackService.findAllSpringFeedbacks();
+        allSpringFeedbacks.add(feedbackSpring);
         model.addAttribute("allJavaFeedbacks", allJavaFeedbacks);
+        model.addAttribute("allSpringFeedbacks", allSpringFeedbacks);
+        model.addAttribute("allMicroFeedbacks", allMicroFeedbacks);
         FeedbackDTO feedbackJava = new FeedbackJava();
         FeedbackDTO feedbackMicro = new FeedbackMicro();
         model.addAttribute("feedbackJava", feedbackJava);
@@ -95,7 +105,12 @@ public class FeedbackController {
         model.addAttribute("allEpacks", allEpacks);
 
         List<FeedbackDTO> allJavaFeedbacks = feedbackService.findAllJavaFeedbacks();
+        List<FeedbackDTO> allSpringFeedbacks = feedbackService.findAllSpringFeedbacks();
+        List<FeedbackDTO> allMicroFeedbacks = feedbackService.findAllMicroFeedbacks();
+        allMicroFeedbacks.add(feedbackMicro);
         model.addAttribute("allJavaFeedbacks", allJavaFeedbacks);
+        model.addAttribute("allSpringFeedbacks", allSpringFeedbacks);
+        model.addAttribute("allMicroFeedbacks", allMicroFeedbacks);
         FeedbackDTO feedbackSpring = new FeedbackSpring();
         FeedbackDTO feedbackJava = new FeedbackJava();
         model.addAttribute("feedbackJava", feedbackJava);

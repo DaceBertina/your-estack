@@ -45,7 +45,7 @@ public class EpackEntity {
 
     @CreatedDate
     @Column(name = "date_created", nullable = false, updatable = false)
-    private LocalDateTime dateCreated;
+    private LocalDateTime dateTimeCreated;
 
     @LastModifiedDate
     @Column(name = "last_updated", nullable = false)

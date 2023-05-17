@@ -15,7 +15,7 @@
 <link href="css/style.css" rel="stylesheet">
 
 <head>
-    <title>Login Request</title>
+    <title>Logout</title>
     <style>
         body {
             background: url(images/hero_carousel_3.jpg) no-repeat center 81px;
@@ -53,7 +53,7 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+                <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Return to home</b></a></li>
             </ul>
         </nav>
 
@@ -62,28 +62,10 @@
      <div class="mx-auto">
        <div class="form-container bg-info">
            <div class="m-3 mt-3 mb-3 ml-2 mr-2 px-2 pt-2 pb-2 p-3 bg-info">
-            <h4 style="color: white; text-align: center;">To make a comment please login:</h4>
-                <div th:if="${param.error}" th:text="'Unable to login. Check your username or password.'" class="alert alert-danger"></div>
-               <div th:if="${param.logout}" class="alert alert-success">
-                   You have been logged out.
-               </div>
-               <form method="POST" th:action="@{/perform_login}">
-            <div class="form-group row">
-             <label for="email" class="col-form-label col-3">Email: </label>
-                <div class="col-8">
-                     <input type="text" class="form-control" style="height: 28px" name="email" id="email"/><br>
-                </div>
-                </div>
-                <div class="form-group row">
-                    <label for="password" class="col-form-label col-3">Password: </label>
-                    <div class="col-8">
-                    <input type="password" class="form-control" style="height: 28px" name="password" id="password" /><br/>
-                    </div>
-                </div>
+            <h4 style="color: white; text-align: center;">You have been successfully logged out!</h4>
                <div>
                 <button type="submit" class="btn btn-primary"><p style="color: white"><b>Login</b><p></button>
                 </div>
-               </form>
         </div>
         </div>
      </div>

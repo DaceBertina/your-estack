@@ -45,6 +45,10 @@
             text-align: center;
             padding-bottom: 20px;
         }
+
+        a {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -53,7 +57,7 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+                <li><a class="nav-link scrollto active" style="font-size: 18pt" onclick="history.go(-1)"><b>Go back</b></a></li>
             </ul>
         </nav>
 
