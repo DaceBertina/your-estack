@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
 
     @Override
-    public void registerNewUser(UserDTO user) {
+    public UserDTO registerNewUser(UserDTO user) {
 
         if (userExists(user.getEmail())) {
            log.error("Exception {} is thrown. User with email entered already exists.", HttpStatus.CONFLICT);
@@ -57,6 +57,7 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = userRepository.save(userMapper.userDtoToUserEntity(user));
         log.info("New user registered: {}", userEntity);
 
+        return userMapper.userEntityToUserDto(userEntity);
     }
 
     @Override
