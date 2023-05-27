@@ -29,12 +29,12 @@ public class FeedbackServiceImpl implements FeedbackService {
     private final UserRepository userRepository;
 
     @Override
-    public List<FeedbackDTO> findAllByUserEntity(Long userId) {
+    public List<FeedbackDTO> findAllByUserId(Long userId) {
         final UserEntity userEntity = userRepository.findById(userId)
                 .orElseThrow(NotFoundException::new);
 
         return feedbackRepository
-                .findAllByUserEntity(userEntity)
+                .findAllByUserId(userEntity.getUserId())
                 .stream()
                 .map(feedbackMapper::feedbackEntityToFeedbackDto)
                 .collect(Collectors.toList());

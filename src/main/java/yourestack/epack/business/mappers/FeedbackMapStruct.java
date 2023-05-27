@@ -16,11 +16,11 @@ public interface FeedbackMapStruct {
     FeedbackMapStruct INSTANCE = Mappers.getMapper(FeedbackMapStruct.class);
 
     @Mapping(source="epackId", target="epackEntity", qualifiedByName = "epackIdToEpackEntity")
-    @Mapping(source="userId", target="userEntity", qualifiedByName = "userIdToUserEntity")
+//    @Mapping(source="userId", target="userEntity", qualifiedByName = "userIdToUserEntity")
     FeedbackEntity feedbackDtoToFeedbackEntity(FeedbackDTO feedbackDto);
 
     @Mapping(source="epackEntity", target="epackId", qualifiedByName = "epackEntityToEpackId")
-    @Mapping(source="userEntity", target="userId", qualifiedByName = "userEntityToUserId")
+//    @Mapping(source="userEntity", target="userId", qualifiedByName = "userEntityToUserId")
     FeedbackDTO feedbackEntityToFeedbackDto(FeedbackEntity feedbackEntity);
 
     @Named("epackIdToEpackEntity")

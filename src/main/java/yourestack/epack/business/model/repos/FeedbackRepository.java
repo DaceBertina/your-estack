@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface FeedbackRepository extends JpaRepository<FeedbackEntity, Long> {
 
-    List<FeedbackEntity> findAllByUserEntity(UserEntity userEntity);
+    List<FeedbackEntity> findAllByUserId(Long userId);
 
 }

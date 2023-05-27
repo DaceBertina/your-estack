@@ -77,7 +77,7 @@ public class UserEntity {
     @Transient
     private List<WorkplaceEntity> userWorkplaces;
 
-    @OneToMany(mappedBy = "userEntity")
+//    @OneToMany(mappedBy = "userEntity")
     @Transient
     private List<FeedbackEntity> userFeedbacks;
 

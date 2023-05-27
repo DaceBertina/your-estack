@@ -24,9 +24,8 @@ public class FeedbackEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false, unique = true)
-    private UserEntity userEntity;
+    @Column(name="user_id")
+    Long userId;
 
     @Column(name="username", nullable = false)
     String username;

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FeedbackService {
 
-    public List<FeedbackDTO> findAllByUserEntity(Long userId);
+    public List<FeedbackDTO> findAllByUserId(Long userId);
 
     public List<FeedbackDTO> findAll();
 
