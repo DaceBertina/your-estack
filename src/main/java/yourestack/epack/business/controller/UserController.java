@@ -1,11 +1,13 @@
 package yourestack.epack.business.controller;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -137,26 +139,38 @@ public class UserController {
         return "changePassword";
     }
 
-    @PostMapping("/delete/{clientId}")
-    public String delete(@PathVariable final Long clientId,
-            final RedirectAttributes redirectAttributes) {
-        final String referencedWarning = userService.getReferencedWarning(clientId);
-        if (referencedWarning != null) {
-            redirectAttributes.addFlashAttribute(WebUtil.MSG_ERROR, referencedWarning);
-        } else {
-            userService.delete(clientId);
-            redirectAttributes.addFlashAttribute(WebUtil.MSG_INFO, WebUtil.getMessage("client.delete.success"));
-        }
-        return "redirect:/clients";
+    @GetMapping("/deleteProfile")
+    public String deleteProfile(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model) {
+        UserDTO user = userService.findByEmail(loggedUser.getEmail());
+        model.addAttribute("user", user);
+        model.addAttribute("loggedUser", loggedUser);
+        return "deleteProfile";
     }
 
-    @GetMapping("signupForm")
+    @PostMapping("/deleteClient")
+    public String delete(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model,
+            final RedirectAttributes redirectAttributes) {
+        UserDTO user = userService.findByEmail(loggedUser.getEmail());
+        model.addAttribute("user", user);
+        model.addAttribute("loggedUser", loggedUser);
+        Long clientId = loggedUser.getId();
+//        final String referencedWarning = userService.getReferencedWarning(clientId);
+//        if (referencedWarning != null) {
+//            redirectAttributes.addFlashAttribute(WebUtil.MSG_ERROR, referencedWarning);
+//        } else {
+            userService.delete(clientId);
+            redirectAttributes.addFlashAttribute(WebUtil.MSG_INFO, WebUtil.getMessage("client.delete.success"));
+        //}
+        return "redirect:/perform_logout";
+    }
+
+    @GetMapping("/signupForm")
     public String showSignUp(@ModelAttribute UserDTO user, Model model) {
         model.addAttribute("user",new UserDTO());
         return "signupForm";
     }
 
-    @GetMapping("loginForm")
+    @GetMapping("/loginForm")
     public String showLoginForm(@NotNull Model model) {
         model.addAttribute("user", new UserDTO());
         return "loginForm";

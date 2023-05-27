@@ -1,0 +1,80 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.w3.org/1999/xhtml"
+>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
+
+<link href="css/min.animate.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-icons.css" rel="stylesheet">
+<link href="css/boxicons.min.css" rel="stylesheet">
+<link href="css/glightbox.min.css" rel="stylesheet">
+<link href="css/swiper-bundle.min.css" rel="stylesheet">
+
+<link href="css/style.css" rel="stylesheet">
+
+<head>
+    <title>Delete Profile</title>
+    <style>
+        body {
+            background: url(images/hero_carousel_3.jpg) no-repeat center 81px;
+        }
+        .form-container {
+            display: block;
+            border-radius: 15px;
+            margin: 110px auto 15px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 650px;
+            text-align: center;
+            line-height: 1em;
+        }
+        .mx-auto {
+            width: 650px;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            text-align: right;
+        }
+
+        .btn {
+            max-height: 35px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" style="font-size: 18pt" onclick="history.go(-1)"><b>Go back</b></a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+     <div class="mx-auto">
+       <div class="form-container bg-info">
+           <div class="m-3 mt-3 mb-3 ml-2 mr-2 px-2 pt-2 pb-2 p-3 bg-info">
+            <h4 style="color: white; text-align: center;">Delete profile?</h4>
+                   <form th:action="@{/deleteClient}" method="POST" th:object="${user}">
+            <div class="form-group row">
+                    </div>
+                       <div th:if="${user.getUserId() == null}" th:text="'Your profile has been deleted.'" class="alert alert-success"></div>
+               <div>
+                <button type="submit" class="btn btn-primary"><p style="color: white"><b>Delete profile</b><p></button>
+                </div>
+               </form>
+        </div>
+        </div>
+     </div>
+</body>
+</html>

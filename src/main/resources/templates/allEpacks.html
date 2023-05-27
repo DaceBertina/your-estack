@@ -62,7 +62,8 @@
 
                     <nav id="navbar" class="navbar">
                         <ul>
-                            <li><a class="nav-link scrollto active" style="font-size: 18pt" onclick="history.go(-1)"><b>Go back</b></a></li>
+                            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"> <b>Home</b></a></li>
+                            <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/profile1}"> <b>My Profile</b></a></li>
                         </ul>
                     </nav>
                     <div class="col-md-3 col-sm-6"></div>
@@ -76,7 +77,11 @@
         </div>
     </div>
 <div class="container-fluid">
-    <h3 style="margin-left: 520px;"><u><strong>Courses available:</strong></u></h3>
+    <h3 style="margin-left: 520px;"><u><strong>Courses available:</strong></u></h3><br>
+    <p>Here you can explore our latest offers.</p>
+    <p>Choose your course, get access to video lectures and downloadable materials.</p>
+    <p>Learn on your own pace, check your knowledge and get certificate.</p>
+    <p>To get the course you have to create an account and log in.</p>
     <br>
     <div class="panels">
         <div class="row">
@@ -146,13 +151,11 @@
                                                 <span sec:authorize="isAuthenticated()">
                                                 <span sec:authentication="principal.username"></span>
                                                 </span></label>
-
                                             <textarea type="text" class="form-control" rows="1" cols="18" name="feedbackId1" id="feedbackId1" th:field="*{feedText}"></textarea>
                                             <br>
                                         <div>
                                                 <button type="submit" class ="btn java-comments">Save comment</button>
                                         </div>
-
                                     </form>
                                     <br>
                                     <div class="mx-auto" style="width: 400px;">
@@ -401,7 +404,7 @@
         <a href="#">More courses</a>
     </p>
     <div>
-        <button type="button" class ="btn"><a href="index.html" th:href="@{/}"></a>Return to home</button>
+        <button type="button" class ="btn"><a href="index.html" th:href="@{/}">Return to home</a></button>
     </div>
 </div>
 </div>

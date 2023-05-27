@@ -42,8 +42,8 @@ public class UserServiceImpl implements UserService {
     public UserDTO registerNewUser(UserDTO user) {
 
         if (userExists(user.getEmail())) {
-           log.error("Exception {} is thrown. User with email entered already exists.", HttpStatus.CONFLICT);
-           throw new HttpClientErrorException(HttpStatus.CONFLICT, "User with email " + user.getEmail() + " already has account.");
+           log.error("Exception {} is thrown. User with email" + user.getEmail() + " already exists.", HttpStatus.CONFLICT);
+           throw new HttpClientErrorException(HttpStatus.CONFLICT, "User with that email already has account.");
         }
 
         Optional<RoleEntity> role = roleRepository.findByName("user");
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
             return userMapper.userEntityToUserDto(user.get());
         } else {
             log.error("Exception {} is thrown. User with email " + email + " does not exist.", HttpStatus.CONFLICT);
-            throw new HttpClientErrorException(HttpStatus.CONFLICT, "User with email " + email + " does not exist.");
+            throw new HttpClientErrorException(HttpStatus.CONFLICT, "User with that email does not exist.");
         }
     }
 
@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(Long userId, final UserDTO userDTO) {
+    public UserDTO update(Long userId, final UserDTO userDTO) {
         UserEntity userEntity = userRepository.findById(userId)
                 .orElseThrow(NotFoundException::new);
         log.info("User {} to be updated.", userEntity.getUserId());
@@ -107,6 +107,8 @@ public class UserServiceImpl implements UserService {
         userEntity.setDateCreated(userDTO.getDateCreated());
         UserEntity updatedUser = userRepository.save(userEntity);
         log.info("User {} has been updated.", updatedUser);
+
+        return userMapper.userEntityToUserDto(userEntity);
     }
 
     @Override
@@ -127,6 +129,8 @@ public class UserServiceImpl implements UserService {
         UserEntity updatedUser = userRepository.save(userEntity);
         log.info("Password for user {} has been changed.", updatedUser);
     }
+
+    @Override
     public void delete(final Long userId) {
         userRepository.deleteById(userId);
     }

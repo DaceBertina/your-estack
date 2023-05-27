@@ -1,4 +1,4 @@
-USE usersdb;
+USE estack;
 
 DROP TABLE IF EXISTS roles;
 
@@ -92,6 +92,6 @@ CREATE TABLE feedbacks (
                         feed_text text,
                         date_created date,
                         PRIMARY KEY (id),
-                        FOREIGN KEY (user_id) REFERENCES users(user_id),
                         FOREIGN KEY (epack_id) REFERENCES epacks(epack_id)
+                        ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
