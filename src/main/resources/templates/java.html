@@ -40,6 +40,15 @@
         text-align: left;
     }
 
+    a:hover {
+        color: #0f3d81;
+    }
+
+    ul {
+        list-style-type: none;
+        text-align: left;
+    }
+
     .btn-get-started scrollto animate__animated animate__fadeInUp {
         text-align: left;
     }
@@ -49,7 +58,7 @@
         margin: 0;
     }
 
-    .btn {
+    .button btn {
         background-color: rgba(0, 0, 0, 0.7);
         font-weight: bold;
         color: rgba(185, 241, 243, 0.78);
@@ -64,7 +73,6 @@
         <div class="col-md-12 col-sm-12">
             <header id="header" class="d-flex align-items-center">
                 <div class="container d-flex justify-content-between">
-
                     <nav id="navbar" class="navbar">
                         <ul>
                             <li><a class="nav-link scrollto active" style="font-size: 18pt; color: white;" onclick="history.go(-1)"><b><u>Go back</u></b></a></li>
@@ -80,27 +88,24 @@
             </header>
         </div>
     </div>
-
             <div class="container-fluid">
                 <div class="java-form" style="text-align: center">
-
                     <section id="hero">
                         <div class="hero-container">
                             <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-
                                 <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
-
                                 <div class="carousel-inner" role="listbox">
-
                                     <div class="carousel-item active" style="background-image: url(images/hero_carousel_2.jpg)">
                                         <div class="carousel-container">
                                             <div class="container">
                                                 <h2 class="animate__animated animate__fadeInDown">*** JAVA advanced ***</h2>
-                                                <p class="animate__animated animate__fadeInUp">Learn modern Java  on your own pace. Get certificate.</p>
+                                                <p class="animate__animated animate__fadeInUp">Learn modern Java  on your own pace. Get certificate.
+                                                </p>
                                                 <br>
-                                                        <img src="images/javaIcon.png" alt="Java course picture">
-                                                        <a th:href="@{/allEpacks}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get
-                                                            Started</a>
+                                                <a class ="btn-get-started scrollto animate__animated animate__fadeInUp"
+                                                   style="color: #b9f1f3c6; margin-left: 150px; margin-right: 0; padding: 12px;"
+                                                   th:href="@{/allEpacks}">Get Started</a>
+                                                <img src="images/javaIcon.png" alt="Java course picture" style="margin-left: 0; margin-right: 60px;">
                                                 <br>
                                             </div>
                                         </div>
@@ -159,9 +164,24 @@
                             </div>
                             <div class="col-md-4 col-sm-6"><br>
                             <p><b><u>Topics covered:</u></b></p><br>
+                                <ul>
+                                    <li><a href="#">Access modifiers</a></li>
+                                    <li><a href="#">Lambda expressions</a></li>
+                                    <li><a href="#">Generics</a></li>
+                                    <li><a href="#">Abstract class vs Interface</a></li>
+                                    <li><a href="#">Exception handling</a></li>
+                                </ul>
                                 </div>
                             <div class="col-md-4 col-sm-6"><br>
                             <p><b><u>Tests and exams:</u></b></p><br>
+                                <ul>
+                                <li><a href="#">Test No1: Access modifiers</a></li>
+                                <li><a href="#">Test No2: Lambda expressions</a></li>
+                                <li><a href="#">Test No3: Generics</a></li>
+                                <li><a href="#">Test No4: Abstract class vs Interface</a></li>
+                                <li><a href="#">Test No5: Exception handling</a></li>
+                                <li><a href="#">Final Exam</a></li>
+                                </ul>
                         </div>
                         </div>
                                 <br>
@@ -169,7 +189,7 @@
                         </div>
                     </div>
 <div>
-    <button type="button" class ="btn"><a th:href="@{/}">Return to home</a></button>
+    <button type="button" class ="btn"><a th:href="@{/}" style="color: #b9f1f3c6;">Return to home</a></button>
 </div>
 <br>
 <br>
