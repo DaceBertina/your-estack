@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -54,10 +55,9 @@ public class UserController {
 //    }
 
     @PostMapping("/registerClient")
-    public String registerNewClient(@ModelAttribute("user") @Valid final UserDTO user, @NotNull Model model,
+    public String registerNewClient(@Valid @ModelAttribute("user") final UserDTO user, @NotNull Model model,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
 
-        model.addAttribute("user", user);
         if (bindingResult.hasErrors()) {
             log.error("New client cannot be registered: error in {}", bindingResult);
             return "/signupForm";
@@ -105,11 +105,16 @@ public class UserController {
         return "changePassword";
     }
     @PostMapping("/changePassword")
-    public String changePassword(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model, UserDTO user,
-                                 boolean currentPasswordMatches) {
+    public String changePassword(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model, @Valid UserDTO user,
+                                 Errors errors, boolean currentPasswordMatches) {
         model.addAttribute("user", user);
+        model.addAttribute("errors", errors);
         model.addAttribute("loggedUser", loggedUser);
         model.addAttribute("currentPasswordMatches", currentPasswordMatches);
+
+        if (errors.hasErrors()) {
+            return "changePassword";
+        }
 
         if (user.getOldPassword() != null && loggedUser.getPassword() != null) {
             if (!encoder.matches(user.getOldPassword(), loggedUser.getPassword())) {

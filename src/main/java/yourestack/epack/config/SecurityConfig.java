@@ -1,5 +1,8 @@
 package yourestack.epack.config;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,19 +13,25 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.pattern.PathPatternParser;
 import yourestack.epack.business.service.CustomUserDetailsService;
 import yourestack.epack.handlers.CustomAuthenticationFailureHandler;
+
+import java.io.IOException;
 
 
 @Configuration
@@ -47,11 +56,11 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         UserDetails admin = User.withUsername("DaceBertina")
-                .password(passwordEncoder.encode("DaceDace"))
+                .password(passwordEncoder.encode("DaceDace1*"))
                 .roles("ADMIN")
                 .build();
         UserDetails manager = User.withUsername("GintsBertins")
-                .password(passwordEncoder.encode("GintsGints"))
+                .password(passwordEncoder.encode("GintsGints2$"))
                 .roles("MANAGER")
                 .build();
 
@@ -71,11 +80,10 @@ public class SecurityConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors();
         http
-                .csrf().disable()
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/registerClient", "/login*", "/order").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/profile", "/profile1").authenticated())
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/signupForm", "/loginForm", "/aboutus", "/order", "/orderConfirmation.html", "/v3/api-docs/**", "/swagger-ui/**", "/css/**", "/images/**", "/allEpacks").permitAll()
-                        .requestMatchers("/manager/add"  ).hasRole("admin"))
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST,"/error", "/registerClient", "/login*", "/order").permitAll()
+                        .requestMatchers("/orderForm", "/profile1").authenticated())
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.GET, "/", "/signupForm", "/loginForm", "/aboutus", "/v3/api-docs/**", "/swagger-ui/**", "/css/**", "/images/**", "/allEpacks").permitAll()
+                        .requestMatchers("/manager/add"  ).hasRole("ADMIN"))
                 .authorizeHttpRequests()
                 .anyRequest()
                 .authenticated()
@@ -85,7 +93,6 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .loginProcessingUrl("/perform_login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .permitAll()
                 .successHandler(new CustomAuthenticationSuccessHandler())
                 .and()
                 .logout()
@@ -93,8 +100,9 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/logoutForm")
-                .logoutSuccessHandler(new SimpleUrlLogoutSuccessHandler());
+                .logoutSuccessHandler(new SimpleUrlLogoutSuccessHandler())
+               .and();
+        http.csrf().disable(); //must be configured; for now disabled because it is conflicting with savedRequest function
         return http.build();
-
     }
 }
