@@ -12,8 +12,8 @@ public class ErrorModel {
 
     private LocalDate timestamp;
     private HttpStatus status;
-    private String errorMessage;
     private String message;
+    private String errorMessage;
     private String path;
 
 }

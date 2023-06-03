@@ -1,20 +1,15 @@
 package yourestack.epack.business.controller;
 
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yourestack.epack.business.domain.EpackDTO;
@@ -55,16 +50,24 @@ public class UserController {
 //    }
 
     @PostMapping("/registerClient")
-    public String registerNewClient(@Valid @ModelAttribute("user") final UserDTO user, @NotNull Model model,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+    public String registerNewClient(@Valid @ModelAttribute("user") UserDTO user,
+             BindingResult bindingResult, @NotNull Model model, final RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             log.error("New client cannot be registered: error in {}", bindingResult);
             return "/signupForm";
         }
 
-        if (userService.userExists(user.getEmail())) {
-            bindingResult.addError(new FieldError("user", "username", "There already exists account with that email." ));
+        boolean userExists = userService.userExists(user.getEmail());
+        if (userExists) {
+            log.error("User with email " + user.getEmail() + " already exists.");
+            model.addAttribute("userExists");
+            return "/signupForm";
+        }
+
+        if (user.getEmail() != null) {
+            log.error("User with the email " + user.getEmail() + " already exists.");
+            return "signupForm";
         }
 
         if (user.getPassword() != null && user.getPasswordConfirmation() != null) {

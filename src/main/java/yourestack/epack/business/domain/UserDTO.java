@@ -35,12 +35,12 @@ public class UserDTO {
     @NotBlank
     @Size(max = 60)
     @Pattern(regexp = "^[\\w!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&amp;'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$",
-                        message = "email must contain @ sign, must not contain two dots in a row.")
+                        message="Email has not a proper format or contains illegal characters")
     private String email;
 
     @NotBlank
     @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*]).{6,15})",
-            message = "password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
+                        message="Password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 digit")
     private String password;
 
     @NotBlank
@@ -49,7 +49,7 @@ public class UserDTO {
     private String oldPassword;
 
     @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*]).{6,15})",
-            message = "password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
+                    message="Password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 digit")
 
     private String newPassword;
 

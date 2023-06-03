@@ -41,11 +41,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO registerNewUser(UserDTO user) {
 
-        if (userExists(user.getEmail())) {
-           log.error("Exception {} is thrown. User with email" + user.getEmail() + " already exists.", HttpStatus.CONFLICT);
-           throw new HttpClientErrorException(HttpStatus.CONFLICT, "User with that email already has account.");
-        }
-
         Optional<RoleEntity> role = roleRepository.findByName("user");
         if (role.isPresent()) {
             RoleDTO roleDTO = roleMapper.roleEntityToRoleDto(role.get());
