@@ -71,8 +71,8 @@
         <div class="col-8">
           <input type="text" class="form-control" style="height: 28px" name="email" th:field="*{email}" id="email"
                  required><br>
-          <p th:if="${#fields.hasErrors('email')}" class="alert alert-danger" th:errors="*{email}"> </p>
-            <div th:if="${userExists}" th:text="'There already exists account with that email.'" class="alert alert-danger"></div>
+                   <div th:if="${userExists}" th:text="'There already exists the account with that email.'" class="alert alert-danger"></div>
+            <p th:if="${#fields.hasErrors('email')}" class="alert alert-danger" th:errors="*{email}"> </p>
         </div>
       </div>
       <div class="form-group row">

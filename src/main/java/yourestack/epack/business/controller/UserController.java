@@ -51,7 +51,7 @@ public class UserController {
 
     @PostMapping("/registerClient")
     public String registerNewClient(@Valid @ModelAttribute("user") UserDTO user,
-             BindingResult bindingResult, @NotNull Model model, final RedirectAttributes redirectAttributes) {
+              @NotNull Model model, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             log.error("New client cannot be registered: error in {}", bindingResult);
@@ -60,14 +60,9 @@ public class UserController {
 
         boolean userExists = userService.userExists(user.getEmail());
         if (userExists) {
-            log.error("User with email " + user.getEmail() + " already exists.");
-            model.addAttribute("userExists");
-            return "/signupForm";
-        }
-
-        if (user.getEmail() != null) {
+            model.addAttribute("userExists", true);
             log.error("User with the email " + user.getEmail() + " already exists.");
-            return "signupForm";
+            return "/signupForm";
         }
 
         if (user.getPassword() != null && user.getPasswordConfirmation() != null) {
@@ -81,8 +76,7 @@ public class UserController {
         user.setPassword(encodedPassword);
 
         userService.registerNewUser(user);
-        redirectAttributes.addFlashAttribute(WebUtil.MSG_SUCCESS, WebUtil.getMessage("user.register.success"));
-        return "profile";
+        return "/profile";
     }
 
     @GetMapping("/editProfile")
