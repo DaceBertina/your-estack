@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yourestack.epack.business.domain.EpackDTO;
@@ -89,8 +88,11 @@ public class UserController {
     @PostMapping("/editUserProfile")
     public String editProfile(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model, UserDTO user) {
         Long userId = loggedUser.getId();
-        model.addAttribute("user", user);
-        userService.update(userId, user);
+        UserDTO userUpdated = userService.update(userId, user);
+//        List <OrderDTO> usersOrders = orderService.findAllByUserId(userId);
+        List <EpackDTO> usersEpacks = orderService.findAllByUserIdAndEpackId(userId);
+        model.addAttribute("user", userUpdated);
+        model.addAttribute("epacks", usersEpacks);
         return "profile1";
     }
 
@@ -102,17 +104,14 @@ public class UserController {
         return "changePassword";
     }
     @PostMapping("/changePassword")
-    public String changePassword(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model, @Valid UserDTO user,
-                                 Errors errors, boolean currentPasswordMatches) {
+    public String changePassword(@AuthenticationPrincipal UserDetailsImpl loggedUser,
+                                 @NotNull Model model, @ModelAttribute("user") UserDTO user) {
+//        UserDTO user = userService.findByEmail(loggedUser.getEmail());
         model.addAttribute("user", user);
-        model.addAttribute("errors", errors);
         model.addAttribute("loggedUser", loggedUser);
-        model.addAttribute("currentPasswordMatches", currentPasswordMatches);
 
-        if (errors.hasErrors()) {
-            return "changePassword";
-        }
-
+        boolean currentPasswordMatches;
+        log.info("OldPassword: {}", user.getOldPassword());
         if (user.getOldPassword() != null && loggedUser.getPassword() != null) {
             if (!encoder.matches(user.getOldPassword(), loggedUser.getPassword())) {
                 log.error("Wrong current password.");

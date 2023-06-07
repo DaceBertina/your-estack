@@ -20,6 +20,7 @@ import yourestack.epack.business.service.UserService;
 import yourestack.epack.util.NotFoundException;
 import yourestack.epack.util.WebUtil;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +49,7 @@ public class UserServiceImpl implements UserService {
             user.setRoleList(roleList);
             user.roleList.add(roleDTO);
         }
-
+        user.setDateCreated(LocalDateTime.now());
         UserEntity userEntity = userRepository.save(userMapper.userDtoToUserEntity(user));
         log.info("New user registered: {}", userEntity);
 
@@ -100,6 +101,7 @@ public class UserServiceImpl implements UserService {
         userEntity.setPhoneNumber(userDTO.getPhoneNumber());
         userEntity.setOccupation(userDTO.getOccupation());
         userEntity.setDateCreated(userDTO.getDateCreated());
+        userEntity.setLastUpdated(LocalDateTime.now());
         UserEntity updatedUser = userRepository.save(userEntity);
         log.info("User {} has been updated.", updatedUser);
 

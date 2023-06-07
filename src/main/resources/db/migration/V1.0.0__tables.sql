@@ -80,7 +80,6 @@ CREATE TABLE orders (
                        epack_price decimal NOT NULL,
                        date_created date,
                        PRIMARY KEY (order_id),
-                       FOREIGN KEY (user_id) REFERENCES users(user_id),
                        FOREIGN KEY (epack_id) REFERENCES epacks(epack_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

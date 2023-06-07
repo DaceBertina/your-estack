@@ -8,10 +8,8 @@ import yourestack.epack.business.domain.OrderDTO;
 import yourestack.epack.business.domain.UserDTO;
 import yourestack.epack.business.mappers.EpackMapStruct;
 import yourestack.epack.business.mappers.OrderMapStruct;
-import yourestack.epack.business.mappers.UserMapStruct;
 import yourestack.epack.business.model.OrderEntity;
 import yourestack.epack.business.model.repos.OrderRepository;
-import yourestack.epack.business.model.repos.UserRepository;
 import yourestack.epack.business.service.OrderService;
 import yourestack.epack.util.NotFoundException;
 
@@ -28,11 +26,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapStruct orderMapper;
 
-    private final UserMapStruct userMapper;
-
     private final EpackMapStruct epackMapper;
-
-    private final UserRepository userRepository;
 
     @Override
     public void registerNewOrder(OrderDTO order, UserDTO user, EpackDTO epack) {
@@ -74,6 +68,23 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findById(orderId)
                 .map(orderMapper::orderEntityToOrderDto)
                 .orElseThrow(NotFoundException::new);
+    }
+
+    @Override
+    public List<OrderDTO> findAllByUserId(Long userId) {
+        final List<OrderEntity> orders = orderRepository.findAllByUserId(userId);
+        return orders.stream()
+                .map(orderMapper::orderEntityToOrderDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EpackDTO> findAllByUserIdAndEpackId(Long userId) {
+        final List<OrderEntity> orders = orderRepository.findAllByUserId(userId);
+        return orders.stream()
+                .map(OrderEntity::getEpackEntity)
+                .map(epackMapper::epackEntityToEpackDto)
+                .collect(Collectors.toList());
     }
 
 }

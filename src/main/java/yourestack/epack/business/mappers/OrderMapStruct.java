@@ -15,11 +15,11 @@ public interface OrderMapStruct {
     OrderMapStruct INSTANCE = Mappers.getMapper(OrderMapStruct.class);
 
     @Mapping(source = "epackId", target = "epackEntity", qualifiedByName = "epackEntityByIdMapper")
-    @Mapping(source = "userId", target = "userEntity", qualifiedByName = "userEntityByIdMapper")
+//    @Mapping(source = "userId", target = "userEntity", qualifiedByName = "userEntityByIdMapper")
     OrderEntity orderDtoToOrderEntity(OrderDTO orderDto);
 
     @Mapping(source = "epackEntity", target = "epackId", qualifiedByName = "epackIdEntityMapper")
-    @Mapping(source = "userEntity", target = "userId", qualifiedByName = "userIdEntityMapper")
+//    @Mapping(source = "userEntity", target = "userId", qualifiedByName = "userIdEntityMapper")
     OrderDTO orderEntityToOrderDto(OrderEntity orderEntity);
 
     @Named("epackIdEntityMapper")

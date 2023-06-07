@@ -14,4 +14,8 @@ public interface OrderService {
     List<OrderDTO> findAll();
 
     OrderDTO findById(final Long orderId);
+
+    public List<OrderDTO> findAllByUserId(Long userId);
+
+    public List<EpackDTO> findAllByUserIdAndEpackId(Long userId);
 }

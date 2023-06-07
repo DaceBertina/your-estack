@@ -40,7 +40,7 @@ public class OrderController {
     public String fillOrder(@AuthenticationPrincipal UserDetailsImpl loggedUser, @ModelAttribute("order") OrderDTO order) {
         UserDTO user = userService.findByEmail(loggedUser.getEmail());
         EpackDTO epack = epackService.findEpackById(order.getEpackId());
-        order.setUser(user);
+        order.setUserId(user.getUserId());
         order.setEpackDTO(epack);
         order.setEpackPrice(order.getEpackPrice());
         order.setDateCreated(LocalDateTime.now());

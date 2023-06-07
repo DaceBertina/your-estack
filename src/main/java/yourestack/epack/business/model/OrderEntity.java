@@ -20,13 +20,8 @@ public class OrderEntity {
     @Column(name = "order_id", nullable = false, unique = true)
     Long orderId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
-
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
+    @Column(name="user_id")
+    Long userId;
 
     @ManyToOne
     @JoinColumn(name = "epack_id")
