@@ -120,7 +120,7 @@ body {
     font-size: 14px;
     text-align: left;
     overflow-x: hidden;
-    line-height: 22px;
+    /*line-height: 22px;*/
 }
 
 .card-top {

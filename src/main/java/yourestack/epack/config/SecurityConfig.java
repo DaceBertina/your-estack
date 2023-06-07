@@ -82,7 +82,8 @@ public class SecurityConfig implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST,"/error", "/registerClient", "/login*", "/order").permitAll()
                         .requestMatchers("/orderForm", "/profile1").authenticated())
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.GET, "/", "/signupForm", "/loginForm", "/aboutus", "/v3/api-docs/**", "/swagger-ui/**", "/css/**", "/images/**", "/allEpacks").permitAll()
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.GET, "/", "/signupForm", "/loginForm", "/aboutus", "/v3/api-docs/**", "/swagger-ui/**",
+                                "/css/**", "/images/**", "/allEpacks", "/javaInfo").permitAll()
                         .requestMatchers("/manager/add"  ).hasRole("ADMIN"))
                 .authorizeHttpRequests()
                 .anyRequest()

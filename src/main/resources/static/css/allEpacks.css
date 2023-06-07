@@ -5,10 +5,10 @@ body, html {
     font-family: "Raleway", sans-serif;
 }
 
-body {
-    padding-top: 10px;
-    padding-bottom: 45px;
-}
+/*body {*/
+/*    padding-top: 10px;*/
+/*    padding-bottom: 45px;*/
+/*}*/
 
 .main-container {
     margin: 0;
@@ -18,7 +18,6 @@ body {
  }
 
 .container-fluid {
-    position: relative;
     width: 1350px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -54,8 +53,8 @@ a {
 
 img {
     width:  400px;
-    min-height: 300px;
-    object-fit: cover;
+    /*min-height: 300px;*/
+    /*object-fit: cover;*/
     border-radius: 10px;
 }
 
@@ -103,7 +102,7 @@ h7 {
 
 p {
     font-size: 17px; 
-    color: #0e0547;
+    color: #0a0332;
     margin-bottom: 0;
     line-height: 20px;
     text-align: justify;

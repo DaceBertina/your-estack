@@ -53,6 +53,12 @@ public class EpackController {
         return "orderForm";
     }
 
+    @GetMapping("/javaInfo")
+    public String getJavaInfo() {
+
+        return "javaInfo";
+    }
+
     @GetMapping("/getJava")
     public String getJava(@NotNull Model model, @ModelAttribute EpackDTO epack) {
         EpackDTO javaEpack = epackService.findEpackById(1L);

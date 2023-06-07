@@ -62,7 +62,7 @@
         background-color: rgba(0, 0, 0, 0.7);
         font-weight: bold;
         color: rgba(185, 241, 243, 0.78);
-        margin-left: 27px;
+        margin-left: 0;
     }
 
     </style>
@@ -81,7 +81,7 @@
                     <div class="col-md-3 col-sm-6"></div>
                     <div class="col-md-3 col-sm-6">
                         <div class="card-top">
-                            <h2 ><strong>YourEstack.com</strong></h2>
+                            <h2 style="padding: 20px 15px;"><strong>YourEstack.com</strong></h2>
                         </div>
                     </div>
                 </div>
@@ -93,8 +93,7 @@
                     <section id="hero">
                         <div class="hero-container">
                             <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-                                <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
-                                <div class="carousel-inner" role="listbox">
+                                <div class="carousel-inner">
                                     <div class="carousel-item active" style="background-image: url(images/hero_carousel_2.jpg)">
                                         <div class="carousel-container">
                                             <div class="container">
@@ -168,7 +167,7 @@
                                     <li><a href="#">Access modifiers</a></li>
                                     <li><a href="#">Lambda expressions</a></li>
                                     <li><a href="#">Generics</a></li>
-                                    <li><a href="#">Abstract class vs Interface</a></li>
+                                    <li><a href="https://www.geeksforgeeks.org/difference-between-abstract-class-and-interface-in-java/">Abstract class vs Interface</a></li>
                                     <li><a href="#">Exception handling</a></li>
                                 </ul>
                                 </div>
@@ -182,15 +181,29 @@
                                 <li><a href="#">Test No5: Exception handling</a></li>
                                 <li><a href="#">Final Exam</a></li>
                                 </ul>
-                        </div>
-                        </div>
                                 <br>
-                    </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <p style="text-align: left">Upload Your homework here:</p><br>
+                                        <p th:text="${file}" th:if="${message ne null}" class="alert alert-primary"></p>
+                                            <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <input type="file" name="file" accept="file/*" class="form-control-file">
+                                                </div>
+                                                <br>
+                                                <div class="form-group" style="margin-left: 0; padding-left: 0;">
+                                                   <button type="submit" class="btn" style="margin-left: 0;"><u>Upload file</u></button>
+                                                </div>
+                                            </form>
+                                            <span th:if="${msg != null}" th:text="${msg}"></span>
+                                </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-<div>
-    <button type="button" class ="btn"><a th:href="@{/}" style="color: #b9f1f3c6;">Return to home</a></button>
-</div>
+                <br>
+                <button type="button" class ="btn"><a th:href="@{/}" style="color: #b9f1f3c6; margin-left: 0;">Return to home</a></button>
+                </div>
+
+            </div>
 <br>
 <br>
 <div class="footer-logo"><strong>&copy; IT 2021 - 2023</strong></div>

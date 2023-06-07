@@ -1,0 +1,135 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns: sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{task/layout}" lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
+
+<link href="css/min.animate.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-icons.css" rel="stylesheet">
+<link href="css/boxicons.min.css" rel="stylesheet">
+<link href="css/glightbox.min.css" rel="stylesheet">
+<link href="css/swiper-bundle.min.css" rel="stylesheet">
+
+<link href="css/style.css" rel="stylesheet">
+<link href="css/allEpacks.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<head>
+    <title>Java Info</title>
+    <style>
+
+    body {
+      background-color: #86b7fe;
+    }
+
+    /*label {*/
+    /*    display: inline-block;*/
+    /*    text-align: right;*/
+    /*}*/
+
+    /*  table, th, td {*/
+    /*      border: 1px solid black;*/
+    /*      padding: 1px;*/
+    /*  }*/
+
+    a {
+        text-decoration: underline;
+        text-align: left;
+    }
+
+    a:hover {
+        color: #0f3d81;
+    }
+
+    /*ul {*/
+    /*    list-style-type: none;*/
+    /*    text-align: left;*/
+    /*}*/
+
+    .btn-get-started scrollto animate__animated animate__fadeInUp {
+        text-align: left;
+    }
+
+    /*button > btn {*/
+    /*    background-color: rgba(0, 0, 0, 0.7);*/
+    /*    font-weight: bold;*/
+    /*    color: rgba(185, 241, 243, 0.78);*/
+    /*    margin-left: 47px;*/
+    /*}*/
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <header id="header" class="d-flex align-items-center">
+                <div class="container d-flex justify-content-between">
+                    <nav id="navbar" class="navbar">
+                        <ul>
+                            <li><a class="nav-link scrollto active" style="font-size: 18pt; color: lightskyblue;" onclick="history.go(-1)"><b><u>Go back</u></b></a></li>
+                        </ul>
+                    </nav>
+                    <div class="col-md-3 col-sm-6"></div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card-top">
+                            <h2 style="padding: 20px 15px;"><strong>YourEstack.com</strong></h2>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+            <div class="container-fluid">
+                <div class="java-form" style="text-align: center;">
+                    <section id="hero" style="width: 500px; height: 350px; margin-top: 15px; margin-bottom: 5px; margin-left: 420px">
+                            <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" style="background-image: url(images/kuala.jpg); object-fit: cover;">
+                                        <div class="carousel-container">
+                                            <div class="container">
+                                                <h1 class="animate__animated animate__fadeInDown" style="color: lightskyblue; font-size: 30px; font-weight: bold;">*** JAVA ***</h1>
+                                                <img class="animate__animated animate__fadeInUp" src="images/javaIcon.png" alt="Java course picture" style="width: 250px; object-fit: cover;">
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </section>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-6"><br>
+                            <h3><b><u>What is Java? &nbsp&nbsp Why Java?</u></b></h3><br>
+                                <p>Java was conceived by James Gosling, Patrick Naughton, Chris Warth, Ed Frank,
+                                and Mike Sheridan at Sun Microsystems in 1991. This language was initially called "Oak"
+                                but was renamed "Java" in 1995. Somewhat surprisingly, the original impetus for Java was not
+                                the Internet! Instead, the primary motivation was the need for a platform-independent language
+                                that could be used to create software to be embedded in various consumer electronic devices,
+                                such as  toasters, microwave ovens, and remote controls. As you can probably gess, many different
+                                types of CPU's are used as controllers. The trouble was that (at that time) most computer
+                                languages were designed to be compiled for a specific target (e.g., C++).</p><br>
+                            <p>Although it was possible to compile a C++ program for just about any type of CPU, to do so required
+                            a full C++ compiler targeted for that CPU. The problem, however, is that compilers are expensive and
+                            time-consuming to create. In an attempt to find a better solution, Gosling and others worked on a portable,
+                            cross-platform language that could produce code that would run on a variety of CPUs under different environments.
+                            This effort ultimately led to the creation of Java.</p><br>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn"><a th:href="@{/allEpacks}" style="color: #b9f1f3c6;">Get Java courses</a></button>
+                </div>
+                <br>
+                <div>
+                    <button type="button" class="btn"><a th:href="@{/}" style="color: #b9f1f3c6;">Return to home</a></button>
+                </div>
+            </div>
+    </div>
+<br>
+<br>
+<div class="footer-logo"><strong>&copy; IT 2021 - 2023</strong></div>
+</body>
+</html>
