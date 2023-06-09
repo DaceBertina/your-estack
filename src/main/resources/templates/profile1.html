@@ -97,6 +97,9 @@
             <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/allEpacks}">All courses</a></li>
                 <form th:action="@{/perform_logout}" method="post">
             <li><a href="logoutForm.html" class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/perform_logout}">Log out</a></li>
+                    <div th:if="${param.logout}" class="alert alert-info">
+                        You have been logged out.
+                    </div>
                 </form>
         </ul>
     </nav>

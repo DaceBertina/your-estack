@@ -18,14 +18,12 @@ public class UserDTO {
     private Long userId;
 
     @NotBlank
-    @Size(max = 45)
     private String firstName;
 
     @NotBlank
-    @Size(max = 45, message = "Last name should be at least 2 char long.")
     private String lastName;
 
-    @Size(max = 10)
+    @Size(max = 3)
     private String gender;
 
     @NotBlank
@@ -39,8 +37,8 @@ public class UserDTO {
     private String email;
 
     @NotBlank
-    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*]).{6,15})",
-                        message="Password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 digit")
+    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*]).{8,15})",
+                        message="Password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 digit, length: 8-15")
     private String password;
 
     @NotBlank
@@ -48,8 +46,8 @@ public class UserDTO {
 
     private String oldPassword;
 
-    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*]).{6,15})",
-                    message="Password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 digit")
+    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*]).{8,15})",
+                    message="Password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 digit, length: 8-15")
 
     private String newPassword;
 

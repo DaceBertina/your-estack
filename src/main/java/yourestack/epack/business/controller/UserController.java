@@ -89,7 +89,6 @@ public class UserController {
     public String editProfile(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model, UserDTO user) {
         Long userId = loggedUser.getId();
         UserDTO userUpdated = userService.update(userId, user);
-//        List <OrderDTO> usersOrders = orderService.findAllByUserId(userId);
         List <EpackDTO> usersEpacks = orderService.findAllByUserIdAndEpackId(userId);
         model.addAttribute("user", userUpdated);
         model.addAttribute("epacks", usersEpacks);
@@ -106,7 +105,7 @@ public class UserController {
     @PostMapping("/changePassword")
     public String changePassword(@AuthenticationPrincipal UserDetailsImpl loggedUser,
                                  @NotNull Model model, @ModelAttribute("user") UserDTO user) {
-//        UserDTO user = userService.findByEmail(loggedUser.getEmail());
+
         model.addAttribute("user", user);
         model.addAttribute("loggedUser", loggedUser);
 
@@ -178,12 +177,13 @@ public class UserController {
     }
 
     @GetMapping("/profile1")
-    public String viewProfile(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
+    public String viewProfile(@AuthenticationPrincipal UserDetailsImpl loggedUser, Model model) {
         List<OrderDTO> orders = new ArrayList<>();
         List<EpackDTO> epacks = new ArrayList<>();
         List<OrderDTO> allOrders = orderService.findAll();
+        UserDTO user = userService.findByEmail(loggedUser.getEmail());
         for (OrderDTO order : allOrders) {
-            if (order.getUserId().equals(user.getId())) {
+            if (order.getUserId().equals(user.getUserId())) {
                 orders.add(order);
                 epacks.add(epackService.findEpackById(order.getEpackId()));
             }

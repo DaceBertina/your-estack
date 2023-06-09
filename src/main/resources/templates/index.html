@@ -73,6 +73,9 @@
                 <li class="to-right">
                     <form th:action="@{/logout}" method="post">
                         <a href="logoutForm.html" class="nav-link scrollto" th:href="@{/perform_logout}">Log Out</a>
+                        <div th:if="${param.logout}" class="alert alert-info">
+                            You have been logged out.
+                        </div>
                     </form>
                 </li>
                 </div>
