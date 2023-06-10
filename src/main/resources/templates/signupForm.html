@@ -28,13 +28,13 @@
       padding-top: 20px;
       padding-bottom: 20px;
       margin: 110px auto 15px;
-      width: 650px;
+      width: 450px;
       text-align: center;
       line-height: 1em;
     }
 
     .mx-auto {
-      width: 650px;
+      width: 450px;
     }
 
     .btn {
@@ -45,6 +45,12 @@
     label {
         display: inline-block;
         text-align: right;
+    }
+
+    p {
+        font-size: 12px;
+        line-height: 0;
+        float: left;
     }
 
   </style>
@@ -60,6 +66,9 @@
       </nav>
   </div>
 </header>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3 col-sm-6">
 <form th:action="@{/registerClient}" method="POST" th:object="${user}">
     <div class="mx-auto">
         <div class="form-container bg-info">
@@ -77,8 +86,11 @@
       <div class="form-group row">
        <label for="password" class="col-form-label col-3">Password: </label>
         <div class="col-8">
-        <input type="password" class="form-control" style="height: 28px" name="password" th:field="*{password}" id="password" required><br>
-          <p th:if="${#fields.hasErrors('password')}" class="alert alert-danger" th:errors="*{password}"> </p>
+        <input type="password" class="form-control" style="height: 28px" name="password" th:field="*{password}" id="password" required autofocus="autofocus"><br>
+<!--          <p th:if="${#fields.hasErrors('password')}" class="alert alert-danger" th:errors="*{password}"> </p>-->
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}">
+            <p th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
+            </div>
         </div>
       </div>
       <div class="form-group row">
@@ -114,9 +126,13 @@
       </div>
         <div class="form-group row">
             <label for="gender" class="col-form-label col-3">Gender: </label>
-            <div class="col-8">
-                <input type="text" class="form-control" style="height: 28px" name="gender" th:value="*{gender}" id="gender" th:errorClass="is-invalid" required
-                       maxlength="3"/><br/>
+            <div class="col-8" style="margin-bottom: 10px;">
+                <select name="gender" id="gender" class="form-control">
+                    <option value="0">--select--</option>
+                    <option value="M">male</option>
+                    <option value="F">female</option>
+                    <option value="X">other</option>
+                </select>
             </div>
         </div>
       <div class="form-group row">
@@ -137,10 +153,25 @@
        <input type="text" class="form-control" style="height: 28px" name="occupation" th:value="*{occupation}" id="occupation" th:errorClass="is-invalid" required /><br/>
         </div>
       </div>
-        <button type="submit" class="btn btn-primary"><p style="color: white"><b>Register</b><p></button>
+        <button type="submit" class="btn btn-primary"><p style="color: white; line-height: 5px; font-size: 14px; padding-top: 8px;"><b>Register</b><p></button>
   </div>
   </div>
     </div>
 </form>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="mx-auto" style="width: 250px;">
+            <div class="form-container bg-info" style="border-radius: 20px; width: 250px; margin-left: 30px; height: 100px;">
+                <div class="m-2 ml-2 mr-2 pt-0 pb-2 p-2">
+                    <p><u>Password requirements: </u></p>
+                        <p>length: 8 - 15 characters;</p>
+                        <p>at least 1 upper case, 1 lower case,</p>
+                        <p> 1 digit, 1 symbol</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6"></div>
+</div>
 </body>
 </html>

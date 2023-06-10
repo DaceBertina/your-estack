@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yourestack.epack.business.domain.EpackDTO;
@@ -50,7 +51,10 @@ public class UserController {
 
     @PostMapping("/registerClient")
     public String registerNewClient(@Valid @ModelAttribute("user") UserDTO user,
-              @NotNull Model model, BindingResult bindingResult) {
+                                    @NotNull Model model, Errors errors, BindingResult bindingResult) {
+
+        model.addAttribute("user", user);
+        model.addAttribute("errors", errors);
 
         if (bindingResult.hasErrors()) {
             log.error("New client cannot be registered: error in {}", bindingResult);
@@ -197,7 +201,7 @@ public class UserController {
     @GetMapping("/perform_logout")
     public String logout(){
 
-        return "/logoutForm";
+        return "logoutForm";
     }
 
 }
