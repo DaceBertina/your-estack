@@ -23,18 +23,19 @@
     }
 
     .form-container {
-      display: block;
-      border-radius: 5%;
-      padding-top: 20px;
-      padding-bottom: 20px;
-      margin: 110px auto 15px;
-      width: 450px;
-      text-align: center;
-      line-height: 1em;
+        display: block;
+        border-radius: 5%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin: 110px auto 15px;
+        width: 550px;
+        text-align: center;
+        line-height: 1em;
     }
 
     .mx-auto {
-      width: 450px;
+        width: 550px;
+        float: right;
     }
 
     .btn {
@@ -67,8 +68,8 @@
   </div>
 </header>
 <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-3 col-sm-6">
+<!--    <div class="col-md-3"></div>-->
+    <div class="col-md-6 col-sm-6">
 <form th:action="@{/registerClient}" method="POST" th:object="${user}">
     <div class="mx-auto">
         <div class="form-container bg-info">
@@ -161,7 +162,7 @@
     </div>
     <div class="col-md-3 col-sm-6">
         <div class="mx-auto" style="width: 250px;">
-            <div class="form-container bg-info" style="border-radius: 20px; width: 250px; margin-left: 30px; height: 100px;">
+            <div class="form-container bg-info" style="border-radius: 20px; width: 250px; height: 100px;">
                 <div class="m-2 ml-2 mr-2 pt-0 pb-2 p-2">
                     <p><u>Password requirements: </u></p>
                         <p>length: 8 - 15 characters;</p>
