@@ -38,7 +38,7 @@ public class UserDTO {
 
     @NotBlank
     @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*]).{8,15})",
-                        message="Password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 digit, length: 8-15")
+                        message="{password.pattern}")
     private String password;
 
     @NotBlank

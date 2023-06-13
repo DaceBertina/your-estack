@@ -69,7 +69,7 @@
   </div>
 </header>
 
-<form th:action="@{/editUserProfile}" method="POST" th:object="${user}">
+<form th:action="@{/editUserProfile}" th:method="PUT" th:object="${user}">
 
     <div class="mx-auto">
         <div class="form-container bg-info">

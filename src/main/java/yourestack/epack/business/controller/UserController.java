@@ -50,11 +50,8 @@ public class UserController {
 //    }
 
     @PostMapping("/registerClient")
-    public String registerNewClient(@Valid @ModelAttribute("user") UserDTO user,
-                                    @NotNull Model model, Errors errors, BindingResult bindingResult) {
-
-        model.addAttribute("user", user);
-        model.addAttribute("errors", errors);
+    public String registerNewClient(@Valid @ModelAttribute("user") UserDTO user, BindingResult bindingResult,
+                                    @NotNull Model model) {
 
         if (bindingResult.hasErrors()) {
             log.error("New client cannot be registered: error in {}", bindingResult);
@@ -89,7 +86,7 @@ public class UserController {
         return "editProfile";
     }
 
-    @PostMapping("/editUserProfile")
+    @PutMapping("/editUserProfile")
     public String editProfile(@AuthenticationPrincipal UserDetailsImpl loggedUser, @NotNull Model model, UserDTO user) {
         Long userId = loggedUser.getId();
         UserDTO userUpdated = userService.update(userId, user);

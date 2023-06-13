@@ -1,6 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns: sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns: sec="http://www.thymeleaf.org/extras/spring-security" xmlns:color="http://www.w3.org/1999/xhtml"
+      xmlns:text-align="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -27,10 +28,11 @@
         border-radius: 5%;
         padding-top: 20px;
         padding-bottom: 20px;
-        margin: 110px auto 15px;
+        margin: 110px auto 10px;
         width: 550px;
         text-align: center;
         line-height: 1em;
+        float:right;
     }
 
     .mx-auto {
@@ -54,116 +56,119 @@
         float: left;
     }
 
+    .alert {
+        line-height: 14px;
+        font-size: 14px;
+        text-align: left;
+    }
+
   </style>
 </head>
 <body>
 <header id="header" class="fixed-top d-flex align-items-center">
   <div class="container d-flex justify-content-between">
-
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Go back</b></a></li>
+        <li><a class="nav-link scrollto active" style="font-size: 18pt" th:href="@{/}"><b>Return to home</b></a></li>
       </ul>
       </nav>
   </div>
 </header>
 <div class="row">
-<!--    <div class="col-md-3"></div>-->
     <div class="col-md-6 col-sm-6">
-<form th:action="@{/registerClient}" method="POST" th:object="${user}">
-    <div class="mx-auto">
-        <div class="form-container bg-info">
-    <div class="m-3 mt-3 mb-3 ml-2 mr-2 px-2 pt-2 pb-2 p-3">
-      <h4 style="color: white; text-align: center;">Please fill in the registration form: </h4>
-      <div class="form-group row">
-        <label for="email" class="col-form-label col-3" >Email: </label>
-        <div class="col-8">
-          <input type="text" class="form-control" style="height: 28px" name="email" th:field="*{email}" id="email"
-                 required><br>
-                   <div th:if="${userExists}" th:text="'There already exists the account with that email.'" class="alert alert-danger"></div>
-            <p th:if="${#fields.hasErrors('email')}" class="alert alert-danger" th:errors="*{email}"> </p>
-        </div>
-      </div>
-      <div class="form-group row">
-       <label for="password" class="col-form-label col-3">Password: </label>
-        <div class="col-8">
-        <input type="password" class="form-control" style="height: 28px" name="password" th:field="*{password}" id="password" required autofocus="autofocus"><br>
-<!--          <p th:if="${#fields.hasErrors('password')}" class="alert alert-danger" th:errors="*{password}"> </p>-->
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}">
-            <p th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
+        <form th:action="@{/registerClient}" method="POST" th:object="${user}">
+            <div class="mx-auto">
+                <div class="form-container bg-info">
+                    <div class="m-3 mt-3 mb-0 ml-2 mr-2 px-2 pt-2 pb-0 p-3">
+                        <h4 style="color: white; text-align: center;">Please fill in the registration form: </h4>
+                        <div class="form-group row">
+                            <label for="email" class="col-form-label col-3" >Email: </label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" style="height: 28px" name="email" th:field="*{email}" id="email" required autofocus="autofocus"><br>
+                                <div th:if="${userExists}" th:text="'There already exists the account with that email.'" class="alert alert-danger"></div>
+                                <p th:if="${#fields.hasErrors('email')}" class="alert alert-danger" th:errors="*{email}"> </p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-form-label col-3">Password: </label>
+                            <div class="col-8">
+                                <input type="password" class="form-control" style="height: 28px" name="password" th:field="*{password}" id="password"><br>
+                                          <p th:if="${#fields.hasErrors('password')}" class="alert alert-danger" th:errors="*{password}"> </p>
+<!--                                <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}">-->
+<!--                                    <p th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="passwordConfirmation" class="col-form-label col-3">Confirm password: </label>
+                            <div class="col-8">
+                                <input type="password" class="form-control" style="height: 28px" name="passwordConfirmation"  th:field="*{passwordConfirmation}" id="passwordConfirmation" th:errorClass="is-invalid" required
+                                       minlength="8"/><br/>
+                                <div th:if="${user.getPassword() != null && user.getPasswordConfirmation() != null}">
+                                    <div th:if="${!user.getPassword().equals(user.getPasswordConfirmation())}" th:text="'Passwords do not match.'" class="alert alert-danger"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="username" class="col-form-label col-3">Username: </label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" style="height: 28px" name="username" th:value="*{username}" id="username" th:errorClass="is-invalid" required
+                                       minlength="2" maxlength="40"/><br/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstName" class="col-form-label col-3">First name: </label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" style="height: 28px" name="firstName" th:value="*{firstName}" id="firstName" th:errorClass="is-invalid" required
+                                       minlength="2" maxlength="40"/><br/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastName" class="col-form-label col-3">Last name: </label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" style="height: 28px" name="lastName" th:value="*{lastName}" id="lastName" th:errorClass="is-invalid" required
+                                       minlength="2" maxlength="60"/><br/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="gender" class="col-form-label col-3">Gender: </label>
+                            <div class="col-8" style="margin-bottom: 10px;">
+                                <select name="gender" id="gender" class="form-control">
+                                    <option value="0">--select--</option>
+                                    <option value="M">male</option>
+                                    <option value="F">female</option>
+                                    <option value="X">other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="dateOfBirth" class="col-form-label col-3">Date of birth: </label>
+                            <div class="col-8">
+                                <input type="date" class="form-control" style="height: 28px" name="dateOfBirth" th:value="*{dateOfBirth}" id="dateOfBirth" th:errorClass="is-invalid" required/><br/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="phoneNumber" class="col-form-label col-3">Phone number: </label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" style="height: 28px" name="phoneNumber" th:value="*{phoneNumber}" id="phoneNumber" th:errorClass="is-invalid" required /><br/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="occupation" class="col-form-label col-3">Occupation: </label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" style="height: 28px" name="occupation" th:value="*{occupation}" id="occupation" th:errorClass="is-invalid" required /><br/>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><p style="color: white; line-height: 5px; font-size: 14px; padding-top: 8px;"><b>Register</b><p></button>
+                    </div>
+                </div>
             </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="passwordConfirmation" class="col-form-label col-3">Confirm password: </label>
-        <div class="col-8">
-        <input type="password" class="form-control" style="height: 28px" name="passwordConfirmation"  th:field="*{passwordConfirmation}" id="passwordConfirmation" th:errorClass="is-invalid" required
-         minlength="8"/><br/>
-            <div th:if="${user.getPassword() != null && user.getPasswordConfirmation() != null}">
-            <div th:if="${!user.getPassword().equals(user.getPasswordConfirmation())}" th:text="'Passwords do not match.'" class="alert alert-danger"></div>
-            </div>
-        </div>
-      </div>
-        <div class="form-group row">
-            <label for="username" class="col-form-label col-3">Username: </label>
-            <div class="col-8">
-                <input type="text" class="form-control" style="height: 28px" name="username" th:value="*{username}" id="username" th:errorClass="is-invalid" required
-                       minlength="2" maxlength="40"/><br/>
-            </div>
-        </div>
-      <div class="form-group row">
-        <label for="firstName" class="col-form-label col-3">First name: </label>
-        <div class="col-8">
-        <input type="text" class="form-control" style="height: 28px" name="firstName" th:value="*{firstName}" id="firstName" th:errorClass="is-invalid" required
-         minlength="2" maxlength="40"/><br/>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="lastName" class="col-form-label col-3">Last name: </label>
-        <div class="col-8">
-        <input type="text" class="form-control" style="height: 28px" name="lastName" th:value="*{lastName}" id="lastName" th:errorClass="is-invalid" required
-         minlength="2" maxlength="60"/><br/>
-        </div>
-      </div>
-        <div class="form-group row">
-            <label for="gender" class="col-form-label col-3">Gender: </label>
-            <div class="col-8" style="margin-bottom: 10px;">
-                <select name="gender" id="gender" class="form-control">
-                    <option value="0">--select--</option>
-                    <option value="M">male</option>
-                    <option value="F">female</option>
-                    <option value="X">other</option>
-                </select>
-            </div>
-        </div>
-      <div class="form-group row">
-       <label for="dateOfBirth" class="col-form-label col-3">Date of birth: </label>
-        <div class="col-8">
-        <input type="date" class="form-control" style="height: 28px" name="dateOfBirth" th:value="*{dateOfBirth}" id="dateOfBirth" th:errorClass="is-invalid" required/><br/>
-        </div>
-      </div>
-      <div class="form-group row">
-      <label for="phoneNumber" class="col-form-label col-3">Phone number: </label>
-        <div class="col-8">
-       <input type="text" class="form-control" style="height: 28px" name="phoneNumber" th:value="*{phoneNumber}" id="phoneNumber" th:errorClass="is-invalid" required /><br/>
-        </div>
-      </div>
-      <div class="form-group row">
-      <label for="occupation" class="col-form-label col-3">Occupation: </label>
-        <div class="col-8">
-       <input type="text" class="form-control" style="height: 28px" name="occupation" th:value="*{occupation}" id="occupation" th:errorClass="is-invalid" required /><br/>
-        </div>
-      </div>
-        <button type="submit" class="btn btn-primary"><p style="color: white; line-height: 5px; font-size: 14px; padding-top: 8px;"><b>Register</b><p></button>
-  </div>
-  </div>
+        </form>
     </div>
-</form>
-    </div>
-    <div class="col-md-3 col-sm-6">
+    <div class="col-md-3 col-sm-6" style="margin-right: 0; padding-right: 0">
         <div class="mx-auto" style="width: 250px;">
             <div class="form-container bg-info" style="border-radius: 20px; width: 250px; height: 100px;">
-                <div class="m-2 ml-2 mr-2 pt-0 pb-2 p-2">
+                <div class="m-2 ml-0 mr-2 pt-0 pb-2 p-2">
                     <p><u>Password requirements: </u></p>
                         <p>length: 8 - 15 characters;</p>
                         <p>at least 1 upper case, 1 lower case,</p>
@@ -171,7 +176,7 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
     <div class="col-md-3 col-sm-6"></div>
 </div>
 </body>
