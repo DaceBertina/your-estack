@@ -17,6 +17,7 @@
 <link href="css/style.css" rel="stylesheet">
 <link href="css/allEpacks.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>-->
 <head>
 
         <title>Java Course</title>
@@ -51,9 +52,13 @@
 
     .btn-get-started scrollto animate__animated animate__fadeInUp {
         text-align: left;
+        padding-bottom: 20px;
+        padding-top: 0;
     }
 
     img {
+        width:  400px;
+        object-fit: cover;
         padding: 0;
         margin: 0;
     }
@@ -88,122 +93,122 @@
             </header>
         </div>
     </div>
-            <div class="container-fluid">
-                <div class="java-form" style="text-align: center">
-                    <section id="hero">
-                        <div class="hero-container">
-                            <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" style="background-image: url(images/hero_carousel_2.jpg)">
-                                        <div class="carousel-container">
-                                            <div class="container">
-                                                <h2 class="animate__animated animate__fadeInDown">*** JAVA advanced ***</h2>
-                                                <p class="animate__animated animate__fadeInUp">Learn modern Java  on your own pace. Get certificate.
-                                                </p>
-                                                <br>
-                                                <img src="images/javaIcon.png" alt="Java course picture" style="margin-left: 50px; margin-right: 0; padding: 0;">
-                                                <p><a class ="btn-get-started scrollto animate__animated animate__fadeInUp"
-                                                   style="color: #b9f1f3c6; margin-left: 318px; margin-right: 0; padding: 12px; margin-bottom: 30px;"
-                                                   th:href="@{/allEpacks}">Get Started</a></p>
-                                                <br>
-                                            </div>
-                                        </div>
+    <div class="container-fluid">
+        <div class="java-form" style="text-align: center">
+            <section id="hero">
+                <div class="hero-container">
+                    <div id="heroCarousel" class="carousel slide carousel-fade">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" style="background-image: url(images/hero_carousel_2.jpg)">
+                                <div class="carousel-container">
+                                    <div class="container">
+                                        <h2 class="animate__animated animate__fadeInDown" style="padding:0;">*** JAVA advanced ***</h2>
+                                        <p class="animate__animated animate__fadeInUp" style="padding:0;">Learn modern Java  on your own pace. Get certificate.
+                                        </p>
+                                        <br>
+                                        <img src="images/javaIcon.png" alt="Java course picture" style="margin-left: 50px; margin-right: 0; padding: 0;">
+                                        <p><a class ="btn-get-started scrollto animate__animated animate__fadeInUp"
+                                              style="color: #b9f1f3c6; margin-left: 318px; margin-right: 0; margin-bottom: 30px;"
+                                              th:href="@{/allEpacks}">Get Started</a></p>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </section>
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6"><br>
-                            <p><b><u>About this course:</u></b></p><br>
-                            <form method="GET" th:action="@{/getJava}" th:object="${javaEpack}">
-                                <div class="form-group row">
-                                    <label for="javaId" class="col-form-label col-3">Epack ID: </label>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackId" id="javaId" th:value="${javaEpack.epackId}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaName" class="col-form-label col-3">Epack name: </label>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control" style="height: 28px" name="epackName" id="javaName" th:value="${javaEpack.epackName}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaManager" class="col-form-label col-3">Manager: </label>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control" style="height: 28px" name="manager" id="javaManager" th:value="${javaEpack.manager}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaDescription" class="col-form-label col-3">Description: </label>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control" style="height: 28px" name="description" id="javaDescription" th:value="${javaEpack.description}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaDuration" class="col-form-label col-3">Duration(h): </label>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control" style="height: 28px" name="duration" id="javaDuration" th:value="${javaEpack.duration}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaDateCreated" class="col-form-label col-3">Date created: </label>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control" style="height: 28px" name="createdDate" id="javaDateCreated" th:value="${javaEpack.getCreatedDate(javaEpack.getDateTimeCreated())}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="javaPrice" class="col-form-label col-3">Price(EUR): </label>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control" style="height: 28px" name="price" id="javaPrice" th:value="${javaEpack.price}">
-                                    </div>
-                                </div>
-                            </form>
-                            </div>
-                            <div class="col-md-4 col-sm-6"><br>
-                            <p><b><u>Topics covered:</u></b></p><br>
-                                <ul>
-                                    <li><a href="#">Access modifiers</a></li>
-                                    <li><a href="#">Lambda expressions</a></li>
-                                    <li><a href="#">Generics</a></li>
-                                    <li><a href="https://www.geeksforgeeks.org/difference-between-abstract-class-and-interface-in-java/">Abstract class vs Interface</a></li>
-                                    <li><a href="#">Exception handling</a></li>
-                                </ul>
-                                </div>
-                            <div class="col-md-4 col-sm-6"><br>
-                            <p><b><u>Tests and exams:</u></b></p><br>
-                                <ul>
-                                <li><a href="#">Test No1: Access modifiers</a></li>
-                                <li><a href="#">Test No2: Lambda expressions</a></li>
-                                <li><a href="#">Test No3: Generics</a></li>
-                                <li><a href="#">Test No4: Abstract class vs Interface</a></li>
-                                <li><a href="#">Test No5: Exception handling</a></li>
-                                <li><a href="#">Final Exam</a></li>
-                                </ul>
-                                <br>
-                                <div class="col-md-4 col-sm-6">
-                                    <p style="text-align: left">Upload Your homework here:</p><br>
-                                        <p th:text="${file}" th:if="${message ne null}" class="alert alert-primary"></p>
-                                            <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
-                                                <div class="form-group">
-                                                    <input type="file" name="file" accept="file/*" class="form-control-file">
-                                                </div>
-                                                <br>
-                                                <div class="form-group" style="margin-left: 0; padding-left: 0;">
-                                                   <button type="submit" class="btn" style="margin-left: 0;"><u>Upload file</u></button>
-                                                </div>
-                                            </form>
-                                            <span th:if="${msg != null}" th:text="${msg}"></span>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                <br>
-                <button type="button" class ="btn"><a th:href="@{/}" style="color: #b9f1f3c6; margin-left: 0;">Return to home</a></button>
+                    </div>
                 </div>
-
+            </section>
+            <div class="row">
+                <div class="col-md-4 col-sm-6"><br>
+                    <p><b><u>About this course:</u></b></p><br>
+                    <form method="GET" th:action="@{/getJava}" th:object="${javaEpack}">
+                        <div class="form-group row">
+                            <label for="javaId" class="col-form-label col-3">Epack ID: </label>
+                            <div class="col-5">
+                                <input type="text" class="form-control" style="height: 28px" name="epackId" id="javaId" th:value="${javaEpack.epackId}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="javaName" class="col-form-label col-3">Epack name: </label>
+                            <div class="col-5">
+                                <input type="text" class="form-control" style="height: 28px" name="epackName" id="javaName" th:value="${javaEpack.epackName}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="javaManager" class="col-form-label col-3">Manager: </label>
+                            <div class="col-5">
+                                <input type="text" class="form-control" style="height: 28px" name="manager" id="javaManager" th:value="${javaEpack.manager}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="javaDescription" class="col-form-label col-3">Description: </label>
+                            <div class="col-5">
+                                <input type="text" class="form-control" style="height: 28px" name="description" id="javaDescription" th:value="${javaEpack.description}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="javaDuration" class="col-form-label col-3">Duration(h): </label>
+                            <div class="col-5">
+                                <input type="text" class="form-control" style="height: 28px" name="duration" id="javaDuration" th:value="${javaEpack.duration}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="javaDateCreated" class="col-form-label col-3">Date created: </label>
+                            <div class="col-5">
+                                <input type="text" class="form-control" style="height: 28px" name="createdDate" id="javaDateCreated" th:value="${javaEpack.getCreatedDate(javaEpack.getDateTimeCreated())}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="javaPrice" class="col-form-label col-3">Price(EUR): </label>
+                            <div class="col-5">
+                                <input type="text" class="form-control" style="height: 28px" name="price" id="javaPrice" th:value="${javaEpack.price}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 col-sm-6"><br>
+                    <p><b><u>Topics covered:</u></b></p><br>
+                    <ul>
+                        <li><a href="#">Access modifiers</a></li>
+                        <li><a href="#">Lambda expressions</a></li>
+                        <li><a href="#">Generics</a></li>
+                        <li><a href="https://www.geeksforgeeks.org/difference-between-abstract-class-and-interface-in-java/">Abstract class vs Interface</a></li>
+                        <li><a href="#">Exception handling</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6"><br>
+                    <p><b><u>Tests and exams:</u></b></p><br>
+                    <ul>
+                        <li><a href="#">Test No1: Access modifiers</a></li>
+                        <li><a href="#">Test No2: Lambda expressions</a></li>
+                        <li><a href="#">Test No3: Generics</a></li>
+                        <li><a href="#">Test No4: Abstract class vs Interface</a></li>
+                        <li><a href="#">Test No5: Exception handling</a></li>
+                        <li><a href="#">Final Exam</a></li>
+                    </ul>
+                    <br>
+                    <div class="col-md-4 col-sm-6">
+                        <p style="text-align: left">Upload Your homework here:</p><br>
+                        <p th:text="${file}" th:if="${message ne null}" class="alert alert-primary"></p>
+                        <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input type="file" name="file" accept="file/*" class="form-control-file">
+                            </div>
+                            <br>
+                            <div class="form-group" style="margin-left: 0; padding-left: 0;">
+                                <button type="submit" class="btn" style="margin-left: 0;"><u>Upload file</u></button>
+                            </div>
+                        </form>
+                        <span th:if="${msg != null}" th:text="${msg}"></span>
+                    </div>
+                </div>
             </div>
+        </div>
+        <br>
+        <button type="button" class ="btn"><a th:href="@{/}" style="color: #b9f1f3c6; margin-left: 0;">Return to home</a></button>
+    </div>
+
+</div>
 <br>
 <br>
 <div class="footer-logo"><strong>&copy; IT 2021 - 2023</strong></div>
